@@ -1,0 +1,1510 @@
+{
+    "train": [
+        {
+            "input": "Hey, I\u2019m Maya, I like singing, learning, languages, and eating sweets. I\u2019m currently studying computer science.",
+            "output": "Singing is really nice. What kind of songs do you really like singing the most?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya, I like singing, learning, languages, and eating sweets. I\u2019m currently studying computer science.",
+            "output": "Programming is fun! What is your favorite programming language?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya, I like singing, learning, languages, and eating sweets. I\u2019m currently studying computer science.",
+            "output": "I\u2019m also a sweet tooth. What are your favorite types of sweets?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya, I like singing, learning, languages, and eating sweets. I\u2019m currently studying computer science.",
+            "output": "Do you want to sing me a song?"
+        },
+        {
+            "input": "I\u2019m Sarah, I love animals and cooking. My dog Rufus and my cat Mia are my favorites, and I love all kinds of foods, so I\u2019m eager for new recipes.",
+            "output": "I love animals too! Do you think of getting more pets?"
+        },
+        {
+            "input": "I\u2019m Sarah, I love animals and cooking. My dog Rufus and my cat Mia are my favorites, and I love all kinds of foods, so I\u2019m eager for new recipes.",
+            "output": "I also love cooking and am eager to exchange some recipes. Would you like to share some tips?"
+        },
+        {
+            "input": "I\u2019m Sarah, I love animals and cooking. My dog Rufus and my cat Mia are my favorites, and I love all kinds of foods, so I\u2019m eager for new recipes.",
+            "output": "I\u2019m also into cooking. I think I know some good recipes. If you want, I can send them."
+        },
+        {
+            "input": "Hey, I\u2019m Eric. I love basketball and boxing. My favorite boxer is Canelo Alvarez. I\u2019m currently studying chemistry.",
+            "output": "I love boxing too. What\u2019s your favorite fight of Canelo?"
+        },
+        {
+            "input": "Hey, I\u2019m Eric. I love basketball and boxing. My favorite boxer is Canelo Alvarez. I\u2019m currently studying chemistry.",
+            "output": "Hey, I love basketball too. What\u2019s your favorite team?"
+        },
+        {
+            "input": "Hey, I\u2019m Eric. I love basketball and boxing. My favorite boxer is Canelo Alvarez. I\u2019m currently studying chemistry.",
+            "output": "Chemistry is really hard, man. What is your favorite part about chemistry?"
+        },
+        {
+            "input": "I\u2019m Hirako. I love swimming, partying, and going to concerts. Currently, I\u2019m studying psychology in Denmark.",
+            "output": "I love concerts too. Are there any good concerts in the near future?"
+        },
+        {
+            "input": "I\u2019m Hirako. I love swimming, partying, and going to concerts. Currently, I\u2019m studying psychology in Denmark.",
+            "output": "I love swimming too. Do you do it by yourself or do you go to a swimming club?"
+        },
+        {
+            "input": "I\u2019m Hirako. I love swimming, partying, and going to concerts. Currently, I\u2019m studying psychology in Denmark.",
+            "output": "I love concerts too. What\u2019s the best concert you have been to?"
+        },
+        {
+            "input": "Hey, I\u2019m Sophia. I love going on adventures and traveling. Right now, I\u2019m staying in France as part of an exchange program.",
+            "output": "I love traveling too! What\u2019s the best place you have visited in the recent year?"
+        },
+        {
+            "input": "Hey, I\u2019m Sophia. I love going on adventures and traveling. Right now, I\u2019m staying in France as part of an exchange program.",
+            "output": "An exchange program? That sounds interesting. Is this provided by your university or school?"
+        },
+        {
+            "input": "Hey, I\u2019m Sophia. I love going on adventures and traveling. Right now, I\u2019m staying in France as part of an exchange program.",
+            "output": "France is really nice. What\u2019s your favorite part about it?"
+        },
+        {
+            "input": "Hey, I\u2019m Mia. I love hiking, running, and doing sports in general. I\u2019m currently studying medicine. I speak English, French, and Spanish.",
+            "output": "You speak three languages. That\u2019s amazing! How come you speak all of them?"
+        },
+        {
+            "input": "Hey, I\u2019m Mia. I love hiking, running, and doing sports in general. I\u2019m currently studying medicine. I speak English, French, and Spanish.",
+            "output": "I heard medicine is hard. What\u2019s your motivation for this field?"
+        },
+        {
+            "input": "Hey, I\u2019m Mia. I love hiking, running, and doing sports in general. I\u2019m currently studying medicine. I speak English, French, and Spanish.",
+            "output": "Hiking is really fun. When was the last time you went hiking?"
+        },
+        {
+            "input": "Hey, I\u2019m Abdul. I love football (my favorite team is Real Madrid). I also play football and work as a consultant in an IT company. I speak Arabic, English, German, Spanish, and Russian.",
+            "output": "How come you speak so many languages?"
+        },
+        {
+            "input": "Hey, I\u2019m Abdul. I love football (my favorite team is Real Madrid). I also play football and work as a consultant in an IT company. I speak Arabic, English, German, Spanish, and Russian.",
+            "output": "I also like Real Madrid. Did you watch their last game?"
+        },
+        {
+            "input": "Hey, I\u2019m Abdul. I love football (my favorite team is Real Madrid). I also play football and work as a consultant in an IT company. I speak Arabic, English, German, Spanish, and Russian.",
+            "output": "What kind of IT company do you work for?"
+        },
+        {
+            "input": "Hey, I\u2019m Mara. I work in the public sector. As a hobby, I like to go bowling or skiing. I also like to travel a lot.",
+            "output": "Traveling is really fun. What is the last country you have visited?"
+        },
+        {
+            "input": "Hey, I\u2019m Mara. I work in the public sector. As a hobby, I like to go bowling or skiing. I also like to travel a lot.",
+            "output": "Skiing is the best! Which places would you recommend?"
+        },
+        {
+            "input": "Hey, I\u2019m Mara. I work in the public sector. As a hobby, I like to go bowling or skiing. I also like to travel a lot.",
+            "output": "I like traveling too. Which of the countries you have visited is your favorite?"
+        },
+        {
+            "input": "Hey, I\u2019m Paul. I love boxing and working out. I also love to go for a hike. Right now, I\u2019m working as a boxing coach.",
+            "output": "That\u2019s really impressive. How long have you been boxing?"
+        },
+        {
+            "input": "Hey, I\u2019m Paul. I love boxing and working out. I also love to go for a hike. Right now, I\u2019m working as a boxing coach.",
+            "output": "You do a lot of sports. How often do you exercise per week?"
+        },
+        {
+            "input": "Hey, I\u2019m Paul. I love boxing and working out. I also love to go for a hike. Right now, I\u2019m working as a boxing coach.",
+            "output": "Hiking\u2019s the best. Do you know a good spot for hiking?"
+        },
+        {
+            "input": "Hey, I\u2019m Andrew. I like to do physics or learn new languages in my free time. Right now, I\u2019m about to finish my Bachelor in Computer Science.",
+            "output": "I\u2019m a huge fan of learning languages. Which language are you currently learning?"
+        },
+        {
+            "input": "Hey, I\u2019m Andrew. I like to do physics or learn new languages in my free time. Right now, I\u2019m about to finish my Bachelor in Computer Science.",
+            "output": "Is there any field in computer science that you are particularly interested in?"
+        },
+        {
+            "input": "Hey, I\u2019m Andrew. I like to do physics or learn new languages in my free time. Right now, I\u2019m about to finish my Bachelor in Computer Science.",
+            "output": "Programming\u2019s really fun. What\u2019s your favorite programming language?"
+        },
+        {
+            "input": "Hi, I\u2019m Anna. I\u2019m passionate about marine biology, diving, and photography. I\u2019m also involved in beach cleanup drives.",
+            "output": "Marine biology sounds fascinating! What\u2019s the most interesting creature you\u2019ve studied?"
+        },
+        {
+            "input": "Hi, I\u2019m Anna. I\u2019m passionate about marine biology, diving, and photography. I\u2019m also involved in beach cleanup drives.",
+            "output": "Diving must be incredible. Do you have a favorite diving spot?"
+        },
+        {
+            "input": "Hi, I\u2019m Anna. I\u2019m passionate about marine biology, diving, and photography. I\u2019m also involved in beach cleanup drives.",
+            "output": "That\u2019s great you\u2019re involved in beach cleanups. Have you noticed any positive changes in your efforts?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I love woodworking, running marathons, and learning about ancient civilizations. I\u2019m an architect.",
+            "output": "Woodworking is such a skill! What\u2019s your favorite piece you\u2019ve made?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I love woodworking, running marathons, and learning about ancient civilizations. I\u2019m an architect.",
+            "output": "Running marathons is impressive. How do you prepare for them?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I love woodworking, running marathons, and learning about ancient civilizations. I\u2019m an architect.",
+            "output": "Ancient civilizations are so intriguing. Do you have a favorite one to study?"
+        },
+        {
+            "input": "Hi, I\u2019m Yasmin. I enjoy knitting, playing the violin, and reading fantasy novels. I\u2019m studying literature.",
+            "output": "Knitting is such a cool hobby! What\u2019s the most challenging thing you\u2019ve made?"
+        },
+        {
+            "input": "Hi, I\u2019m Yasmin. I enjoy knitting, playing the violin, and reading fantasy novels. I\u2019m studying literature.",
+            "output": "Fantasy novels are my favorite too! Who\u2019s your favorite author?"
+        },
+        {
+            "input": "Hi, I\u2019m Yasmin. I enjoy knitting, playing the violin, and reading fantasy novels. I\u2019m studying literature.",
+            "output": "Playing the violin must be so rewarding. How long have you been practicing?"
+        },
+        {
+            "input": "Hi, I\u2019m Daniel. I\u2019m into cycling, coding, and studying environmental science. I also enjoy geocaching in my free time.",
+            "output": "Cycling is great exercise! Do you have a favorite route?"
+        },
+        {
+            "input": "Hi, I\u2019m Daniel. I\u2019m into cycling, coding, and studying environmental science. I also enjoy geocaching in my free time.",
+            "output": "Geocaching sounds so fun! What\u2019s the coolest thing you\u2019ve found?"
+        },
+        {
+            "input": "Hi, I\u2019m Daniel. I\u2019m into cycling, coding, and studying environmental science. I also enjoy geocaching in my free time.",
+            "output": "Environmental science is so important. Are you working on any interesting projects?"
+        },
+        {
+            "input": "Hey, I\u2019m Sofia. I\u2019m a food blogger who loves experimenting with vegan recipes, photography, and practicing meditation.",
+            "output": "Vegan recipes sound creative! What\u2019s your go-to dish?"
+        },
+        {
+            "input": "Hey, I\u2019m Sofia. I\u2019m a food blogger who loves experimenting with vegan recipes, photography, and practicing meditation.",
+            "output": "Food blogging must be so fun! How do you come up with new content ideas?"
+        },
+        {
+            "input": "Hey, I\u2019m Sofia. I\u2019m a food blogger who loves experimenting with vegan recipes, photography, and practicing meditation.",
+            "output": "Meditation is amazing. Do you use any particular techniques?"
+        },
+        {
+            "input": "Hi, I\u2019m Raj. I enjoy playing cricket, writing poetry, and studying machine learning. I\u2019m currently interning as a data scientist.",
+            "output": "Cricket is such a dynamic game! What\u2019s your favorite position to play?"
+        },
+        {
+            "input": "Hi, I\u2019m Raj. I enjoy playing cricket, writing poetry, and studying machine learning. I\u2019m currently interning as a data scientist.",
+            "output": "Poetry is beautiful. What inspires your writing?"
+        },
+        {
+            "input": "Hi, I\u2019m Raj. I enjoy playing cricket, writing poetry, and studying machine learning. I\u2019m currently interning as a data scientist.",
+            "output": "Machine learning is the future! What\u2019s a project you\u2019re excited about?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I love baking, volunteering at animal shelters, and playing piano. I\u2019m studying veterinary medicine.",
+            "output": "Baking is so satisfying! What\u2019s your signature dessert?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I love baking, volunteering at animal shelters, and playing piano. I\u2019m studying veterinary medicine.",
+            "output": "Volunteering with animals must be so rewarding. What\u2019s your favorite moment from it?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I love baking, volunteering at animal shelters, and playing piano. I\u2019m studying veterinary medicine.",
+            "output": "Veterinary medicine is such a noble field. What inspired you to pursue it?"
+        },
+        {
+            "input": "Hey, I\u2019m Max. I\u2019m passionate about astronomy, playing guitar, and hiking. I\u2019m also learning French.",
+            "output": "Astronomy is so vast! Do you have a favorite celestial event you\u2019ve observed?"
+        },
+        {
+            "input": "Hey, I\u2019m Max. I\u2019m passionate about astronomy, playing guitar, and hiking. I\u2019m also learning French.",
+            "output": "Playing guitar is awesome! What\u2019s your favorite genre to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Max. I\u2019m passionate about astronomy, playing guitar, and hiking. I\u2019m also learning French.",
+            "output": "Hiking is such a great escape. What\u2019s your most memorable hike?"
+        },
+        {
+            "input": "Hi, I\u2019m Zoe. I\u2019m a fitness enthusiast who loves yoga, swimming, and writing short stories. I work as a personal trainer.",
+            "output": "Fitness is inspiring! What\u2019s your favorite type of workout to teach?"
+        },
+        {
+            "input": "Hi, I\u2019m Zoe. I\u2019m a fitness enthusiast who loves yoga, swimming, and writing short stories. I work as a personal trainer.",
+            "output": "Writing short stories sounds creative. What genre do you write in?"
+        },
+        {
+            "input": "Hi, I\u2019m Zoe. I\u2019m a fitness enthusiast who loves yoga, swimming, and writing short stories. I work as a personal trainer.",
+            "output": "Swimming is so refreshing. Do you prefer pools or open water?"
+        },
+        {
+            "input": "Hey, I\u2019m Adrian. I\u2019m a film buff, soccer player, and stand-up comedy enthusiast. I\u2019m currently working as a journalist.",
+            "output": "Film buffs are the best! What\u2019s the last great movie you watched?"
+        },
+        {
+            "input": "Hey, I\u2019m Adrian. I\u2019m a film buff, soccer player, and stand-up comedy enthusiast. I\u2019m currently working as a journalist.",
+            "output": "Soccer is such a universal sport. Do you have a favorite team or position to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Adrian. I\u2019m a film buff, soccer player, and stand-up comedy enthusiast. I\u2019m currently working as a journalist.",
+            "output": "Stand-up comedy is hilarious! Do you have a favorite comedian?"
+        },
+        {
+            "input": "Hi, I\u2019m Leo. I enjoy rock climbing, solving puzzles, and baking sourdough bread. Currently, I\u2019m studying mechanical engineering.",
+            "output": "Rock climbing is amazing! What\u2019s the most challenging climb you\u2019ve done?"
+        },
+        {
+            "input": "Hi, I\u2019m Leo. I enjoy rock climbing, solving puzzles, and baking sourdough bread. Currently, I\u2019m studying mechanical engineering.",
+            "output": "Sourdough bread sounds fun! How did you get into baking?"
+        },
+        {
+            "input": "Hi, I\u2019m Leo. I enjoy rock climbing, solving puzzles, and baking sourdough bread. Currently, I\u2019m studying mechanical engineering.",
+            "output": "I love puzzles too! What\u2019s your favorite type\u2014crossword, Sudoku, or something else?"
+        },
+        {
+            "input": "Hey, I\u2019m Clara. I\u2019m passionate about photography, hiking, and exploring new cuisines. Currently, I work as a digital marketer.",
+            "output": "What\u2019s the most photogenic place you\u2019ve hiked recently?"
+        },
+        {
+            "input": "Hey, I\u2019m Clara. I\u2019m passionate about photography, hiking, and exploring new cuisines. Currently, I work as a digital marketer.",
+            "output": "I love trying new cuisines too. What\u2019s the best dish you\u2019ve discovered recently?"
+        },
+        {
+            "input": "Hey, I\u2019m Clara. I\u2019m passionate about photography, hiking, and exploring new cuisines. Currently, I work as a digital marketer.",
+            "output": "As a marketer, do you focus more on creativity or analytics?"
+        },
+        {
+            "input": "Hi, I\u2019m Zain. I\u2019m into gaming, coding, and volunteering at animal shelters. I\u2019m also learning Japanese.",
+            "output": "What\u2019s your favorite game to play right now?"
+        },
+        {
+            "input": "Hi, I\u2019m Zain. I\u2019m into gaming, coding, and volunteering at animal shelters. I\u2019m also learning Japanese.",
+            "output": "That\u2019s awesome that you volunteer at animal shelters! What\u2019s the most memorable animal you\u2019ve helped?"
+        },
+        {
+            "input": "Hi, I\u2019m Zain. I\u2019m into gaming, coding, and volunteering at animal shelters. I\u2019m also learning Japanese.",
+            "output": "Japanese is a beautiful language. What\u2019s the hardest part about learning it?"
+        },
+        {
+            "input": "I\u2019m Sofia, a law student who enjoys playing tennis, painting, and advocating for climate action.",
+            "output": "Tennis is great! Do you have a favorite player?"
+        },
+        {
+            "input": "I\u2019m Sofia, a law student who enjoys playing tennis, painting, and advocating for climate action.",
+            "output": "Climate action is so important. What\u2019s a recent event or cause you\u2019ve been involved in?"
+        },
+        {
+            "input": "I\u2019m Sofia, a law student who enjoys playing tennis, painting, and advocating for climate action.",
+            "output": "Your paintings must be amazing! What\u2019s your favorite subject to paint?"
+        },
+        {
+            "input": "Hi, I\u2019m Arjun. I enjoy stand-up comedy, cricket, and keeping up with tech innovations. I\u2019m currently studying AI.",
+            "output": "Stand-up comedy is awesome! Who\u2019s your favorite comedian?"
+        },
+        {
+            "input": "Hi, I\u2019m Arjun. I enjoy stand-up comedy, cricket, and keeping up with tech innovations. I\u2019m currently studying AI.",
+            "output": "Did you catch the recent Cricket World Cup? What did you think of the final?"
+        },
+        {
+            "input": "Hi, I\u2019m Arjun. I enjoy stand-up comedy, cricket, and keeping up with tech innovations. I\u2019m currently studying AI.",
+            "output": "AI is fascinating! What\u2019s the coolest project you\u2019ve worked on so far?"
+        },
+        {
+            "input": "Hi, I\u2019m Elisa. I love classical music, yoga, and gardening. I work as a software developer.",
+            "output": "Classical music is so soothing. Do you have a favorite composer?"
+        },
+        {
+            "input": "Hi, I\u2019m Elisa. I love classical music, yoga, and gardening. I work as a software developer.",
+            "output": "Gardening must be so relaxing! What\u2019s your favorite plant to grow?"
+        },
+        {
+            "input": "Hi, I\u2019m Elisa. I love classical music, yoga, and gardening. I work as a software developer.",
+            "output": "Yoga is amazing! Do you practice it daily?"
+        },
+        {
+            "input": "I\u2019m Finn, an avid traveler, runner, and history enthusiast. Right now, I\u2019m exploring Europe while freelancing as a graphic designer.",
+            "output": "Traveling through Europe sounds amazing! Which city has surprised you the most?"
+        },
+        {
+            "input": "I\u2019m Finn, an avid traveler, runner, and history enthusiast. Right now, I\u2019m exploring Europe while freelancing as a graphic designer.",
+            "output": "Running is such a great way to explore. Do you have a favorite route from your travels?"
+        },
+        {
+            "input": "I\u2019m Finn, an avid traveler, runner, and history enthusiast. Right now, I\u2019m exploring Europe while freelancing as a graphic designer.",
+            "output": "As a history enthusiast, do you have a favorite historical event or figure?"
+        },
+        {
+            "input": "Hey, I\u2019m Tara. I love coding, gardening, and playing board games. I\u2019m also interested in space exploration.",
+            "output": "Space exploration is fascinating! What\u2019s your take on the latest NASA Artemis missions?"
+        },
+        {
+            "input": "Hey, I\u2019m Tara. I love coding, gardening, and playing board games. I\u2019m also interested in space exploration.",
+            "output": "Coding is fun! What\u2019s your current favorite project to work on?"
+        },
+        {
+            "input": "Hey, I\u2019m Tara. I love coding, gardening, and playing board games. I\u2019m also interested in space exploration.",
+            "output": "Board games are awesome! Do you have a favorite one to play with friends?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I enjoy journaling, yoga, and keeping up with the latest in sustainability. I\u2019m a data analyst by profession.",
+            "output": "Journaling sounds therapeutic. What\u2019s your favorite type of journal entry to write?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I enjoy journaling, yoga, and keeping up with the latest in sustainability. I\u2019m a data analyst by profession.",
+            "output": "Sustainability is so important! Are there any initiatives you\u2019re particularly passionate about?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I enjoy journaling, yoga, and keeping up with the latest in sustainability. I\u2019m a data analyst by profession.",
+            "output": "Data analytics is such an interesting field! What\u2019s your favorite part of the job?"
+        },
+        {
+            "input": "I\u2019m Samir. I\u2019m a foodie who loves trying street food, playing chess, and learning about financial markets.",
+            "output": "Street food is amazing! What\u2019s the most unique dish you\u2019ve tried recently?"
+        },
+        {
+            "input": "I\u2019m Samir. I\u2019m a foodie who loves trying street food, playing chess, and learning about financial markets.",
+            "output": "Chess is a great mental workout. What\u2019s your favorite opening move?"
+        },
+        {
+            "input": "I\u2019m Samir. I\u2019m a foodie who loves trying street food, playing chess, and learning about financial markets.",
+            "output": "Financial markets are intriguing! What\u2019s your take on the recent trends?"
+        },
+        {
+            "input": "Hi, I\u2019m Emma. I\u2019m passionate about pottery, gardening, and studying psychology. I also enjoy volunteering at community centers.",
+            "output": "Pottery is so creative! What\u2019s the most unique thing you\u2019ve made?"
+        },
+        {
+            "input": "Hi, I\u2019m Emma. I\u2019m passionate about pottery, gardening, and studying psychology. I also enjoy volunteering at community centers.",
+            "output": "Psychology is fascinating. What area are you most interested in?"
+        },
+        {
+            "input": "Hi, I\u2019m Emma. I\u2019m passionate about pottery, gardening, and studying psychology. I also enjoy volunteering at community centers.",
+            "output": "Volunteering is so rewarding! What\u2019s your favorite part about it?"
+        },
+        {
+            "input": "Hey, I\u2019m Chris. I love soccer, coding, and photography. I\u2019m also a big fan of comic books.",
+            "output": "Soccer is awesome! Who\u2019s your favorite team?"
+        },
+        {
+            "input": "Hey, I\u2019m Chris. I love soccer, coding, and photography. I\u2019m also a big fan of comic books.",
+            "output": "Coding is so versatile. What\u2019s the coolest thing you\u2019ve built?"
+        },
+        {
+            "input": "Hey, I\u2019m Chris. I love soccer, coding, and photography. I\u2019m also a big fan of comic books.",
+            "output": "Comic books are amazing! Do you prefer Marvel or DC?"
+        },
+        {
+            "input": "Hi, I\u2019m Sophie. I\u2019m into fashion design, painting, and writing poetry. I\u2019m currently studying arts and design.",
+            "output": "Fashion design is so cool! What inspires your designs?"
+        },
+        {
+            "input": "Hi, I\u2019m Sophie. I\u2019m into fashion design, painting, and writing poetry. I\u2019m currently studying arts and design.",
+            "output": "Painting is such a skill. What\u2019s your favorite medium to work with?"
+        },
+        {
+            "input": "Hi, I\u2019m Sophie. I\u2019m into fashion design, painting, and writing poetry. I\u2019m currently studying arts and design.",
+            "output": "Poetry is so expressive. Do you share your work publicly?"
+        },
+        {
+            "input": "Hey, I\u2019m Mateo. I\u2019m passionate about skateboarding, gaming, and learning about space exploration. I work in IT support.",
+            "output": "Skateboarding is awesome! What\u2019s your favorite trick to do?"
+        },
+        {
+            "input": "Hey, I\u2019m Mateo. I\u2019m passionate about skateboarding, gaming, and learning about space exploration. I work in IT support.",
+            "output": "Gaming is so fun! What\u2019s your go-to game these days?"
+        },
+        {
+            "input": "Hey, I\u2019m Mateo. I\u2019m passionate about skateboarding, gaming, and learning about space exploration. I work in IT support.",
+            "output": "Space exploration is so exciting! What\u2019s your take on the Mars missions?"
+        },
+        {
+            "input": "Hi, I\u2019m Aisha. I\u2019m into calligraphy, hiking, and cooking international cuisines. I also work as a freelance graphic designer.",
+            "output": "Calligraphy is such a beautiful skill! How did you get into it?"
+        },
+        {
+            "input": "Hi, I\u2019m Aisha. I\u2019m into calligraphy, hiking, and cooking international cuisines. I also work as a freelance graphic designer.",
+            "output": "Cooking international cuisines sounds adventurous. What\u2019s your favorite dish to make?"
+        },
+        {
+            "input": "Hi, I\u2019m Aisha. I\u2019m into calligraphy, hiking, and cooking international cuisines. I also work as a freelance graphic designer.",
+            "output": "Graphic design must be so creative. What\u2019s your favorite type of project to work on?"
+        },
+        {
+            "input": "Hey, I\u2019m Alex. I\u2019m a musician who loves playing the guitar, writing songs, and running marathons.",
+            "output": "Playing the guitar is so cool! What\u2019s your favorite song to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Alex. I\u2019m a musician who loves playing the guitar, writing songs, and running marathons.",
+            "output": "Running marathons must take a lot of discipline. How do you prepare?"
+        },
+        {
+            "input": "Hey, I\u2019m Alex. I\u2019m a musician who loves playing the guitar, writing songs, and running marathons.",
+            "output": "Writing songs is so personal. Do you have a favorite one you\u2019ve written?"
+        },
+        {
+            "input": "Hi, I\u2019m Clara. I enjoy yoga, exploring vintage shops, and studying sustainability.",
+            "output": "Vintage shops are so unique! What\u2019s your best find so far?"
+        },
+        {
+            "input": "Hi, I\u2019m Clara. I enjoy yoga, exploring vintage shops, and studying sustainability.",
+            "output": "Sustainability is so important. Do you focus on any specific initiatives?"
+        },
+        {
+            "input": "Hi, I\u2019m Clara. I enjoy yoga, exploring vintage shops, and studying sustainability.",
+            "output": "Yoga is amazing for relaxation. Do you practice every day?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I love mountain biking, coding, and listening to podcasts about history. I work as a software engineer.",
+            "output": "Mountain biking sounds thrilling! What\u2019s your favorite trail?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I love mountain biking, coding, and listening to podcasts about history. I work as a software engineer.",
+            "output": "Podcasts about history are so engaging. Do you have a favorite episode?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I love mountain biking, coding, and listening to podcasts about history. I work as a software engineer.",
+            "output": "Coding is so versatile. What\u2019s your favorite language to work with?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m a medical student who loves volunteering, playing chess, and practicing photography.",
+            "output": "Medical school must be intense. What\u2019s your favorite subject so far?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m a medical student who loves volunteering, playing chess, and practicing photography.",
+            "output": "Chess is such a strategic game. What\u2019s your favorite opening?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m a medical student who loves volunteering, playing chess, and practicing photography.",
+            "output": "Photography is so creative. Do you have a favorite theme to capture?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a physics researcher who enjoys hiking, brewing craft beer, and solving Rubik\u2019s cubes.",
+            "output": "Brewing craft beer sounds fun! Do you have a favorite recipe?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a physics researcher who enjoys hiking, brewing craft beer, and solving Rubik\u2019s cubes.",
+            "output": "Rubik\u2019s cubes are fascinating. What\u2019s your fastest solve time?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a physics researcher who enjoys hiking, brewing craft beer, and solving Rubik\u2019s cubes.",
+            "output": "Physics research sounds intense. What\u2019s the most exciting project you\u2019re working on?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I\u2019m a biology student who loves birdwatching, gardening, and baking cakes.",
+            "output": "Birdwatching is so peaceful. Do you have a favorite bird you\u2019ve spotted?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I\u2019m a biology student who loves birdwatching, gardening, and baking cakes.",
+            "output": "Gardening sounds rewarding! What\u2019s your favorite plant to grow?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I\u2019m a biology student who loves birdwatching, gardening, and baking cakes.",
+            "output": "Baking is such a sweet skill. What\u2019s your best cake recipe?"
+        },
+        {
+            "input": "Hey, I\u2019m Daniel. I\u2019m into chess, playing soccer, and keeping up with crypto trends. I work as a financial analyst.",
+            "output": "Chess is awesome! What\u2019s your favorite strategy?"
+        },
+        {
+            "input": "Hey, I\u2019m Daniel. I\u2019m into chess, playing soccer, and keeping up with crypto trends. I work as a financial analyst.",
+            "output": "Soccer is so dynamic. Do you play or just watch?"
+        },
+        {
+            "input": "Hey, I\u2019m Daniel. I\u2019m into chess, playing soccer, and keeping up with crypto trends. I work as a financial analyst.",
+            "output": "Crypto is fascinating! What\u2019s your take on the latest Bitcoin trends?"
+        },
+        {
+            "input": "Hi, I\u2019m Asha. I enjoy yoga, painting landscapes, and studying cultural anthropology.",
+            "output": "Cultural anthropology sounds so interesting! Do you focus on any particular culture?"
+        },
+        {
+            "input": "Hi, I\u2019m Asha. I enjoy yoga, painting landscapes, and studying cultural anthropology.",
+            "output": "Painting landscapes is so creative! What\u2019s your favorite location to paint?"
+        },
+        {
+            "input": "Hi, I\u2019m Asha. I enjoy yoga, painting landscapes, and studying cultural anthropology.",
+            "output": "Yoga is so calming. What style do you practice?"
+        },
+        {
+            "input": "Hey, I\u2019m Lucas. I\u2019m a mechanical engineer who loves woodworking, hiking, and playing video games.",
+            "output": "Woodworking sounds like a great hobby! What\u2019s your latest project?"
+        },
+        {
+            "input": "Hey, I\u2019m Lucas. I\u2019m a mechanical engineer who loves woodworking, hiking, and playing video games.",
+            "output": "Hiking is amazing for clearing your mind. Do you have a favorite trail?"
+        },
+        {
+            "input": "Hey, I\u2019m Lucas. I\u2019m a mechanical engineer who loves woodworking, hiking, and playing video games.",
+            "output": "Video games are so fun! What\u2019s your current favorite?"
+        },
+        {
+            "input": "Hi, I\u2019m Sara. I\u2019m passionate about theater, reading mystery novels, and salsa dancing. I work in marketing.",
+            "output": "Theater is so engaging! Have you been in any productions recently?"
+        },
+        {
+            "input": "Hi, I\u2019m Sara. I\u2019m passionate about theater, reading mystery novels, and salsa dancing. I work in marketing.",
+            "output": "Mystery novels are thrilling! Who\u2019s your favorite author?"
+        },
+        {
+            "input": "Hi, I\u2019m Sara. I\u2019m passionate about theater, reading mystery novels, and salsa dancing. I work in marketing.",
+            "output": "Salsa dancing is so vibrant. How did you get into it?"
+        },
+        {
+            "input": "Hi, I\u2019m Rohan. I enjoy playing cricket, exploring new cuisines, and studying astrophysics.",
+            "output": "Cricket is such a strategic game. What\u2019s your favorite team?"
+        },
+        {
+            "input": "Hi, I\u2019m Rohan. I enjoy playing cricket, exploring new cuisines, and studying astrophysics.",
+            "output": "Exploring cuisines sounds delicious! What\u2019s the most unique dish you\u2019ve tried?"
+        },
+        {
+            "input": "Hi, I\u2019m Rohan. I enjoy playing cricket, exploring new cuisines, and studying astrophysics.",
+            "output": "Astrophysics is mind-blowing! What\u2019s the most fascinating topic you\u2019ve studied?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya. I\u2019m a music producer who loves playing piano, attending concerts, and writing lyrics.",
+            "output": "Music production is such an art! What genre do you specialize in?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya. I\u2019m a music producer who loves playing piano, attending concerts, and writing lyrics.",
+            "output": "Concerts are such an experience! What\u2019s the best one you\u2019ve been to?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya. I\u2019m a music producer who loves playing piano, attending concerts, and writing lyrics.",
+            "output": "Writing lyrics is so personal. Do you write for yourself or others?"
+        },
+        {
+            "input": "Hi, I\u2019m Ethan. I\u2019m into cooking, rock climbing, and studying software development. I\u2019m also learning Spanish.",
+            "output": "Rock climbing is so adventurous! What\u2019s your most challenging climb?"
+        },
+        {
+            "input": "Hi, I\u2019m Ethan. I\u2019m into cooking, rock climbing, and studying software development. I\u2019m also learning Spanish.",
+            "output": "Cooking is so creative! What\u2019s your signature dish?"
+        },
+        {
+            "input": "Hi, I\u2019m Ethan. I\u2019m into cooking, rock climbing, and studying software development. I\u2019m also learning Spanish.",
+            "output": "Spanish is such a beautiful language. How far along are you in learning?"
+        },
+        {
+            "input": "Hey, I\u2019m Lila. I love running marathons, painting abstract art, and volunteering at food banks.",
+            "output": "Running marathons takes dedication! How do you train for them?"
+        },
+        {
+            "input": "Hey, I\u2019m Lila. I love running marathons, painting abstract art, and volunteering at food banks.",
+            "output": "Abstract art is so expressive! What inspires your work?"
+        },
+        {
+            "input": "Hey, I\u2019m Lila. I love running marathons, painting abstract art, and volunteering at food banks.",
+            "output": "Volunteering at food banks is so selfless. How did you get involved?"
+        },
+        {
+            "input": "Hi, I\u2019m Noah. I\u2019m a physics major who loves coding, reading sci-fi novels, and practicing martial arts.",
+            "output": "Sci-fi novels are amazing! What\u2019s your all-time favorite?"
+        },
+        {
+            "input": "Hi, I\u2019m Noah. I\u2019m a physics major who loves coding, reading sci-fi novels, and practicing martial arts.",
+            "output": "Martial arts are so disciplined. What style do you practice?"
+        },
+        {
+            "input": "Hi, I\u2019m Noah. I\u2019m a physics major who loves coding, reading sci-fi novels, and practicing martial arts.",
+            "output": "Physics is so intricate! What\u2019s your favorite concept to study?"
+        },
+        {
+            "input": "Hey, I\u2019m Olivia. I\u2019m into horse riding, learning about history, and cooking vegan recipes.",
+            "output": "Horse riding is so majestic! How long have you been doing it?"
+        },
+        {
+            "input": "Hey, I\u2019m Olivia. I\u2019m into horse riding, learning about history, and cooking vegan recipes.",
+            "output": "History is so rich! Do you have a favorite era to study?"
+        },
+        {
+            "input": "Hey, I\u2019m Olivia. I\u2019m into horse riding, learning about history, and cooking vegan recipes.",
+            "output": "Vegan recipes are so creative! What\u2019s your go-to meal?"
+        },
+        {
+            "input": "Hi, I\u2019m Finn. I\u2019m a data scientist who loves running, gaming, and exploring the outdoors.",
+            "output": "Running is so refreshing. Do you have a favorite route?"
+        },
+        {
+            "input": "Hi, I\u2019m Finn. I\u2019m a data scientist who loves running, gaming, and exploring the outdoors.",
+            "output": "Gaming is so fun! What\u2019s your current favorite game?"
+        },
+        {
+            "input": "Hi, I\u2019m Finn. I\u2019m a data scientist who loves running, gaming, and exploring the outdoors.",
+            "output": "Data science is fascinating! What\u2019s the coolest insight you\u2019ve discovered?"
+        },
+        {
+            "input": "Hey, I\u2019m Sophia. I\u2019m passionate about photography, yoga, and studying marine conservation.",
+            "output": "Marine conservation is so important! Are you working on any specific initiatives?"
+        },
+        {
+            "input": "Hey, I\u2019m Sophia. I\u2019m passionate about photography, yoga, and studying marine conservation.",
+            "output": "Photography is so versatile. Do you prefer landscapes or portraits?"
+        },
+        {
+            "input": "Hey, I\u2019m Sophia. I\u2019m passionate about photography, yoga, and studying marine conservation.",
+            "output": "Yoga is amazing for balance. How long have you been practicing?"
+        },
+        {
+            "input": "Hi, I\u2019m Aaron. I love woodworking, cycling, and brewing coffee.",
+            "output": "Woodworking is such a great skill! What\u2019s your latest project?"
+        },
+        {
+            "input": "Hi, I\u2019m Aaron. I love woodworking, cycling, and brewing coffee.",
+            "output": "Cycling is such a thrill! Do you prefer trails or city rides?"
+        },
+        {
+            "input": "Hi, I\u2019m Aaron. I love woodworking, cycling, and brewing coffee.",
+            "output": "Coffee brewing is an art! Do you have a favorite brewing method?"
+        },
+        {
+            "input": "Hey, I\u2019m Zara. I enjoy knitting, playing violin, and baking pastries. I also study economics.",
+            "output": "Knitting is such a relaxing hobby! What\u2019s the coolest thing you\u2019ve made?"
+        },
+        {
+            "input": "Hey, I\u2019m Zara. I enjoy knitting, playing violin, and baking pastries. I also study economics.",
+            "output": "Economics is so impactful! What\u2019s your favorite area to study?"
+        },
+        {
+            "input": "Hey, I\u2019m Zara. I enjoy knitting, playing violin, and baking pastries. I also study economics.",
+            "output": "Baking pastries sounds delicious! What\u2019s your favorite to bake?"
+        },
+        {
+            "input": "Hi, I\u2019m Liam. I\u2019m into basketball, playing guitar, and learning about machine learning.",
+            "output": "Basketball is so exciting! Do you have a favorite team or player?"
+        },
+        {
+            "input": "Hi, I\u2019m Liam. I\u2019m into basketball, playing guitar, and learning about machine learning.",
+            "output": "Playing guitar is so cool! What\u2019s your favorite genre to play?"
+        },
+        {
+            "input": "Hi, I\u2019m Liam. I\u2019m into basketball, playing guitar, and learning about machine learning.",
+            "output": "Machine learning is so cutting-edge. What\u2019s a project you\u2019re excited about?"
+        },
+        {
+            "input": "Hey, I\u2019m Nina. I enjoy studying astronomy, sketching landscapes, and gardening.",
+            "output": "Astronomy is so vast! Have you seen any cool celestial events recently?"
+        },
+        {
+            "input": "Hey, I\u2019m Nina. I enjoy studying astronomy, sketching landscapes, and gardening.",
+            "output": "Sketching landscapes sounds so peaceful! What\u2019s your favorite scene to draw?"
+        },
+        {
+            "input": "Hey, I\u2019m Nina. I enjoy studying astronomy, sketching landscapes, and gardening.",
+            "output": "Gardening is so grounding. What\u2019s your favorite thing to grow?"
+        },
+        {
+            "input": "Hi, I\u2019m Jacob. I\u2019m passionate about judo, coding, and studying environmental science.",
+            "output": "Judo is so dynamic! How long have you been practicing?"
+        },
+        {
+            "input": "Hi, I\u2019m Jacob. I\u2019m passionate about judo, coding, and studying environmental science.",
+            "output": "Environmental science is crucial! Are you working on any interesting projects?"
+        },
+        {
+            "input": "Hi, I\u2019m Jacob. I\u2019m passionate about judo, coding, and studying environmental science.",
+            "output": "Coding is so versatile. What\u2019s your favorite kind of software to build?"
+        },
+        {
+            "input": "Hey, I\u2019m Layla. I love photography, playing tennis, and writing short stories.",
+            "output": "Tennis is so fun! Do you play singles or doubles more?"
+        },
+        {
+            "input": "Hey, I\u2019m Layla. I love photography, playing tennis, and writing short stories.",
+            "output": "Writing short stories is so creative! What inspires your ideas?"
+        },
+        {
+            "input": "Hey, I\u2019m Layla. I love photography, playing tennis, and writing short stories.",
+            "output": "Photography is so expressive. Do you prefer digital or film?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m into surfing, learning about history, and playing the drums.",
+            "output": "Surfing is so exhilarating! What\u2019s your favorite spot to catch waves?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m into surfing, learning about history, and playing the drums.",
+            "output": "History is so rich! What\u2019s your favorite time period to learn about?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m into surfing, learning about history, and playing the drums.",
+            "output": "Playing the drums is so energetic! How did you get started?"
+        },
+        {
+            "input": "Hi, I\u2019m Noor. I\u2019m passionate about studying astrophysics, writing poetry, and practicing meditation.",
+            "output": "Astrophysics is mind-blowing! What\u2019s your favorite celestial phenomenon?"
+        },
+        {
+            "input": "Hi, I\u2019m Noor. I\u2019m passionate about studying astrophysics, writing poetry, and practicing meditation.",
+            "output": "Poetry is such a personal art. Do you prefer writing free verse or structured poems?"
+        },
+        {
+            "input": "Hi, I\u2019m Noor. I\u2019m passionate about studying astrophysics, writing poetry, and practicing meditation.",
+            "output": "Meditation is so calming. Do you have a specific routine or method?"
+        },
+        {
+            "input": "Hey, I\u2019m Gabriel. I enjoy gaming, swimming, and experimenting with robotics. I\u2019m also learning Japanese.",
+            "output": "Robotics is so futuristic! What\u2019s the coolest project you\u2019ve worked on?"
+        },
+        {
+            "input": "Hey, I\u2019m Gabriel. I enjoy gaming, swimming, and experimenting with robotics. I\u2019m also learning Japanese.",
+            "output": "Gaming is so fun! What\u2019s your current favorite game?"
+        },
+        {
+            "input": "Hey, I\u2019m Gabriel. I enjoy gaming, swimming, and experimenting with robotics. I\u2019m also learning Japanese.",
+            "output": "Japanese is such a beautiful language. How far along are you in learning?"
+        },
+        {
+            "input": "Hi, I\u2019m Leah. I\u2019m into photography, practicing yoga, and studying marine biology.",
+            "output": "Marine biology is fascinating! What\u2019s the most unique creature you\u2019ve studied?"
+        },
+        {
+            "input": "Hi, I\u2019m Leah. I\u2019m into photography, practicing yoga, and studying marine biology.",
+            "output": "Yoga is so centering. What\u2019s your favorite pose?"
+        },
+        {
+            "input": "Hi, I\u2019m Leah. I\u2019m into photography, practicing yoga, and studying marine biology.",
+            "output": "Photography is so versatile. Do you prefer wildlife or portrait photography?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I\u2019m a cyclist who loves playing chess, reading historical novels, and studying AI.",
+            "output": "Cycling is so refreshing! What\u2019s your favorite route?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I\u2019m a cyclist who loves playing chess, reading historical novels, and studying AI.",
+            "output": "AI is the future! What\u2019s a project you\u2019re excited about?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I\u2019m a cyclist who loves playing chess, reading historical novels, and studying AI.",
+            "output": "Historical novels are so captivating! Do you have a favorite era to read about?"
+        },
+        {
+            "input": "Hi, I\u2019m Zara. I\u2019m passionate about cooking vegan dishes, volunteering at animal shelters, and painting abstracts.",
+            "output": "Vegan cooking is so creative! What\u2019s your go-to recipe?"
+        },
+        {
+            "input": "Hi, I\u2019m Zara. I\u2019m passionate about cooking vegan dishes, volunteering at animal shelters, and painting abstracts.",
+            "output": "Volunteering at animal shelters must be rewarding. What\u2019s a memorable experience you\u2019ve had?"
+        },
+        {
+            "input": "Hi, I\u2019m Zara. I\u2019m passionate about cooking vegan dishes, volunteering at animal shelters, and painting abstracts.",
+            "output": "Abstract painting is so expressive. What inspires your art?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a guitarist who loves hiking, coding, and exploring astronomy.",
+            "output": "Guitar is such a versatile instrument! What\u2019s your favorite song to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a guitarist who loves hiking, coding, and exploring astronomy.",
+            "output": "Hiking is a great way to unwind. Do you have a favorite trail?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a guitarist who loves hiking, coding, and exploring astronomy.",
+            "output": "Astronomy is so vast! Have you spotted anything interesting recently?"
+        },
+        {
+            "input": "Hi, I\u2019m Sofia. I enjoy salsa dancing, reading thrillers, and learning about sustainability. I work as a content creator.",
+            "output": "Salsa dancing is so lively! How did you get into it?"
+        },
+        {
+            "input": "Hi, I\u2019m Sofia. I enjoy salsa dancing, reading thrillers, and learning about sustainability. I work as a content creator.",
+            "output": "Thrillers are so gripping! What\u2019s the best one you\u2019ve read recently?"
+        },
+        {
+            "input": "Hi, I\u2019m Sofia. I enjoy salsa dancing, reading thrillers, and learning about sustainability. I work as a content creator.",
+            "output": "Sustainability is crucial! Are you involved in any specific initiatives?"
+        },
+        {
+            "input": "Hey, I\u2019m Arjun. I\u2019m a fitness enthusiast who loves running, gaming, and studying blockchain technology.",
+            "output": "Fitness is inspiring! What\u2019s your go-to workout?"
+        },
+        {
+            "input": "Hey, I\u2019m Arjun. I\u2019m a fitness enthusiast who loves running, gaming, and studying blockchain technology.",
+            "output": "Blockchain is such an exciting field! What\u2019s your take on its future?"
+        },
+        {
+            "input": "Hey, I\u2019m Arjun. I\u2019m a fitness enthusiast who loves running, gaming, and studying blockchain technology.",
+            "output": "Gaming is so fun! What\u2019s your favorite multiplayer game?"
+        },
+        {
+            "input": "Hi, I\u2019m Lila. I\u2019m into crafting, playing piano, and reading fantasy novels.",
+            "output": "Crafting is so creative! What\u2019s the coolest thing you\u2019ve made?"
+        },
+        {
+            "input": "Hi, I\u2019m Lila. I\u2019m into crafting, playing piano, and reading fantasy novels.",
+            "output": "Piano is such a classic instrument! Do you compose your own pieces?"
+        },
+        {
+            "input": "Hi, I\u2019m Lila. I\u2019m into crafting, playing piano, and reading fantasy novels.",
+            "output": "Fantasy novels are so immersive! Do you have a favorite series?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m passionate about filmmaking, soccer, and exploring new cuisines.",
+            "output": "Filmmaking is such a craft! What\u2019s your favorite project you\u2019ve worked on?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m passionate about filmmaking, soccer, and exploring new cuisines.",
+            "output": "Soccer is so engaging! Do you have a favorite player or team?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m passionate about filmmaking, soccer, and exploring new cuisines.",
+            "output": "Exploring cuisines sounds fun! What\u2019s the best dish you\u2019ve tried recently?"
+        },
+        {
+            "input": "Hey, I\u2019m Anya. I love photography, baking desserts, and practicing yoga.",
+            "output": "Photography is so versatile! Do you have a favorite style or subject?"
+        },
+        {
+            "input": "Hey, I\u2019m Anya. I love photography, baking desserts, and practicing yoga.",
+            "output": "Baking desserts must be so fun! What\u2019s your specialty?"
+        },
+        {
+            "input": "Hey, I\u2019m Anya. I love photography, baking desserts, and practicing yoga.",
+            "output": "Yoga is amazing for the mind and body. How long have you been practicing?"
+        },
+        {
+            "input": "Hi, I\u2019m Marcus. I\u2019m into playing basketball, coding, and studying quantum physics.",
+            "output": "Basketball is so dynamic! What\u2019s your favorite position to play?"
+        },
+        {
+            "input": "Hi, I\u2019m Marcus. I\u2019m into playing basketball, coding, and studying quantum physics.",
+            "output": "Coding is so versatile! What\u2019s your favorite project so far?"
+        },
+        {
+            "input": "Hi, I\u2019m Marcus. I\u2019m into playing basketball, coding, and studying quantum physics.",
+            "output": "Quantum physics is so deep! What\u2019s the most exciting concept you\u2019ve learned?"
+        },
+        {
+            "input": "Hey, I\u2019m Isla. I\u2019m passionate about crafting, exploring art galleries, and reading historical fiction.",
+            "output": "Art galleries are so inspiring! Do you have a favorite artist or style?"
+        },
+        {
+            "input": "Hey, I\u2019m Isla. I\u2019m passionate about crafting, exploring art galleries, and reading historical fiction.",
+            "output": "Historical fiction is so rich! Do you have a favorite book or author?"
+        },
+        {
+            "input": "Hey, I\u2019m Isla. I\u2019m passionate about crafting, exploring art galleries, and reading historical fiction.",
+            "output": "Crafting is so rewarding! What\u2019s your favorite project to work on?"
+        },
+        {
+            "input": "Hi, I\u2019m Amir. I\u2019m into football, learning about AI, and practicing martial arts.",
+            "output": "Football is so exciting! Who\u2019s your favorite player?"
+        },
+        {
+            "input": "Hi, I\u2019m Amir. I\u2019m into football, learning about AI, and practicing martial arts.",
+            "output": "AI is such a vast field! What\u2019s your favorite application of it?"
+        },
+        {
+            "input": "Hi, I\u2019m Amir. I\u2019m into football, learning about AI, and practicing martial arts.",
+            "output": "Martial arts require so much discipline. What style do you practice?"
+        },
+        {
+            "input": "Hey, I\u2019m Mia. I enjoy gardening, playing the violin, and studying philosophy.",
+            "output": "Gardening is so fulfilling! What\u2019s your favorite plant to grow?"
+        },
+        {
+            "input": "Hey, I\u2019m Mia. I enjoy gardening, playing the violin, and studying philosophy.",
+            "output": "The violin is such a beautiful instrument! How long have you been playing?"
+        },
+        {
+            "input": "Hey, I\u2019m Mia. I enjoy gardening, playing the violin, and studying philosophy.",
+            "output": "Philosophy is so thought-provoking! Do you have a favorite philosopher?"
+        },
+        {
+            "input": "Hi, I\u2019m Oliver. I love playing tennis, coding apps, and reading science fiction.",
+            "output": "Tennis is such a dynamic sport! Do you play singles or doubles more often?"
+        },
+        {
+            "input": "Hi, I\u2019m Oliver. I love playing tennis, coding apps, and reading science fiction.",
+            "output": "Coding apps is so creative! What\u2019s the coolest app you\u2019ve built?"
+        },
+        {
+            "input": "Hi, I\u2019m Oliver. I love playing tennis, coding apps, and reading science fiction.",
+            "output": "Science fiction is so captivating! Do you have a favorite author or series?"
+        },
+        {
+            "input": "Hey, I\u2019m Priya. I\u2019m passionate about studying climate science, practicing yoga, and exploring new hiking trails.",
+            "output": "Climate science is so critical! Are you working on any interesting projects?"
+        },
+        {
+            "input": "Hey, I\u2019m Priya. I\u2019m passionate about studying climate science, practicing yoga, and exploring new hiking trails.",
+            "output": "Yoga is so calming. What\u2019s your favorite style to practice?"
+        },
+        {
+            "input": "Hey, I\u2019m Priya. I\u2019m passionate about studying climate science, practicing yoga, and exploring new hiking trails.",
+            "output": "Hiking is so adventurous! Do you have a favorite trail you\u2019ve explored?"
+        },
+        {
+            "input": "Hi, I\u2019m Noah. I\u2019m a drummer who loves playing in bands, learning about space exploration, and scuba diving.",
+            "output": "Playing the drums must be so energizing! Do you have a favorite beat or style?"
+        },
+        {
+            "input": "Hi, I\u2019m Noah. I\u2019m a drummer who loves playing in bands, learning about space exploration, and scuba diving.",
+            "output": "Space exploration is so vast! What\u2019s your take on recent Mars rover missions?"
+        },
+        {
+            "input": "Hi, I\u2019m Noah. I\u2019m a drummer who loves playing in bands, learning about space exploration, and scuba diving.",
+            "output": "Scuba diving sounds incredible! What\u2019s the coolest place you\u2019ve dived?"
+        },
+        {
+            "input": "Hey, I\u2019m Emily. I love photography, playing board games, and baking bread.",
+            "output": "Photography is so versatile! What\u2019s your favorite type of photo to capture?"
+        },
+        {
+            "input": "Hey, I\u2019m Emily. I love photography, playing board games, and baking bread.",
+            "output": "Board games are so fun! Do you have a favorite one to play with friends?"
+        },
+        {
+            "input": "Hey, I\u2019m Emily. I love photography, playing board games, and baking bread.",
+            "output": "Baking bread must be so rewarding! What\u2019s your best recipe?"
+        },
+        {
+            "input": "Hi, I\u2019m Liam. I\u2019m a rock climber who loves coding and reading crime thrillers.",
+            "output": "Rock climbing is so thrilling! What\u2019s the toughest climb you\u2019ve completed?"
+        },
+        {
+            "input": "Hi, I\u2019m Liam. I\u2019m a rock climber who loves coding and reading crime thrillers.",
+            "output": "Coding is such a creative outlet. What\u2019s your favorite project to work on?"
+        },
+        {
+            "input": "Hi, I\u2019m Liam. I\u2019m a rock climber who loves coding and reading crime thrillers.",
+            "output": "Crime thrillers are so gripping! Do you have a favorite author?"
+        },
+        {
+            "input": "Hey, I\u2019m Zara. I enjoy playing badminton, exploring art museums, and writing poetry.",
+            "output": "Badminton is such a fast-paced sport! Do you play singles or doubles?"
+        },
+        {
+            "input": "Hey, I\u2019m Zara. I enjoy playing badminton, exploring art museums, and writing poetry.",
+            "output": "Art museums are so inspiring! Do you have a favorite artist or exhibit?"
+        },
+        {
+            "input": "Hey, I\u2019m Zara. I enjoy playing badminton, exploring art museums, and writing poetry.",
+            "output": "Poetry is so expressive! What inspires your writing?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m a surfer who loves playing chess, reading philosophy, and studying AI.",
+            "output": "Surfing is so exhilarating! What\u2019s your favorite spot to catch waves?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m a surfer who loves playing chess, reading philosophy, and studying AI.",
+            "output": "Philosophy is so deep! Do you have a favorite thinker or idea?"
+        },
+        {
+            "input": "Hi, I\u2019m Theo. I\u2019m a surfer who loves playing chess, reading philosophy, and studying AI.",
+            "output": "AI is so innovative! What\u2019s a project you\u2019re working on?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya. I\u2019m a medical student who loves playing volleyball, gardening, and painting watercolors.",
+            "output": "Volleyball is such a fun sport! Do you play indoor or beach volleyball?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya. I\u2019m a medical student who loves playing volleyball, gardening, and painting watercolors.",
+            "output": "Gardening is so rewarding! What\u2019s your favorite plant to grow?"
+        },
+        {
+            "input": "Hey, I\u2019m Maya. I\u2019m a medical student who loves playing volleyball, gardening, and painting watercolors.",
+            "output": "Painting watercolors must be so relaxing! What\u2019s your favorite subject to paint?"
+        },
+        {
+            "input": "Hi, I\u2019m Samir. I\u2019m passionate about fitness, cooking fusion cuisines, and studying blockchain technology.",
+            "output": "Fitness is so motivating! What\u2019s your favorite type of workout?"
+        },
+        {
+            "input": "Hi, I\u2019m Samir. I\u2019m passionate about fitness, cooking fusion cuisines, and studying blockchain technology.",
+            "output": "Fusion cuisines sound delicious! What\u2019s the most unique dish you\u2019ve created?"
+        },
+        {
+            "input": "Hi, I\u2019m Samir. I\u2019m passionate about fitness, cooking fusion cuisines, and studying blockchain technology.",
+            "output": "Blockchain is so innovative! What\u2019s your take on its potential outside cryptocurrency?"
+        },
+        {
+            "input": "Hey, I\u2019m Layla. I\u2019m into ballet, hiking, and reading historical fiction.",
+            "output": "Ballet is so elegant! How long have you been dancing?"
+        },
+        {
+            "input": "Hey, I\u2019m Layla. I\u2019m into ballet, hiking, and reading historical fiction.",
+            "output": "Hiking is so rejuvenating! What\u2019s your favorite trail you\u2019ve explored?"
+        },
+        {
+            "input": "Hey, I\u2019m Layla. I\u2019m into ballet, hiking, and reading historical fiction.",
+            "output": "Historical fiction is so rich! Do you have a favorite era to read about?"
+        },
+        {
+            "input": "Hi, I\u2019m Alex. I love playing basketball, coding apps, and listening to podcasts on space science.",
+            "output": "Basketball is so exciting! Do you play regularly or just for fun?"
+        },
+        {
+            "input": "Hi, I\u2019m Alex. I love playing basketball, coding apps, and listening to podcasts on space science.",
+            "output": "Coding apps is so creative! What\u2019s the most interesting app you\u2019ve built?"
+        },
+        {
+            "input": "Hi, I\u2019m Alex. I love playing basketball, coding apps, and listening to podcasts on space science.",
+            "output": "Space science podcasts are fascinating! Do you have a favorite one?"
+        },
+        {
+            "input": "Hey, I\u2019m Clara. I enjoy painting portraits, practicing yoga, and studying marine conservation.",
+            "output": "Painting portraits sounds so challenging! What\u2019s the most rewarding one you\u2019ve done?"
+        },
+        {
+            "input": "Hey, I\u2019m Clara. I enjoy painting portraits, practicing yoga, and studying marine conservation.",
+            "output": "Marine conservation is critical! Are you working on any interesting projects?"
+        },
+        {
+            "input": "Hey, I\u2019m Clara. I enjoy painting portraits, practicing yoga, and studying marine conservation.",
+            "output": "Yoga is so calming. What\u2019s your favorite pose or style?"
+        },
+        {
+            "input": "Hi, I\u2019m Ethan. I love rock climbing, playing guitar, and studying data science.",
+            "output": "Rock climbing is so adventurous! What\u2019s the toughest wall you\u2019ve scaled?"
+        }
+    ],
+    "validation": [
+        {
+            "input": "Hi, I\u2019m Ethan. I love rock climbing, playing guitar, and studying data science.",
+            "output": "Playing guitar is such a skill! Do you write your own songs?"
+        },
+        {
+            "input": "Hi, I\u2019m Ethan. I love rock climbing, playing guitar, and studying data science.",
+            "output": "Data science is so analytical! What\u2019s your favorite dataset to work with?"
+        },
+        {
+            "input": "Hi, I\u2019m Sophie. I\u2019m a photographer who loves exploring abandoned places, gardening, and reading poetry.",
+            "output": "Exploring abandoned places must be so thrilling! What\u2019s the most fascinating spot you\u2019ve been to?"
+        },
+        {
+            "input": "Hi, I\u2019m Sophie. I\u2019m a photographer who loves exploring abandoned places, gardening, and reading poetry.",
+            "output": "Gardening is so relaxing! Do you have a favorite flower or plant to grow?"
+        },
+        {
+            "input": "Hi, I\u2019m Sophie. I\u2019m a photographer who loves exploring abandoned places, gardening, and reading poetry.",
+            "output": "Poetry is such a beautiful art form. Do you have a favorite poet?"
+        },
+        {
+            "input": "Hey, I\u2019m Lucas. I love playing guitar, coding games, and studying astrophysics.",
+            "output": "Playing guitar is such a cool skill! What\u2019s your go-to song to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Lucas. I love playing guitar, coding games, and studying astrophysics.",
+            "output": "Coding games sounds awesome! What kind of games do you like to create?"
+        },
+        {
+            "input": "Hey, I\u2019m Lucas. I love playing guitar, coding games, and studying astrophysics.",
+            "output": "Astrophysics is mind-blowing! What\u2019s your favorite cosmic phenomenon?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I\u2019m passionate about theater, hiking, and learning French. I also work as a teacher.",
+            "output": "Theater is so expressive! Have you been in any productions recently?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I\u2019m passionate about theater, hiking, and learning French. I also work as a teacher.",
+            "output": "Hiking is a great way to clear your mind. Do you have a favorite trail?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I\u2019m passionate about theater, hiking, and learning French. I also work as a teacher.",
+            "output": "Learning French is such a journey! How far along are you?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a football player who loves cooking, reading biographies, and coding.",
+            "output": "Football is such a strategic game! What\u2019s your favorite position to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a football player who loves cooking, reading biographies, and coding.",
+            "output": "Cooking is such a fun skill! What\u2019s your favorite dish to make?"
+        },
+        {
+            "input": "Hey, I\u2019m Liam. I\u2019m a football player who loves cooking, reading biographies, and coding.",
+            "output": "Biographies are so inspiring! Do you have a favorite one you\u2019ve read?"
+        },
+        {
+            "input": "Hi, I\u2019m Aria. I love classical music, baking pastries, and studying cultural history.",
+            "output": "Classical music is so moving! Do you have a favorite composer?"
+        },
+        {
+            "input": "Hi, I\u2019m Aria. I love classical music, baking pastries, and studying cultural history.",
+            "output": "Baking pastries sounds delicious! What\u2019s your specialty?"
+        },
+        {
+            "input": "Hi, I\u2019m Aria. I love classical music, baking pastries, and studying cultural history.",
+            "output": "Cultural history is so rich! Do you have a favorite era or region to study?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I enjoy woodworking, running marathons, and learning about AI.",
+            "output": "Woodworking is such a skill! What\u2019s your latest project?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I enjoy woodworking, running marathons, and learning about AI.",
+            "output": "Running marathons takes dedication. How do you prepare for them?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I enjoy woodworking, running marathons, and learning about AI.",
+            "output": "AI is such a fascinating field! What\u2019s a recent innovation you\u2019re excited about?"
+        },
+        {
+            "input": "Hi, I\u2019m Priya. I\u2019m into knitting, reading sci-fi, and volunteering at local charities.",
+            "output": "Knitting is so intricate! What\u2019s the most complex thing you\u2019ve made?"
+        },
+        {
+            "input": "Hi, I\u2019m Priya. I\u2019m into knitting, reading sci-fi, and volunteering at local charities.",
+            "output": "Sci-fi is such a cool genre! Do you have a favorite author or series?"
+        },
+        {
+            "input": "Hi, I\u2019m Priya. I\u2019m into knitting, reading sci-fi, and volunteering at local charities.",
+            "output": "Volunteering is so fulfilling! What kind of charity work do you do?"
+        },
+        {
+            "input": "Hey, I\u2019m Theo. I\u2019m a surfer who loves playing piano, coding, and reading thrillers.",
+            "output": "Surfing is so exciting! What\u2019s your favorite wave spot?"
+        },
+        {
+            "input": "Hey, I\u2019m Theo. I\u2019m a surfer who loves playing piano, coding, and reading thrillers.",
+            "output": "Playing piano is such a beautiful skill! Do you play classical or modern pieces?"
+        },
+        {
+            "input": "Hey, I\u2019m Theo. I\u2019m a surfer who loves playing piano, coding, and reading thrillers.",
+            "output": "Coding is so creative! What\u2019s the coolest project you\u2019ve built?"
+        },
+        {
+            "input": "Hi, I\u2019m Clara. I\u2019m passionate about yoga, reading poetry, and studying marine ecosystems.",
+            "output": "Yoga is so restorative! How long have you been practicing?"
+        },
+        {
+            "input": "Hi, I\u2019m Clara. I\u2019m passionate about yoga, reading poetry, and studying marine ecosystems.",
+            "output": "Poetry is so inspiring. Do you write or just enjoy reading it?"
+        },
+        {
+            "input": "Hi, I\u2019m Clara. I\u2019m passionate about yoga, reading poetry, and studying marine ecosystems.",
+            "output": "Marine ecosystems are so important! What\u2019s the most fascinating thing you\u2019ve studied?"
+        },
+        {
+            "input": "Hey, I\u2019m Marcus. I\u2019m into basketball, playing drums, and learning Japanese.",
+            "output": "Basketball is so engaging! Do you play regularly?"
+        },
+        {
+            "input": "Hey, I\u2019m Marcus. I\u2019m into basketball, playing drums, and learning Japanese.",
+            "output": "Playing drums is so energetic! What\u2019s your favorite rhythm to play?"
+        },
+        {
+            "input": "Hey, I\u2019m Marcus. I\u2019m into basketball, playing drums, and learning Japanese.",
+            "output": "Japanese is such a beautiful language. How far along are you in learning?"
+        },
+        {
+            "input": "Hi, I\u2019m Zara. I enjoy painting landscapes, exploring historical sites, and gardening.",
+            "output": "Painting landscapes must be so relaxing! What\u2019s your favorite place to paint?"
+        },
+        {
+            "input": "Hi, I\u2019m Zara. I enjoy painting landscapes, exploring historical sites, and gardening.",
+            "output": "Historical sites are so fascinating! Do you have a favorite one you\u2019ve visited?"
+        },
+        {
+            "input": "Hi, I\u2019m Zara. I enjoy painting landscapes, exploring historical sites, and gardening.",
+            "output": "Gardening is so fulfilling. What\u2019s your favorite plant to grow?"
+        },
+        {
+            "input": "Hey, I\u2019m Samir. I love running marathons, reading graphic novels, and exploring robotics.",
+            "output": "Running marathons is so impressive! How do you stay motivated?"
+        },
+        {
+            "input": "Hey, I\u2019m Samir. I love running marathons, reading graphic novels, and exploring robotics.",
+            "output": "Graphic novels are so creative! Do you have a favorite artist or writer?"
+        },
+        {
+            "input": "Hey, I\u2019m Samir. I love running marathons, reading graphic novels, and exploring robotics.",
+            "output": "Robotics is so futuristic! What\u2019s the coolest thing you\u2019ve built?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I enjoy salsa dancing, writing short stories, and studying environmental science.",
+            "output": "Salsa dancing is so fun! How long have you been doing it?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I enjoy salsa dancing, writing short stories, and studying environmental science.",
+            "output": "Writing short stories is so creative! What inspires your ideas?"
+        },
+        {
+            "input": "Hi, I\u2019m Elena. I enjoy salsa dancing, writing short stories, and studying environmental science.",
+            "output": "Environmental science is so important. Are you working on any exciting projects?"
+        },
+        {
+            "input": "Hey, I\u2019m Alex. I\u2019m a filmmaker who loves playing basketball, exploring new cuisines, and reading biographies.",
+            "output": "Filmmaking is such a craft! What\u2019s the best project you\u2019ve worked on?"
+        },
+        {
+            "input": "Hey, I\u2019m Alex. I\u2019m a filmmaker who loves playing basketball, exploring new cuisines, and reading biographies.",
+            "output": "Basketball is so engaging! Do you play regularly or just watch?"
+        },
+        {
+            "input": "Hey, I\u2019m Alex. I\u2019m a filmmaker who loves playing basketball, exploring new cuisines, and reading biographies.",
+            "output": "Exploring cuisines must be delicious! What\u2019s the most unique dish you\u2019ve tried?"
+        },
+        {
+            "input": "Hi, I\u2019m Leah. I love crafting, learning about marine conservation, and practicing yoga.",
+            "output": "Crafting is so creative! What\u2019s your favorite project?"
+        },
+        {
+            "input": "Hi, I\u2019m Leah. I love crafting, learning about marine conservation, and practicing yoga.",
+            "output": "Marine conservation is so important! Are you involved in any initiatives?"
+        },
+        {
+            "input": "Hi, I\u2019m Leah. I love crafting, learning about marine conservation, and practicing yoga.",
+            "output": "Yoga is so calming! How long have you been practicing?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I\u2019m a cyclist who loves gaming, brewing coffee, and studying quantum mechanics.",
+            "output": "Cycling is such a thrill! Do you have a favorite route?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I\u2019m a cyclist who loves gaming, brewing coffee, and studying quantum mechanics.",
+            "output": "Brewing coffee is an art! Do you prefer pour-over or espresso?"
+        },
+        {
+            "input": "Hey, I\u2019m Ethan. I\u2019m a cyclist who loves gaming, brewing coffee, and studying quantum mechanics.",
+            "output": "Quantum mechanics is so fascinating! What\u2019s the most interesting concept you\u2019ve studied?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Baking is so satisfying! What\u2019s your favorite thing to bake?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Martial arts are so disciplined! What style do you practice?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Astrophotography must be incredible! What\u2019s the best photo you\u2019ve taken?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Learning languages is fascinating! What\u2019s the most difficult language you\u2019ve tackled?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Kayaking is such a thrill! Do you prefer lakes or rivers?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Piano is so versatile! Do you enjoy playing classical or modern pieces?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Hiking is amazing! What\u2019s your favorite trail?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Mythology is so rich! Do you have a favorite pantheon or myth?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Photography is so expressive! What\u2019s your favorite subject to shoot?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Pottery is so creative! What\u2019s your most unique piece?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Salsa dancing is so lively! Do you have a favorite routine?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Environmental policy is crucial! Are you focused on any specific areas?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Woodworking is so hands-on! What\u2019s your latest project?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Yoga is so calming. What\u2019s your favorite pose?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Astronomy is so vast! Have you spotted anything exciting lately?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Running is so invigorating! Do you have a favorite distance?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Fantasy novels are immersive! Who\u2019s your favorite author?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Guitar playing is such a great outlet. What genre do you like to play?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Chess is strategic! What\u2019s your favorite opening?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Robotics is so innovative! What\u2019s the coolest thing you\u2019ve built?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Hiking is so peaceful! What\u2019s your most memorable hike?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Painting is so expressive! What inspires your work?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Journaling is therapeutic. Do you have a favorite theme?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Archaeology is fascinating! Have you visited any excavation sites?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Soccer is so universal! What\u2019s your favorite position to play?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Coding apps is fun! What\u2019s the most challenging app you\u2019ve built?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Space science is vast! What excites you most about it?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Poetry is so personal. What inspires you to write?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Gardening is so rewarding! What\u2019s your favorite plant to grow?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "History is so rich! Do you have a favorite time period?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Film editing is so creative! What\u2019s your favorite project so far?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Rock climbing is such a rush! What\u2019s your toughest climb?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Learning French is rewarding! How far along are you?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Dancing is so lively! What style do you prefer?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Art galleries are inspiring! Do you have a favorite artist?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Vegan recipes sound delicious! What\u2019s your favorite dish?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Robotics is the future! What\u2019s your most recent project?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Gaming is fun! What\u2019s your favorite multiplayer game?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Financial markets are fascinating! What\u2019s your take on recent trends?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Marine ecosystems are vital! What\u2019s the most interesting creature you\u2019ve studied?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Painting is so calming! Do you prefer landscapes or portraits?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Piano is so beautiful! Do you have a favorite piece to play?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Martial arts are disciplined! What style do you practice?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Fusion dishes sound creative! What\u2019s your signature dish?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Chess is so strategic! Do you prefer offense or defense?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Knitting is intricate! What\u2019s your favorite pattern?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Photography is so versatile! What\u2019s your favorite subject?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Animal behavior is fascinating! Do you have a favorite species?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Soccer is thrilling! What\u2019s your favorite team?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Coding is so versatile! What\u2019s your favorite project to work on?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Mysteries are intriguing! Do you have a favorite author?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Vintage shops are treasure troves! What\u2019s your best find?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Journaling is reflective. What\u2019s your favorite type of entry?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Climate science is crucial! What\u2019s an initiative you admire?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Hiking is refreshing! What\u2019s your favorite trail?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Coffee brewing is an art! Do you prefer espresso or pour-over?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "AI is fascinating! What\u2019s your favorite project so far?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Poetry is so expressive! What inspires you to write?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Watercolors are beautiful! What\u2019s your favorite subject to paint?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Volunteering is impactful! What\u2019s your favorite memory from it?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Hiking is so liberating! What\u2019s your most scenic hike?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Woodworking is creative! What\u2019s your favorite piece?"
+        },
+        {
+            "input": "Hi, I\u2019m Mia. I\u2019m into baking, practicing martial arts, and exploring astrophotography.",
+            "output": "Ancient civilizations are fascinating! Do you have a favorite one?"
+        }
+    ]
+}
