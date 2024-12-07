@@ -1,5 +1,6 @@
 package Socializer.ChatBackend.Repository;
 
+import Socializer.ChatBackend.Model.Message;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -7,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface MessageRepository extends CrudRepository {
+public interface MessageRepository extends CrudRepository<Message, Long>{
     @Query("SELECT m.receiver FROM Message m WHERE m.sender = :user")
     List<String> findReceiversBySender(@Param("user") String user);
 
