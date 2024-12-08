@@ -23,19 +23,16 @@ Steps to Set Up and Run the Project
 
 
 	6. Run the Angular Frontend Application
-		a. Navigate to the Frontend/Icebreaker folder in the project directory.
+		a. Navigate to the Frontend/Icebreaker folder in the project directory.There should be a package.json file here. 
 		b. Install the required dependencies by executing the following command:
 			i. npm install
 
 		c. Then, start the Angular application using the command:
-			a. ng serve
+			a. npm start 
 
 	7. Access the Application
 		Open a web browser and navigate to http://localhost:4200.
 		You will be prompted to log in.
 	8. Login Options:
-		1.cUse the Default User Credentials:
-			Username: testUser
-			Password: 1234
-	2. Create a New Account:
-		Select the Register option to create a new user account.
+		1. Create a New Account:
+			Select the Register option to create a new user account.
