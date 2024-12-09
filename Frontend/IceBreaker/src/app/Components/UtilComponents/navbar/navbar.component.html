@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <span>Ice Breaker</span>
+  <span class="spacer"></span>
+  <button
+    mat-button
+    routerLink="/"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Users
+  </button>
+  <button
+    mat-button
+    routerLink="/chats"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    Chats
+  </button>
+  <button mat-button (click)="completeProfile()"
+            matBadge="!"
+            matBadgeColor="warn"
+            matBadgePosition="above after"
+            [matBadgeHidden]="profileCompleted">
+  <mat-icon>account_circle</mat-icon>
+  Complete Profile
+</button>
+  <button mat-button (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button>
+</mat-toolbar>

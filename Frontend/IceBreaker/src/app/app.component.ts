@@ -3,11 +3,13 @@ import {Router, RouterOutlet} from '@angular/router';
 import {KeycloakService} from './Services/Keycloak/keycloak.service';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {NavbarComponent} from './Components/UtilComponents/navbar/navbar.component';
+import {MatBadgeModule} from '@angular/material/badge';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, NavbarComponent, MatBadgeModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
