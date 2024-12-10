@@ -1,4 +1,4 @@
-package Socializer.ChatBackend.Model;
+package Socializer.ChatBackend.Entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

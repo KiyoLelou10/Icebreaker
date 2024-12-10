@@ -1,0 +1,26 @@
+<div class="users-container">
+  <mat-card class="header-card">
+    <h2 class="header-title">Available Users</h2>
+  </mat-card>
+
+  <div class="users-list">
+    <mat-card
+      class="user-item"
+      *ngFor="let user of availableUsers"
+      (click)="openChat(user.id)"
+      matRipple
+    >
+      <div class="user-content">
+        <img
+          class="user-avatar"
+          [src]="user.profilePhoto || 'assets/default-profile.png'"
+          alt="{{ user.userName }}"
+        />
+        <div class="user-details">
+          <h3 class="user-name">{{ user.userName }}</h3>
+          <p class="user-bio">{{ user.bio || 'No bio available' }}</p>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

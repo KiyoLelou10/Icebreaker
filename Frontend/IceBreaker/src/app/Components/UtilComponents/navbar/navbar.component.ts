@@ -6,6 +6,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {KeycloakService} from '../../../Services/Keycloak/keycloak.service';
 import {MatBadge} from '@angular/material/badge';
+import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
+import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 
 @Component({
   selector: 'app-navbar',
@@ -23,12 +25,22 @@ import {MatBadge} from '@angular/material/badge';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{
-  profileCompleted = false;
+  profileCompleted: boolean = false;
+  username:string= '';
 
-  constructor(private keycloakService: KeycloakService, private  router: Router) {
+  constructor(private keycloakService: KeycloakService, private  router: Router, private profileNavbarService: NavbarServiceService) {
   }
 
   ngOnInit(): void {
+    this.profileNavbarService.getProfileNavbar().subscribe({
+      next: (profile: ProfileNavbarDTO) => {
+        this.username = profile.username;
+        this.profileCompleted = profile.isProfileComplete;
+      },
+      error: (err) => {
+        console.error('Failed to fetch profile', err);
+      },
+    });
   }
 
   completeProfile(): void {

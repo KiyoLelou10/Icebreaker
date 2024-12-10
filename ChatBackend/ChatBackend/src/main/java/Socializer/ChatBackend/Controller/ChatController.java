@@ -1,6 +1,6 @@
 package Socializer.ChatBackend.Controller;
 
-import Socializer.ChatBackend.Model.Message;
+import Socializer.ChatBackend.Entities.Message;
 import Socializer.ChatBackend.Repository.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;

@@ -22,24 +22,11 @@ export class AppComponent implements OnInit{
   constructor(private router: Router, private http: HttpClient, private ks: KeycloakService) {}
 
   ngOnInit() {
-    this.fetchHelloText();
   }
 
   OnClick() {
     this.ks.logout();
   }
 
-  fetchHelloText(): void {
-    this.getHelloText().subscribe({
-      next: (text) => {
-        this.helloText = text;
-        console.log('Fetched text:', text);
-      },
-      error: (err) => console.error('Error fetching text:', err),
-    });
-  }
 
-  getHelloText(): Observable<string> {
-    return this.http.get('http://localhost:8080/test/getHelloText', { responseType: 'text' });
-  }
 }
