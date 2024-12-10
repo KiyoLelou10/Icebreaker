@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import {KeycloakService} from './Services/Keycloak/keycloak.service';
 import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {httpTokenInterceptorInterceptor} from './Interceptors/HttpTokenInterceptor/http-token-interceptor.interceptor';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 
 export function keycloakFactory(kcService: KeycloakService) {
@@ -19,6 +20,6 @@ export const appConfig: ApplicationConfig = {
       deps: [KeycloakService],
       multi: true
     },
-    provideHttpClient(withInterceptors( [ httpTokenInterceptorInterceptor] ))
+    provideHttpClient(withInterceptors( [ httpTokenInterceptorInterceptor] )), provideAnimationsAsync()
   ]
 };

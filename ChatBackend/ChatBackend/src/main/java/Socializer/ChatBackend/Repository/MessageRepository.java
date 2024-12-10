@@ -1,6 +1,6 @@
 package Socializer.ChatBackend.Repository;
 
-import Socializer.ChatBackend.Model.Message;
+import Socializer.ChatBackend.Entities.Message;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
