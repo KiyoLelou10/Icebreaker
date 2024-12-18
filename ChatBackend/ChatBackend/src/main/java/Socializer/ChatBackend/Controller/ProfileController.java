@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/profile")
@@ -29,7 +30,7 @@ public class ProfileController {
         String keycloakUserId = token.getToken().getSubject();
 
 
-        PublicUserProfileDTO profile = publicUserProfileService.getUserDetailsById(keycloakUserId);
+        PublicUserProfileDTO profile = publicUserProfileService.getUserDetailsByKeycloakId(keycloakUserId);
         return ResponseEntity.ok(profile);
     }
 
@@ -63,6 +64,14 @@ public class ProfileController {
         String currentUserId = token.getToken().getSubject();
         List<AvailableUserDTO> users = publicUserProfileService.getUsersExcept(currentUserId);
         return ResponseEntity.ok(users);
+    }
+
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PublicUserProfileDTO> getProfile(@PathVariable String id) {
+        UUID newId = UUID.fromString(id);
+        PublicUserProfileDTO profile = publicUserProfileService.getUserDetailsById(newId);
+        return ResponseEntity.ok(profile);
     }
 
 }

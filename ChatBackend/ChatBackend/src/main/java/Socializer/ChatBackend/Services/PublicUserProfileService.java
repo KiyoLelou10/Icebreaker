@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -51,7 +52,7 @@ public class PublicUserProfileService {
         );
     }
 
-    public PublicUserProfileDTO getUserDetailsById(String id) {
+    public PublicUserProfileDTO getUserDetailsByKeycloakId(String id) {
 
         PublicUserProfileEntity profileFromDb = publicUserProfileRepository
                 .findByKeycloakUserId(id)
@@ -68,6 +69,20 @@ public class PublicUserProfileService {
         );
     }
 
+    public PublicUserProfileDTO getUserDetailsById(UUID id) {
+        PublicUserProfileEntity profileFromDb = publicUserProfileRepository
+                .findById(id)
+                .orElseThrow(() -> new UserProfileNotFoundException("User profile not found for ID: " + id));
+
+        return new PublicUserProfileDTO(
+                Optional.ofNullable(profileFromDb.getId()),
+                Optional.ofNullable(profileFromDb.getUsername()),
+                profileFromDb.getBio(),
+                profileFromDb.getAge(),
+                profileFromDb.getGender(),
+                Optional.ofNullable(profileFromDb.getProfilePhoto())
+        );
+    }
 
 
     public PublicUserProfileDTO updateProfile(String keycloakUserId, PublicUserProfileDTO updatedProfile) {
