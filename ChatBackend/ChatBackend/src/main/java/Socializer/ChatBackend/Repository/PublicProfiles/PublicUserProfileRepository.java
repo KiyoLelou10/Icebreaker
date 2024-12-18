@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface PublicUserProfileRepository extends JpaRepository<PublicUserProfileEntity, Long> {
+public interface PublicUserProfileRepository extends JpaRepository<PublicUserProfileEntity, UUID> {
     Optional<PublicUserProfileEntity> findByKeycloakUserId(String keycloakUserId);
 
     Optional<PublicUserProfileEntity> findById(UUID id);

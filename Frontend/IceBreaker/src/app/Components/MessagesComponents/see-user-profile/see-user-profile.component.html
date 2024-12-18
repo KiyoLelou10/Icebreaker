@@ -1,1 +1,33 @@
-<p>see-user-profile works!</p>
+<mat-dialog-content class="user-profile-dialog">
+  <mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="user-avatar">
+        <img [src]="data?.profilePhoto || 'assets/default-profile.png'" alt="{{ data?.userName }}" />
+      </div>
+      <mat-card-title>{{ data?.userName }}</mat-card-title>
+      <mat-card-subtitle>{{ data?.age }} years old, {{ data?.gender }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ data?.bio }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="icebreaker-suggestions">
+    <span
+      *ngFor="let icebreaker of icebreakers"
+      class="icebreaker-chip"
+      (click)="selectIcebreaker(icebreaker)"
+    >
+      {{ icebreaker }}
+    </span>
+  </div>
+  <div class="message-section">
+    <mat-form-field class="message-input" appearance="outline">
+      <mat-label>Break the Ice</mat-label>
+      <input matInput [(ngModel)]="message" />
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="sendMessage()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</mat-dialog-content>
