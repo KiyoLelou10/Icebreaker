@@ -7,10 +7,12 @@ import Socializer.ChatBackend.DTOS.PublicUserProfileDTO;
 import Socializer.ChatBackend.Enums.Status;
 import Socializer.ChatBackend.Services.PublicUserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -83,29 +85,29 @@ public class ProfileController {
 
 
     @PatchMapping("/{id}/status")
-    public ResponseEntity<Void> updateUserStatus(
+    public ResponseEntity<Map<String, String>> updateUserStatus(
             @PathVariable("id") String userId,
             @RequestBody Map<String, String> requestBody) {
 
         String statusString = requestBody.get("status");
 
-        // Validate the status string
         try {
+            // Validate the status string
             Status status = Status.valueOf(statusString.toUpperCase());
 
             boolean updated = publicUserProfileService.updateUserStatus(UUID.fromString(userId), status);
 
             if (updated) {
-                return ResponseEntity.ok().build();
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Status updated successfully");
+                return ResponseEntity.ok(response); // Return JSON response
             } else {
-                return ResponseEntity.notFound().build();
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             }
-
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         }
     }
-
 
 
 

@@ -51,21 +51,35 @@ export class UserStatusComponent implements OnInit{
   }
 
   toggleStatus(event: any): void {
-    if (!this.profile) return;
+    if (!this.profile) {
+      console.error('Profile data is not loaded.');
+      return;
+    }
 
-    const newStatus = this.isActive ? Status.ONLINE : Status.OFFLINE;
+    const newStatus = event.checked ? Status.ONLINE : Status.OFFLINE;
 
-    // Make a PATCH request to the backend
     this.userService.updateStatus(this.profile.id, newStatus).subscribe({
       next: () => {
-        console.log('Status updated successfully');
+        // Update the profile status on success
+        if (this.profile) {
+          this.profile.status = newStatus;
+          console.log(`Status updated successfully to ${newStatus}`);
+        }
       },
       error: (error) => {
-        console.error('Error updating status', error);
+        // Log error and handle specific status codes
+        if (error.status === 400) {
+          console.error('Invalid status provided.');
+        } else if (error.status === 404) {
+          console.error('User not found.');
+        } else {
+          console.error('Unexpected error occurred:', error);
+        }
+        if (event.source) {
+          event.source.checked = this.profile?.status === Status.ONLINE;
+        }
       },
     });
   }
-
-
 
 }
