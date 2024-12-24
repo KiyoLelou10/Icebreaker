@@ -5,6 +5,7 @@ import {Status} from '../../../Enums/Status';
 import {NgClass, NgIf} from '@angular/common';
 import {MatSlideToggle} from '@angular/material/slide-toggle';
 import {FormsModule} from '@angular/forms';
+import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-user-status',
@@ -13,7 +14,8 @@ import {FormsModule} from '@angular/forms';
     NgIf,
     NgClass,
     MatSlideToggle,
-    FormsModule
+    FormsModule,
+    MatProgressSpinner
   ],
   templateUrl: './user-status.component.html',
   styleUrl: './user-status.component.css'
@@ -21,7 +23,7 @@ import {FormsModule} from '@angular/forms';
 export class UserStatusComponent implements OnInit{
 
   profile: ProfileWithStatusDTO | null = null;
-  defaultPhoto: string = 'https://example.com/default.jpg';
+  defaultPhoto: string = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlIHA74vMW505rrc8o-7g1i2eX-OewV2_eQg&s';
 
   constructor(private userService: UserProfileService) {}
 

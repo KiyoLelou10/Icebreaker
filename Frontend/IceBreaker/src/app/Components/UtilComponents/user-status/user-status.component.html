@@ -1,4 +1,5 @@
 <div *ngIf="profile" class="user-status-container mat-elevation-z4">
+  <!-- Profile Section -->
   <div class="profile">
     <img
       [src]="profile.profilePhoto || defaultPhoto"
@@ -6,7 +7,17 @@
       class="profile-photo"
     />
     <div class="status-indicator" [ngClass]="profile.status.toLowerCase()"></div>
+    <div class="profile-info">
+      <p class="username">{{ profile.username }}</p>
+      <p class="status-text">
+        {{ profile.status === 'ONLINE'
+        ? 'You’re online! Let the world know you’re here to connect.'
+        : 'You’ve chosen privacy, but your connections are still open.' }}
+      </p>
+    </div>
   </div>
+
+  <!-- Status Toggle Section -->
   <div class="status-toggle">
     <mat-slide-toggle
       [(ngModel)]="isActive"
@@ -19,5 +30,6 @@
 </div>
 
 <div *ngIf="!profile" class="loading">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   <p>Loading profile...</p>
 </div>

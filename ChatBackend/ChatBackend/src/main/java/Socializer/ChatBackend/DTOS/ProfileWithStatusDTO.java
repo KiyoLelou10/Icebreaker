@@ -14,6 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class ProfileWithStatusDTO {
     private UUID id ;
+    private String username;
     private Optional<String> profilePhoto = Optional.empty();
     private Status status;
 }

@@ -133,6 +133,7 @@ public class PublicUserProfileService {
 
         return new ProfileWithStatusDTO(
                 profileEntity.getId(),
+                profileEntity.getUsername(),
                 Optional.of(profileEntity.getProfilePhoto()),
                 profileEntity.getStatus()
         );
