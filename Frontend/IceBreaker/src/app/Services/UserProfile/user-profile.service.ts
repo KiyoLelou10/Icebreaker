@@ -4,6 +4,7 @@ import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {PublicUserProfileDTO} from '../../DTOS/Profile/PublicUserProfileDTO';
 import {HttpClient} from '@angular/common/http';
 import {AvailableUserDTO} from '../../DTOS/Profile/AvailableUserDTO';
+import {ProfileWithStatusDTO} from '../../DTOS/Profile/ProfileWithStatusDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,19 @@ export class UserProfileService {
     );
 
   }
+
+  getMyStatusInformation(): Observable<ProfileWithStatusDTO> {
+    return this.http.get<ProfileWithStatusDTO>("http://localhost:8080/api/profile/getMyStatusInformation");
+  }
+
+  updateStatus(userId: string, status: string): Observable<void> {
+    return this.http.patch<void>(
+      `http://localhost:8080/api/profile/${userId}/status`,
+      { status },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
   clearSelectedUser(): void {
     this.selectedUserSubject.next(null);
   }
