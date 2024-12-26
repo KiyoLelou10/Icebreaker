@@ -11,7 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {NgForOf} from '@angular/common';
 import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
-import {ChatMessageDTO} from '../../../DTOS/ChatMessageDTO';
+import {ChatMessageDTO} from '../../../DTOS/ChatDTOs/ChatMessageDTO';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
 
 @Component({
@@ -55,7 +55,7 @@ export class SeeUserProfileComponent implements OnInit{
     });
 
     if (this.senderProfile?.id) {
-      this.webSocketService.connect(this.senderProfile.id); // Connect WebSocket
+      this.webSocketService.connect(this.senderProfile.id);
     }
   }
   sendMessage(): void {

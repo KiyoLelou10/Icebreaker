@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {Client} from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import {KeycloakService} from 'keycloak-angular';
-import {ChatMessageDTO} from '../../DTOS/ChatMessageDTO';
+import {ChatMessageDTO} from '../../DTOS/ChatDTOs/ChatMessageDTO';
 
 
 
@@ -70,5 +70,9 @@ export class WebsocketService {
   }
   isConnected(): boolean {
     return this.stompClient?.connected ?? false;
+  }
+
+  getStompClient(): Client | null {
+    return this.stompClient;
   }
 }

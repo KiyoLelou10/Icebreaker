@@ -4,10 +4,15 @@ import Socializer.ChatBackend.Entities.MessagingEntities.ChatMessage;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ChatMessageRepository extends CrudRepository<ChatMessage, Long>{
 
     List<ChatMessage> findByChatId(String chatId);
+
+    Optional<ChatMessage> findTopByChatIdOrderByTimestampDesc(String chatId);
+
+
 
 //    @Query("SELECT m.receiver FROM ChatMessage m WHERE m.sender = :user")
 //    List<String> findReceiversBySender(@Param("user") String user);

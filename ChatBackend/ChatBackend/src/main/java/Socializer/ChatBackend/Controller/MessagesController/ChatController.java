@@ -3,8 +3,10 @@ package Socializer.ChatBackend.Controller.MessagesController;
 
 import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatNotificationDTO;
 import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatMessageDTO;
+import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatRoomOverviewDTO;
 import Socializer.ChatBackend.Entities.MessagingEntities.ChatMessage;
 import Socializer.ChatBackend.Services.ChatMessageService;
+import Socializer.ChatBackend.Services.ChatRoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -24,6 +26,9 @@ public class ChatController {
 
     @Autowired
     private ChatMessageService chatMessageService;
+
+    @Autowired
+    private ChatRoomService chatRoomService;
 
 
     @MessageMapping("/chat")
@@ -52,6 +57,21 @@ public class ChatController {
         return ResponseEntity
                 .ok(chatMessageService.findChatMessages(senderId, recipientId));
     }
+
+
+    @GetMapping("/chat-rooms/{userId}")
+    public ResponseEntity<List<ChatRoomOverviewDTO>> getChatRooms(@PathVariable String userId) {
+        System.out.println("Getting chat rooms for user: " + userId);
+        List<ChatRoomOverviewDTO> chatRooms = chatRoomService.getChatRoomsForUser(userId);
+        return ResponseEntity.ok(chatRooms);
+    }
+
+    @GetMapping("/messages/{chatId}")
+    public ResponseEntity<List<ChatMessageDTO>> getMessagesForChatRoom(@PathVariable String chatId) {
+        List<ChatMessageDTO> messages = chatMessageService.getMessagesForChatRoom(chatId);
+        return ResponseEntity.ok(messages);
+    }
+
 
 }
 

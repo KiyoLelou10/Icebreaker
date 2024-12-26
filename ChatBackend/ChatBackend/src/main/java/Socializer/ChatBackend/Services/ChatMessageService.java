@@ -19,17 +19,23 @@ public class ChatMessageService {
     @Autowired
     private ChatMessageRepository chatMessageRepository;
 
+
     @Transactional
     public ChatMessage saveChatMessage(ChatMessageDTO chatMessageDTO) {
         UUID senderId = UUID.fromString(chatMessageDTO.getSenderId());
         UUID recipientId = UUID.fromString(chatMessageDTO.getRecipientId());
 
-        String chatId = chatRoomService
-                .getChatRoomId(chatMessageDTO.getSenderId(), chatMessageDTO.getRecipientId(), true)
-                .orElseThrow(() -> new IllegalArgumentException("Chat room not found"));
+        // Always get or create a consistent chatId
+        Optional<String> chatIdOptional = chatRoomService.getChatRoomId(
+                chatMessageDTO.getSenderId(),
+                chatMessageDTO.getRecipientId()
+        );
 
+        // If chatId is not present, throw an exception
+        String chatId = chatIdOptional.orElseThrow(() ->
+                new IllegalStateException("Chat room ID could not be created or found"));
 
-
+        // Create and save the chat message
         ChatMessage chatMessage = ChatMessage.builder()
                 .chatId(chatId)
                 .senderId(senderId)
@@ -41,22 +47,20 @@ public class ChatMessageService {
         return chatMessageRepository.save(chatMessage);
     }
 
-
     public List<ChatMessageDTO> findChatMessages(String senderId, String recipientId) {
-        // Convert senderId and recipientId from String to UUID
         UUID senderUUID = UUID.fromString(senderId);
         UUID recipientUUID = UUID.fromString(recipientId);
 
-        // Find chat room ID
-        Optional<String> chatId = chatRoomService.getChatRoomId(senderId, recipientId, false);
+        String chatId = chatRoomService.getChatRoomId(senderId, recipientId)
+                .orElseThrow(() -> new IllegalArgumentException("Chat room could not be created or found"));
 
-        // Fetch messages and convert to DTOs
-        return chatId.map(chatMessageRepository::findByChatId)
-                .orElse(new ArrayList<>())
+
+        return chatMessageRepository.findByChatId(chatId)
                 .stream()
                 .map(this::convertToDTO)
                 .toList();
     }
+
 
     private ChatMessageDTO convertToDTO(ChatMessage chatMessage) {
         return ChatMessageDTO.builder()
@@ -66,6 +70,18 @@ public class ChatMessageService {
                 .timestamp(chatMessage.getTimestamp())
                 .build();
     }
+
+
+
+    public List<ChatMessageDTO> getMessagesForChatRoom(String chatId) {
+        return chatMessageRepository.findByChatId(chatId).stream()
+                .map(this::convertToDTO)
+                .toList();
+    }
+
+
+
+
 
 
 }
