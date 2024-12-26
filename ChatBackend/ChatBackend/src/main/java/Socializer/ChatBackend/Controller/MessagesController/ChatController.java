@@ -28,9 +28,13 @@ public class ChatController {
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessageDTO chatMessage) {
+        System.out.println("Processing message from: " + chatMessage.getSenderId() +
+                " to: " + chatMessage.getRecipientId());
+
         ChatMessage savedMsg = chatMessageService.saveChatMessage(chatMessage);
         messagingTemplate.convertAndSendToUser(
-                chatMessage.getRecipientId(), "/queue/messages",
+                chatMessage.getRecipientId(),
+                "/queue/messages",
                 new ChatNotificationDTO(
                         savedMsg.getChatId(),
                         savedMsg.getSenderId().toString(),
@@ -38,6 +42,8 @@ public class ChatController {
                         savedMsg.getContent()
                 )
         );
+
+        System.out.println("Message sent to recipient queue: " + chatMessage.getRecipientId());
     }
 
     @GetMapping("/messages/{senderId}/{recipientId}")

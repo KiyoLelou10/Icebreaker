@@ -9,6 +9,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {NgForOf} from '@angular/common';
+import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
+import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
+import {ChatMessageDTO} from '../../../DTOS/ChatMessageDTO';
+import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
 
 @Component({
   selector: 'app-see-user-profile',
@@ -24,27 +28,63 @@ import {NgForOf} from '@angular/common';
 })
 export class SeeUserProfileComponent implements OnInit{
   data: PublicUserProfileDTO | null = null;
+  senderProfile: ProfileNavbarDTO | null = null;
   message: string = '';
   icebreakers: string[] = [
     'What’s your favorite hobby?',
     'Do you have any pets?',
     'What’s the last book you read?'];
-  constructor(private userProfileService: UserProfileService, public dialogRef: MatDialogRef<SeeUserProfileComponent>){
+  constructor(private userProfileService: UserProfileService, public dialogRef: MatDialogRef<SeeUserProfileComponent>, private NavbarServiceService: NavbarServiceService, private webSocketService: WebsocketService){
   }
 
   ngOnInit(): void {
+
+
+
     this.userProfileService.selectedUser$.subscribe((user: PublicUserProfileDTO| null) => {
       this.data = user;
     });
-  }
+    this.NavbarServiceService.profile$.subscribe({
+      next: (profile) => {
+        this.senderProfile = profile;
+        console.log('Received profile:', profile);
+      },
+      error: (err) => {
+        console.error('Failed to receive profile data', err);
+      },
+    });
 
-  sendMessage(): void {
-    if (this.message.trim()) {
-      console.log('Sending message:', this.message);
-    } else {
-      alert('Please enter a message.');
+    if (this.senderProfile?.id) {
+      this.webSocketService.connect(this.senderProfile.id); // Connect WebSocket
     }
   }
+  sendMessage(): void {
+    if (!this.message.trim()) {
+      alert('Please enter a message.');
+      return;
+    }
+
+    if (!this.senderProfile?.id || !this.data?.id) {
+      alert('Sender or recipient is not properly set.');
+      return;
+    }
+
+    if (!this.webSocketService.isConnected()) {
+      alert('Unable to send message. WebSocket is not connected.');
+      return;
+    }
+
+    const chatMessage: ChatMessageDTO = {
+      senderId: this.senderProfile.id,
+      recipientId: this.data.id,
+      content: this.message,
+      timestamp: new Date(),
+    };
+
+    this.webSocketService.sendMessage(chatMessage);
+    this.message = ''; // Clear the message input
+  }
+
 
   onCancel(): void {
     this.dialogRef.close();

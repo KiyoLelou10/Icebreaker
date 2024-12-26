@@ -1,5 +1,5 @@
 export interface PublicUserProfileDTO {
-  id?: number;
+  id?: string;
   userName?: string ;
   bio: string;
   age: number;
