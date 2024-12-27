@@ -1,6 +1,7 @@
 package Socializer.ChatBackend.DTOS;
 
 
+import Socializer.ChatBackend.Enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,4 +17,5 @@ public class AvailableUserDTO {
     private String userName;
     private Optional<String> profilePhoto = Optional.empty();
     private Optional<String> bio = Optional.empty();
+    private Status status;
 }

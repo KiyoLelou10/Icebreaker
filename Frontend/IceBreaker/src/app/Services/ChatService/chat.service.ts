@@ -28,7 +28,7 @@ export class ChatService {
     return this.http.get<ChatMessageDTO[]>(`${this.apiBase}/messages/${chatId}`);
   }
 
-  private getLoggedInUser(): void {
+   getLoggedInUser(): void {
     this.navbarService.profile$.subscribe({
       next: (profile) => {
         this.LoggedInUser = profile;

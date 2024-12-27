@@ -8,6 +8,7 @@ import {KeycloakService} from '../../../Services/Keycloak/keycloak.service';
 import {MatBadge} from '@angular/material/badge';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
 import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
+import {ChatService} from '../../../Services/ChatService/chat.service';
 
 @Component({
   selector: 'app-navbar',
@@ -28,7 +29,7 @@ export class NavbarComponent implements OnInit{
   profileCompleted: boolean = false;
   username:string= '';
 
-  constructor(private keycloakService: KeycloakService, private  router: Router, private profileNavbarService: NavbarServiceService) {
+  constructor(private keycloakService: KeycloakService, private  router: Router, private profileNavbarService: NavbarServiceService, private chatService:ChatService) {
   }
 
   ngOnInit(): void {
