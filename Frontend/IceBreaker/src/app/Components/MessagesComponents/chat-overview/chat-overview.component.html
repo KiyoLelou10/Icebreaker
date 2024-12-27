@@ -1,6 +1,7 @@
 <div class="chat-layout">
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav mode="side" opened class="sidenav" class="chat-sidenav">
+    <!-- Sidebar -->
+    <mat-sidenav mode="side" opened class="sidenav chat-sidenav">
       <div class="sidenav-header">
         <h2 class="sidenav-title">Chats</h2>
       </div>
@@ -21,19 +22,17 @@
             />
             <h3 class="recipient-name">{{ chat.recipientName }}</h3>
           </div>
-
-
-
           <div class="chat-info">
-
-            <div class="last-message">{{ chat.lastMessageContent }}</div>
+            <div class="last-message">
+              <span class="last-message-text">{{ chat.lastMessageContent }}</span>
+            </div>
             <div class="timestamp">{{ chat.lastMessageTimestamp | date: 'short' }}</div>
           </div>
-
         </mat-list-item>
       </mat-list>
     </mat-sidenav>
 
+    <!-- Chat Area -->
     <mat-sidenav-content class="sidenav-content">
       <div class="chat-area" *ngIf="selectedChat; else noChatSelected">
         <div class="chat-header">
@@ -48,7 +47,7 @@
         <div class="messages">
           <div
             *ngFor="let message of messages"
-            [class.sender]="message.senderId === 'user-id'"
+            [class.sender]="message.senderId === currentUserId"
             class="message-container"
           >
             <div class="message-content">
@@ -68,7 +67,7 @@
               (keyup.enter)="sendMessage()"
             />
           </mat-form-field>
-          <button mat-icon-button color="primary" (click)="sendMessage()">
+          <button mat-raised-button color="primary" (click)="sendMessage()">
             <mat-icon>send</mat-icon>
           </button>
         </div>

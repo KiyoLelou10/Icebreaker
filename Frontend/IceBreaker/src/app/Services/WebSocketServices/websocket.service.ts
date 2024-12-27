@@ -3,6 +3,7 @@ import {Client} from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import {KeycloakService} from 'keycloak-angular';
 import {ChatMessageDTO} from '../../DTOS/ChatDTOs/ChatMessageDTO';
+import {Subject} from 'rxjs';
 
 
 
@@ -12,6 +13,9 @@ import {ChatMessageDTO} from '../../DTOS/ChatDTOs/ChatMessageDTO';
 export class WebsocketService {
 
   private stompClient: Client | null = null;
+  private messageSubject = new Subject<ChatMessageDTO>();
+  public messageReceived$ = this.messageSubject.asObservable();
+
 
   connect(senderId: string): void {
     const socket = new SockJS('http://localhost:8080/ws');
@@ -59,7 +63,15 @@ export class WebsocketService {
   }
 
   private onMessageReceived(payload: any): void {
-    console.log('Message received:', JSON.parse(payload.body));
+    const message = JSON.parse(payload.body);
+    const newMessage: ChatMessageDTO = {
+      senderId: message.senderId,
+      recipientId: message.recipientId,
+      content: message.content,
+      timestamp: new Date()
+    };
+    this.messageSubject.next(newMessage);
+
   }
 
   disconnect(): void {

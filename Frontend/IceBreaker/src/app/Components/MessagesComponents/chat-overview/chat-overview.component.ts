@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ChatRoomOverviewDTO} from '../../../DTOS/ChatDTOs/ChatRoomOverviewDTO';
 import {ChatMessageDTO} from '../../../DTOS/ChatDTOs/ChatMessageDTO';
 import {ChatService} from '../../../Services/ChatService/chat.service';
@@ -43,56 +43,76 @@ import {WebsocketService} from '../../../Services/WebSocketServices/websocket.se
   templateUrl: './chat-overview.component.html',
   styleUrl: './chat-overview.component.css'
 })
-export class ChatOverviewComponent implements OnInit{
+export class ChatOverviewComponent implements OnInit {
   chatRooms: ChatRoomOverviewDTO[] = [];
-  selectedChat: ChatRoomOverviewDTO | null = null;
+  selectedChat: ChatRoomOverviewDTO | null = null
   messages: ChatMessageDTO[] = [];
-  isLoadingMessages = false;
-  messageContent: any;
+  messageContent: string = '';
+  currentUserId = ''
 
-  constructor(private chatService: ChatService, private webSocketService: WebsocketService) {}
-
-  ngOnInit(): void {
-    this.webSocketService.connect(this.chatService.getLoggenInUserId());
-    this.loadChatRooms();
+  constructor(private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
 
-  loadChatRooms(): void {
-    this.chatService.getChatRooms().subscribe((rooms) => {
-      this.chatRooms = rooms;
+  ngOnInit() {
+    this.currentUserId = this.chatService.getLoggenInUserId();
+    this.websocketService.connect(this.currentUserId);
+
+
+    this.websocketService.messageReceived$.subscribe((message: ChatMessageDTO) => {
+      console.log('New message received in component:', message);
+
+      if (this.selectedChat && this.selectedChat.recipientId === message.senderId) {
+        this.messages.push(message);
+        this.cdr.detectChanges();
+      }
+
+      this.updateLastMessage(message);
+    });
+
+    // Fetch available chat rooms
+    this.chatService.getChatRooms().subscribe({
+      next: (chatRooms) => {
+        this.chatRooms = chatRooms;
+      },
+      error: (err) => {
+        console.error('Error fetching chat rooms:', err);
+      },
     });
   }
 
-  selectChat(chatRoom: ChatRoomOverviewDTO): void {
-    this.selectedChat = chatRoom;
-    this.loadMessages(chatRoom.chatId);
-    console.log(chatRoom.recipientProfilePicture);
-  }
+  selectChat(chat: ChatRoomOverviewDTO) {
+    this.selectedChat = chat;
 
-  loadMessages(chatId: string): void {
-    this.isLoadingMessages = true;
-    this.chatService.getMessages(chatId).subscribe((msgs) => {
-      this.messages = msgs;
-      this.isLoadingMessages = false;
-    });
+    this.chatService.getMessages(chat.chatId).subscribe((messages) => {
+        this.messages = messages;
+      }
+    );
+
   }
 
   sendMessage() {
-    const message: ChatMessageDTO  = {
-      senderId: this.chatService.getLoggenInUserId(),
-      recipientId: this.selectedChat?.recipientId,
-      content: this.messageContent,
-      timestamp: new Date()
-
+    if (this.messageContent.trim()) {
+      const message: ChatMessageDTO = {
+        senderId: this.currentUserId,
+        recipientId: this.selectedChat?.recipientId,
+        content: this.messageContent,
+        timestamp: new Date()
+      };
+      this.websocketService.sendMessage(message);
+      this.messages.push(message);
+      this.updateLastMessage(message);
+      this.messageContent = '';
     }
-    this.messages.push(message);
-
-    console.log('Sending message:', message);
-    this.webSocketService.sendMessage(message);
-    this.messageContent = '';
   }
 
-  onChatRoomClick(room: ChatRoomOverviewDTO) {
-    console.log(room);
+  private updateLastMessage(message: ChatMessageDTO) {
+    const chat = this.chatRooms.find(chat => chat.recipientId=== message.recipientId || chat.recipientId === message.senderId );
+    if (chat) {
+      chat.lastMessageContent = message.content;
+      chat.lastMessageTimestamp = message.timestamp;
+
+      this.cdr.detectChanges();
+    }
   }
+
 }
