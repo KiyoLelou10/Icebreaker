@@ -60,4 +60,18 @@ export class NavbarComponent implements OnInit{
   logout(): void {
     this.keycloakService.logout();
   }
+
+  onChatOverview() {
+    this.profileNavbarService.fetchProfile().subscribe({
+      next: (profile) => {
+        console.log('Fetched profile successfully');
+      },
+      error: (err) => {
+        console.error('Failed to fetch profile', err);
+      },
+    });
+
+    this.chatService.getLoggedInUser();
+    this.router.navigate(['/chatOverview']);
+  }
 }
