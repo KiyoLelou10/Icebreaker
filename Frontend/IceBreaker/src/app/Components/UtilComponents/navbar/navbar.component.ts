@@ -32,13 +32,22 @@ export class NavbarComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.profileNavbarService.getProfileNavbar().subscribe({
-      next: (profile: ProfileNavbarDTO) => {
-        this.username = profile.username;
-        this.profileCompleted = profile.isProfileComplete;
+    // Fetch profile data from the backend
+    this.profileNavbarService.fetchProfile().subscribe({
+      next: (profile) => {
+        console.log('Fetched profiile successfully');
       },
       error: (err) => {
         console.error('Failed to fetch profile', err);
+      },
+    });
+
+    this.profileNavbarService.profile$.subscribe({
+      next: (profile) => {
+        if (profile) {
+          this.username = profile.username;
+          this.profileCompleted = profile.isProfileComplete;
+        }
       },
     });
   }

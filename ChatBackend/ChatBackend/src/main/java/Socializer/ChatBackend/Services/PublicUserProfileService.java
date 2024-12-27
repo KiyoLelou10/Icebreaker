@@ -3,8 +3,10 @@ package Socializer.ChatBackend.Services;
 
 import Socializer.ChatBackend.DTOS.AvailableUserDTO;
 import Socializer.ChatBackend.DTOS.ProfileNavbarDTO;
+import Socializer.ChatBackend.DTOS.ProfileWithStatusDTO;
 import Socializer.ChatBackend.DTOS.PublicUserProfileDTO;
 import Socializer.ChatBackend.Entities.PublicUserProfileEntity;
+import Socializer.ChatBackend.Enums.Status;
 import Socializer.ChatBackend.Exceptions.UserProfileNotFoundException;
 import Socializer.ChatBackend.Repository.PublicProfiles.PublicUserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,7 @@ public class PublicUserProfileService {
                                 .gender("")
                                 .isProfileComplete(false)
                                 .profilePhoto("")
+                                .status(Status.ONLINE)
                                 .build()
                 ));
         return toDTO(profile);
@@ -124,4 +127,30 @@ public class PublicUserProfileService {
     }
 
 
+    public ProfileWithStatusDTO getMyStatusInformation(String currentUserId){
+        PublicUserProfileEntity profileEntity = publicUserProfileRepository.findByKeycloakUserId(currentUserId)
+                .orElseThrow(() -> new RuntimeException("User profile not found"));
+
+        return new ProfileWithStatusDTO(
+                profileEntity.getId(),
+                profileEntity.getUsername(),
+                Optional.of(profileEntity.getProfilePhoto()),
+                profileEntity.getStatus()
+        );
+
+    }
+
+
+    public boolean updateUserStatus(UUID userId, Status status) {
+        Optional<PublicUserProfileEntity> userOpt = publicUserProfileRepository.findById(userId);
+
+        if (userOpt.isPresent()) {
+            PublicUserProfileEntity user = userOpt.get();
+            user.setStatus(status);
+            publicUserProfileRepository.save(user);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

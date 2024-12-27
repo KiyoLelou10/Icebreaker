@@ -7,6 +7,7 @@ import {MatCard, MatCardActions, MatCardHeader, MatCardSubtitle, MatCardTitle} f
 import {MatRipple} from '@angular/material/core';
 import {MatDialog} from '@angular/material/dialog';
 import {SeeUserProfileComponent} from '../../MessagesComponents/see-user-profile/see-user-profile.component';
+import {UserStatusComponent} from '../../UtilComponents/user-status/user-status.component';
 
 @Component({
   selector: 'app-see-all-users',
@@ -19,7 +20,8 @@ import {SeeUserProfileComponent} from '../../MessagesComponents/see-user-profile
     MatCardHeader,
     MatCardActions,
     MatCardSubtitle,
-    MatCardTitle
+    MatCardTitle,
+    UserStatusComponent
   ],
   templateUrl: './see-all-users.component.html',
   styleUrl: './see-all-users.component.css'

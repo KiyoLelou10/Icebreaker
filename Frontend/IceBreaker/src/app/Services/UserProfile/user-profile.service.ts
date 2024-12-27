@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
 import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {PublicUserProfileDTO} from '../../DTOS/Profile/PublicUserProfileDTO';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpStatusCode} from '@angular/common/http';
 import {AvailableUserDTO} from '../../DTOS/Profile/AvailableUserDTO';
+import {ProfileWithStatusDTO} from '../../DTOS/Profile/ProfileWithStatusDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,19 @@ export class UserProfileService {
     );
 
   }
+
+  getMyStatusInformation(): Observable<ProfileWithStatusDTO> {
+    return this.http.get<ProfileWithStatusDTO>("http://localhost:8080/api/profile/getMyStatusInformation");
+  }
+
+  updateStatus(userId: string, status: string): Observable<{ message: string }> {
+    return this.http.patch<{ message: string }>(
+      `http://localhost:8080/api/profile/${userId}/status`,
+      { status },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
   clearSelectedUser(): void {
     this.selectedUserSubject.next(null);
   }

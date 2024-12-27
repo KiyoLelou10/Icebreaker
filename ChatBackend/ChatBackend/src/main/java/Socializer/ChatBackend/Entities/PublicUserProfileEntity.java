@@ -1,5 +1,6 @@
 package Socializer.ChatBackend.Entities;
 
+import Socializer.ChatBackend.Enums.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -41,4 +42,9 @@ public class PublicUserProfileEntity {
 
     @Column(name = "is_profile_complete", nullable = false, length = 1024)
     private Boolean isProfileComplete = false;
+
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
 }

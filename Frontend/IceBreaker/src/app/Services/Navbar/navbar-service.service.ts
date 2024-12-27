@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable, tap} from 'rxjs';
 import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 
 @Injectable({
@@ -8,9 +8,17 @@ import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 })
 export class NavbarServiceService {
 
+  private profileSubject = new BehaviorSubject<ProfileNavbarDTO | null>(null);
+  profile$ = this.profileSubject.asObservable();
+
+
   constructor(private http: HttpClient) { }
 
-  getProfileNavbar(): Observable<ProfileNavbarDTO> {
-    return this.http.get<ProfileNavbarDTO>("http://localhost:8080/api/profileHome/me");
+  fetchProfile(): Observable<ProfileNavbarDTO> {
+    return this.http.get<ProfileNavbarDTO>('http://localhost:8080/api/profileHome/me').pipe(
+      tap((profile) => {
+        this.profileSubject.next(profile); // Update BehaviorSubject with the fetched profile
+      })
+    );
   }
 }
