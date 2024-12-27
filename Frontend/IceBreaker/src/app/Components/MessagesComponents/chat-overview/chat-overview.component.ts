@@ -14,6 +14,7 @@ import {getMatIconFailedToSanitizeLiteralError, MatIcon} from '@angular/material
 import {MatDivider} from '@angular/material/divider';
 import {MatCard} from '@angular/material/card';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
+import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
 
 @Component({
   selector: 'app-chat-overview',
@@ -50,10 +51,19 @@ export class ChatOverviewComponent implements OnInit {
   messageContent: string = '';
   currentUserId = ''
 
-  constructor(private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
+  constructor(private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
+    this.navbarService.fetchProfile().subscribe(  {
+      next: (profile) => {
+        console.log('Fetched profile successfully');
+      },
+      error: (err) => {
+        console.error('Failed to fetch profile', err);
+      },
+
+    });
     this.currentUserId = this.chatService.getLoggenInUserId();
     this.websocketService.connect(this.currentUserId);
 

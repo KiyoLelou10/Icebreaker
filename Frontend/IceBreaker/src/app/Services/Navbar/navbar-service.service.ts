@@ -17,7 +17,7 @@ export class NavbarServiceService {
   fetchProfile(): Observable<ProfileNavbarDTO> {
     return this.http.get<ProfileNavbarDTO>('http://localhost:8080/api/profileHome/me').pipe(
       tap((profile) => {
-        this.profileSubject.next(profile); // Update BehaviorSubject with the fetched profile
+        this.profileSubject.next(profile);
       })
     );
   }

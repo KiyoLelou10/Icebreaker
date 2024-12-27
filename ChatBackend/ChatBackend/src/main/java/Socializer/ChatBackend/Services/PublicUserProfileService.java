@@ -121,7 +121,8 @@ public class PublicUserProfileService {
                         user.getId(),
                         user.getUsername(),
                         Optional.ofNullable(user.getProfilePhoto()),
-                        Optional.ofNullable(user.getBio())
+                        Optional.ofNullable(user.getBio()),
+                        user.getStatus()
                 ))
                 .collect(Collectors.toList());
     }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AvailableUserDTO} from '../../../DTOS/Profile/AvailableUserDTO';
 import {UserProfileService} from '../../../Services/UserProfile/user-profile.service';
-import {NgForOf} from '@angular/common';
+import {NgClass, NgForOf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {MatCard, MatCardActions, MatCardHeader, MatCardSubtitle, MatCardTitle} from '@angular/material/card';
 import {MatRipple} from '@angular/material/core';
@@ -21,7 +21,8 @@ import {UserStatusComponent} from '../../UtilComponents/user-status/user-status.
     MatCardActions,
     MatCardSubtitle,
     MatCardTitle,
-    UserStatusComponent
+    UserStatusComponent,
+    NgClass
   ],
   templateUrl: './see-all-users.component.html',
   styleUrl: './see-all-users.component.css'
