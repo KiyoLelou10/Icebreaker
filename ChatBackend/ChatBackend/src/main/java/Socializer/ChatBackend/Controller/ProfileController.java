@@ -2,9 +2,11 @@ package Socializer.ChatBackend.Controller;
 
 
 import Socializer.ChatBackend.DTOS.AvailableUserDTO;
+import Socializer.ChatBackend.DTOS.EncryptionDTO;
 import Socializer.ChatBackend.DTOS.ProfileWithStatusDTO;
 import Socializer.ChatBackend.DTOS.PublicUserProfileDTO;
 import Socializer.ChatBackend.Enums.Status;
+import Socializer.ChatBackend.Services.EncryptionService;
 import Socializer.ChatBackend.Services.PublicUserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,9 @@ public class ProfileController {
     @Autowired
     private PublicUserProfileService publicUserProfileService;
 
+    @Autowired
+    private EncryptionService encryptionService;
+
     @GetMapping("/fetchMyDetails")
     public ResponseEntity<PublicUserProfileDTO> getUserDetails(JwtAuthenticationToken token) {
         System.out.println("Request is made for profile details");
@@ -35,8 +40,34 @@ public class ProfileController {
         String keycloakUserId = token.getToken().getSubject();
 
 
+
         PublicUserProfileDTO profile = publicUserProfileService.getUserDetailsByKeycloakId(keycloakUserId);
         return ResponseEntity.ok(profile);
+    }
+
+    @GetMapping("/fetchMyPrivKey")
+    public ResponseEntity<String> getPrivateKey(JwtAuthenticationToken token) {
+        if (token == null || token.getToken() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        String keycloakUserId = token.getToken().getSubject();
+
+        String privateKey = encryptionService.getPrivatKey(keycloakUserId);
+
+        return ResponseEntity.ok(privateKey);
+    }
+
+    @PostMapping("/uploadKeyPair")
+    public ResponseEntity<Object> uploadKeyPair(JwtAuthenticationToken token, @RequestBody EncryptionDTO keyPairDTO) {
+        if (token == null || token.getToken() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        String keycloakUserId = token.getToken().getSubject();
+
+        encryptionService.saveEncryptionDTO(keyPairDTO, keycloakUserId);
+        return ResponseEntity.ok().build();
     }
 
 

@@ -100,6 +100,10 @@ export class ChatOverviewComponent implements OnInit {
 
   }
 
+  getRecipientPublicKey(){
+
+  }
+
   sendMessage() {
     if (this.messageContent.trim()) {
       const message: ChatMessageDTO = {

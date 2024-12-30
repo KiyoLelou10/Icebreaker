@@ -10,6 +10,7 @@ import {NgIf} from '@angular/common';
 import {MatInput} from '@angular/material/input';
 import {MatOption, MatSelect} from '@angular/material/select';
 
+
 @Component({
   selector: 'app-create-user-profile',
   standalone: true,
@@ -64,6 +65,7 @@ export class CreateUserProfileComponent implements OnInit{
       },
     });
   }
+
   toggleEditMode(): void {
     this.isEditing = !this.isEditing;
     if (this.isEditing) {

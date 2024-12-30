@@ -22,6 +22,20 @@ export class UserProfileService {
     return this.http.get<PublicUserProfileDTO>("http://localhost:8080/api/profile/fetchMyDetails");
   }
 
+  getMyPrivKey(): Observable<string> {
+    return this.http.get<string>("http://localhost:8080/api/profile/fetchMyPrivKey").pipe(
+      catchError((error) => {
+        console.error('Error fetching private key:', error);
+        return throwError(() => new Error('Failed to fetch private key'));
+      })
+    );
+  }
+
+  uploadKeyPair(publicKey: string, privateKey: string): Observable<void> {
+    const payload = { publicKey, privateKey };
+    return this.http.post<void>('http://localhost:8080/api/profile/uploadKeyPair', payload);
+  }
+
   saveProfile(profile: PublicUserProfileDTO): Observable<PublicUserProfileDTO> {
     return this.http.put<PublicUserProfileDTO>('http://localhost:8080/api/profile/updateDetails', profile);
   }
