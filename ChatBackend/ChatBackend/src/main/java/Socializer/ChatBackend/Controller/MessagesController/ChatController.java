@@ -7,6 +7,7 @@ import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatRoomOverviewDTO;
 import Socializer.ChatBackend.Entities.MessagingEntities.ChatMessage;
 import Socializer.ChatBackend.Services.ChatMessageService;
 import Socializer.ChatBackend.Services.ChatRoomService;
+import Socializer.ChatBackend.Services.EncryptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -29,7 +30,6 @@ public class ChatController {
 
     @Autowired
     private ChatRoomService chatRoomService;
-
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessageDTO chatMessage) {
@@ -57,7 +57,6 @@ public class ChatController {
         return ResponseEntity
                 .ok(chatMessageService.findChatMessages(senderId, recipientId));
     }
-
 
     @GetMapping("/chat-rooms/{userId}")
     public ResponseEntity<List<ChatRoomOverviewDTO>> getChatRooms(@PathVariable String userId) {

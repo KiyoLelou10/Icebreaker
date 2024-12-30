@@ -36,4 +36,11 @@ public class EncryptionService {
     public UUID getUserIdByKeycloakId(String id) {
         return publicUserProfileRepository.findIdByKeycloakUserId(id);
     }
+
+    public String getPublicKeyByUserId(String id) {
+        UUID uuid = UUID.fromString(id);
+        String publicKey =  encryptionRepository.findPublicKeyByUserId(uuid);
+        System.out.println(publicKey);
+        return publicKey;
+    }
 }

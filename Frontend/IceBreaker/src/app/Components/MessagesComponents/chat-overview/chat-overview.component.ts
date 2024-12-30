@@ -50,6 +50,8 @@ export class ChatOverviewComponent implements OnInit {
   messages: ChatMessageDTO[] = [];
   messageContent: string = '';
   currentUserId = ''
+  currentUserPublicKey = '';
+  recipientPublicKeys: Map<string, string> = new Map();
 
   constructor(private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
@@ -62,11 +64,9 @@ export class ChatOverviewComponent implements OnInit {
       error: (err) => {
         console.error('Failed to fetch profile', err);
       },
-
     });
     this.currentUserId = this.chatService.getLoggenInUserId();
     this.websocketService.connect(this.currentUserId);
-
 
     this.websocketService.messageReceived$.subscribe((message: ChatMessageDTO) => {
       console.log('New message received in component:', message);
@@ -92,17 +92,33 @@ export class ChatOverviewComponent implements OnInit {
 
   selectChat(chat: ChatRoomOverviewDTO) {
     this.selectedChat = chat;
+    if (this.recipientPublicKeys.has(chat.recipientId)) {
+      console.log(`Public key already available for recipientId: ${chat.recipientId}`);
+      this.currentUserPublicKey = this.recipientPublicKeys.get(chat.recipientId)!;
+    } else {
+      this.getRecipientPublicKey(chat.recipientId);
+    }
 
     this.chatService.getMessages(chat.chatId).subscribe((messages) => {
-        this.messages = messages;
+      this.messages = messages;
+    });
+  }
+
+  getRecipientPublicKey(recipientId: string) {
+    console.log(`Fetching public key for recipientId: ${recipientId}`);
+    this.chatService.getPublicKeyOfRecipient(recipientId).subscribe({
+      next: (publicKey) => {
+        console.log(`Received public key for recipientId ${recipientId}: ${publicKey}`);
+
+        this.recipientPublicKeys.set(recipientId, publicKey);
+        this.currentUserPublicKey = publicKey;
+      },
+      error: (err) => {
+        console.error(`Error fetching public key for recipientId ${recipientId}:`, err);
       }
-    );
-
+    });
   }
 
-  getRecipientPublicKey(){
-
-  }
 
   sendMessage() {
     if (this.messageContent.trim()) {

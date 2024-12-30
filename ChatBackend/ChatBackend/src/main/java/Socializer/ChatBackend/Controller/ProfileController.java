@@ -70,6 +70,15 @@ public class ProfileController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/publicKey/{recipientId}")
+    public ResponseEntity<String> findUserPublicKey(@PathVariable String recipientId) {
+        String publicKey = encryptionService.getPublicKeyByUserId(recipientId);
+        if (publicKey == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        return ResponseEntity.ok(publicKey);
+    }
+
 
     @PutMapping("/updateDetails")
     public ResponseEntity<PublicUserProfileDTO> updateProfileDetails(

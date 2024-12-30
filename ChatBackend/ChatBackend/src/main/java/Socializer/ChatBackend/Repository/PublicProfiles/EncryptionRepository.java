@@ -13,4 +13,7 @@ public interface EncryptionRepository extends JpaRepository<EncryptionEntity, UU
 
     @Query("SELECT u.privateKey FROM EncryptionEntity u WHERE u.keycloakUserId = :keycloakUserId")
     String findPrivateKeyByKeycloakUserId(@Param("keycloakUserId") String keycloakUserId);
+
+    @Query("SELECT u.publicKey FROM EncryptionEntity u WHERE u.userId = :userId")
+    String findPublicKeyByUserId(@Param("userId") UUID userId);
 }

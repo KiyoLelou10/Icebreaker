@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ChatRoomOverviewDTO} from '../../DTOS/ChatDTOs/ChatRoomOverviewDTO';
-import {Observable} from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
 import {ChatMessageDTO} from '../../DTOS/ChatDTOs/ChatMessageDTO';
 import {NavbarServiceService} from '../Navbar/navbar-service.service';
 import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
@@ -23,6 +23,12 @@ export class ChatService {
     this.getLoggedInUser();
     return this.http.get<ChatRoomOverviewDTO[]>(`${this.apiBase}/chat-rooms/${this.LoggedInUser?.id}`);
   }
+
+  getPublicKeyOfRecipient(recipientId: string): Observable<string> {
+    const url = `${this.apiBase}/api/profile/publicKey/${recipientId}`;
+    return this.http.get<string>(url);
+  }
+
 
   getMessages(chatId: string): Observable<ChatMessageDTO[]> {
     return this.http.get<ChatMessageDTO[]>(`${this.apiBase}/messages/${chatId}`);
