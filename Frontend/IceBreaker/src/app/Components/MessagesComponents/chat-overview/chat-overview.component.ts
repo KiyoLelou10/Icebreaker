@@ -10,11 +10,14 @@ import {MatFormField} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
-import {getMatIconFailedToSanitizeLiteralError, MatIcon} from '@angular/material/icon';
+import {MatIcon} from '@angular/material/icon';
 import {MatDivider} from '@angular/material/divider';
 import {MatCard} from '@angular/material/card';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
+import {encryptData} from '../../E2EECompenents/Encryption';
+import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.service';
+import {decryptData} from '../../E2EECompenents/Decryption';
 
 @Component({
   selector: 'app-chat-overview',
@@ -53,7 +56,7 @@ export class ChatOverviewComponent implements OnInit {
   currentUserPublicKey = '';
   recipientPublicKeys: Map<string, string> = new Map();
 
-  constructor(private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
+  constructor(private privateKeyService : PrivateKeyService,private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -68,10 +71,12 @@ export class ChatOverviewComponent implements OnInit {
     this.currentUserId = this.chatService.getLoggenInUserId();
     this.websocketService.connect(this.currentUserId);
 
-    this.websocketService.messageReceived$.subscribe((message: ChatMessageDTO) => {
+    this.websocketService.messageReceived$.subscribe(async (message: ChatMessageDTO) => {
       console.log('New message received in component:', message);
 
       if (this.selectedChat && this.selectedChat.recipientId === message.senderId) {
+        const privateKey: string  = this.privateKeyService.getPrivateKey();
+        message.content = await decryptData(message.content, privateKey);
         this.messages.push(message);
         this.cdr.detectChanges();
       }
@@ -99,9 +104,20 @@ export class ChatOverviewComponent implements OnInit {
       this.getRecipientPublicKey(chat.recipientId);
     }
 
-    this.chatService.getMessages(chat.chatId).subscribe((messages) => {
-      this.messages = messages;
+    this.chatService.getMessages(chat.chatId).subscribe(async (messages) => {
+      this.messages = await Promise.all(
+        messages.map(async (message) => {
+          // Check if the message was sent to the current user
+          if (message.senderId === chat.recipientId) {
+            const privateKey: string = this.privateKeyService.getPrivateKey();
+            message.content = await decryptData(message.content, privateKey);
+          }
+          return message;
+        })
+      );
     });
+
+
   }
 
   getRecipientPublicKey(recipientId: string) {
@@ -120,12 +136,13 @@ export class ChatOverviewComponent implements OnInit {
   }
 
 
-  sendMessage() {
+  async sendMessage() {
     if (this.messageContent.trim()) {
+      const encryptedMessage: string =  await encryptData(this.messageContent, this.currentUserPublicKey);
       const message: ChatMessageDTO = {
         senderId: this.currentUserId,
         recipientId: this.selectedChat?.recipientId,
-        content: this.messageContent,
+        content: encryptedMessage,
         timestamp: new Date()
       };
       this.websocketService.sendMessage(message);
@@ -135,8 +152,8 @@ export class ChatOverviewComponent implements OnInit {
     }
   }
 
-  private updateLastMessage(message: ChatMessageDTO) {
-    const chat = this.chatRooms.find(chat => chat.recipientId=== message.recipientId || chat.recipientId === message.senderId );
+  private async updateLastMessage(message: ChatMessageDTO) {
+    const chat = this.chatRooms.find(chat => chat.recipientId === message.recipientId || chat.recipientId === message.senderId);
     if (chat) {
       chat.lastMessageContent = message.content;
       chat.lastMessageTimestamp = message.timestamp;

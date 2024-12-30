@@ -43,35 +43,8 @@ export class SeeAllUsersComponent implements OnInit{
         console.error('Error fetching users:', err);
       },
     });
-    this.fetchPrivateKey();
   }
 
-  fetchPrivateKey(): void {
-    this.userService.getMyPrivKey().subscribe({
-      next: async (key: string | null) => {
-        if (key) {
-          console.log('Private Key fetched successfully:', key);
-          this.privateKey = key;
-        } else {
-          console.log('Private key is null, generating a new key pair...');
-          const keyPair = await generateKeyPair();
-          console.log('New key pair generated:', keyPair);
-          this.userService.uploadKeyPair(keyPair.publicKey, keyPair.privateKey).subscribe({
-            next: () => {
-              console.log('Key pair uploaded successfully.');
-            },
-            error: (err) => {
-              console.error('Failed to upload key pair:', err);
-            },
-          });
-          this.privateKey = keyPair.privateKey;
-        }
-      },
-      error: (err) => {
-        console.error('Failed to fetch private key:', err);
-      },
-    });
-  }
 
   openChat(id: string) {
     this.userService.getProfileById(id).subscribe(() => {

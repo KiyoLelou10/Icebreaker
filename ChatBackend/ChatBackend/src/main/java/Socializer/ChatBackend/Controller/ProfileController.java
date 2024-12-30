@@ -45,28 +45,16 @@ public class ProfileController {
         return ResponseEntity.ok(profile);
     }
 
-    @GetMapping("/fetchMyPrivKey")
-    public ResponseEntity<String> getPrivateKey(JwtAuthenticationToken token) {
-        if (token == null || token.getToken() == null) {
-            return ResponseEntity.badRequest().body(null);
-        }
-
-        String keycloakUserId = token.getToken().getSubject();
-
-        String privateKey = encryptionService.getPrivatKey(keycloakUserId);
+    @GetMapping("/fetchMyPrivKey/{userId}")
+    public ResponseEntity<String> getPrivateKey(@PathVariable String userId) {
+        String privateKey = encryptionService.getPrivatKey(userId);
 
         return ResponseEntity.ok(privateKey);
     }
 
-    @PostMapping("/uploadKeyPair")
-    public ResponseEntity<Object> uploadKeyPair(JwtAuthenticationToken token, @RequestBody EncryptionDTO keyPairDTO) {
-        if (token == null || token.getToken() == null) {
-            return ResponseEntity.badRequest().body(null);
-        }
-
-        String keycloakUserId = token.getToken().getSubject();
-
-        encryptionService.saveEncryptionDTO(keyPairDTO, keycloakUserId);
+    @PostMapping("/uploadKeyPair/{userId}")
+    public ResponseEntity<Object> uploadKeyPair(@PathVariable String userId, @RequestBody EncryptionDTO keyPairDTO) {
+        encryptionService.saveEncryptionDTO(keyPairDTO, userId);
         return ResponseEntity.ok().build();
     }
 
@@ -74,6 +62,7 @@ public class ProfileController {
     public ResponseEntity<String> findUserPublicKey(@PathVariable String recipientId) {
         String publicKey = encryptionService.getPublicKeyByUserId(recipientId);
         if (publicKey == null) {
+            System.out.println("Public key not found");
             return ResponseEntity.badRequest().body(null);
         }
         return ResponseEntity.ok(publicKey);

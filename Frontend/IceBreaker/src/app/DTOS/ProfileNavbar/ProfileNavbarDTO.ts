@@ -1,5 +1,5 @@
 export interface ProfileNavbarDTO {
-  id?: string;
+  id: string;
   username: string;
   isProfileComplete: boolean;
 }

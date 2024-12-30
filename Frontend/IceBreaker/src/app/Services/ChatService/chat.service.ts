@@ -26,7 +26,12 @@ export class ChatService {
 
   getPublicKeyOfRecipient(recipientId: string): Observable<string> {
     const url = `${this.apiBase}/api/profile/publicKey/${recipientId}`;
-    return this.http.get<string>(url);
+    return this.http.get(url, { responseType: 'text' }).pipe(
+      catchError((error) => {
+        console.error(`Error fetching public key for recipientId ${recipientId}:`, error);
+        return throwError(() => new Error('Failed to fetch public key'));
+      })
+    );
   }
 
 

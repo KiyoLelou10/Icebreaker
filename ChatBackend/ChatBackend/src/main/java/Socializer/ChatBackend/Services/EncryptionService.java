@@ -15,17 +15,19 @@ public class EncryptionService {
     @Autowired
     private EncryptionRepository encryptionRepository;
 
+    /*
     @Autowired
     private PublicUserProfileRepository publicUserProfileRepository;
+    */
 
     public String getPrivatKey(String id) {
-        return encryptionRepository.findPrivateKeyByKeycloakUserId(id);
+        UUID uuid = UUID.fromString(id);
+        return encryptionRepository.findPrivateKeyByUserId(uuid);
     }
 
     public void saveEncryptionDTO(EncryptionDTO encryptionDTO, String id) {
-        UUID uuid = getUserIdByKeycloakId(id);
+        UUID uuid = UUID.fromString(id);
         EncryptionEntity newEntity = EncryptionEntity.builder()
-                .keycloakUserId(id)
                 .userId(uuid)
                 .publicKey(encryptionDTO.getPublicKey())
                 .privateKey(encryptionDTO.getPrivateKey())
@@ -33,9 +35,9 @@ public class EncryptionService {
         encryptionRepository.save(newEntity);
     }
 
-    public UUID getUserIdByKeycloakId(String id) {
+    /*public UUID getUserIdByKeycloakId(String id) {
         return publicUserProfileRepository.findIdByKeycloakUserId(id);
-    }
+    }*/
 
     public String getPublicKeyByUserId(String id) {
         UUID uuid = UUID.fromString(id);

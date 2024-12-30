@@ -20,9 +20,6 @@ public class EncryptionEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "keycloak_user_id", nullable = false, unique = true)
-    private String keycloakUserId;
-
     @Column(name = "user_id", nullable = false, unique = true)
     private UUID userId;
 
