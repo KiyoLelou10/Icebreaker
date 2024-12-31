@@ -24,7 +24,7 @@ export class ChatService {
     return this.http.get<ChatRoomOverviewDTO[]>(`${this.apiBase}/chat-rooms/${this.LoggedInUser?.id}`);
   }
 
-  getPublicKeyOfRecipient(recipientId: string): Observable<string> {
+  getPublicKey(recipientId: string): Observable<string> {
     const url = `${this.apiBase}/api/profile/publicKey/${recipientId}`;
     return this.http.get(url, { responseType: 'text' }).pipe(
       catchError((error) => {
@@ -34,6 +34,26 @@ export class ChatService {
     );
   }
 
+  getSymmetricKey(chatId: string, userId : string): Observable<string> {
+    console.log('Fetching chatId for chat: ', chatId, 'and user id', userId);
+    return this.http.get(`http://localhost:8080/symmetricKey/${chatId}/${userId}`, {responseType: 'text'}).pipe(
+      catchError((error) => {
+        console.error('Error fetching symmetric key:', error);
+        return throwError(() => new Error('Failed to fetch private key'));
+      })
+    );
+  }
+
+  uploadSymmetricKey(chatId: string, userId: string, symmetricKey: string): Observable<void> {
+    const payload = { chatId, userId, symmetricKey };
+    console.log(payload);
+    return this.http.post<void>('http://localhost:8080/saveSymmetricKey', payload).pipe(
+      catchError((error) => {
+        console.error('Error uploading key pair:', error);
+        return throwError(() => new Error('Failed to upload key pair'));
+      })
+    );
+  }
 
   getMessages(chatId: string): Observable<ChatMessageDTO[]> {
     return this.http.get<ChatMessageDTO[]>(`${this.apiBase}/messages/${chatId}`);

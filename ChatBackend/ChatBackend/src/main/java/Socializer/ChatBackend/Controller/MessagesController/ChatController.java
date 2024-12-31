@@ -4,6 +4,7 @@ package Socializer.ChatBackend.Controller.MessagesController;
 import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatNotificationDTO;
 import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatMessageDTO;
 import Socializer.ChatBackend.DTOS.MessagingDTOS.ChatRoomOverviewDTO;
+import Socializer.ChatBackend.DTOS.SymmetricDTO;
 import Socializer.ChatBackend.Entities.MessagingEntities.ChatMessage;
 import Socializer.ChatBackend.Services.ChatMessageService;
 import Socializer.ChatBackend.Services.ChatRoomService;
@@ -16,6 +17,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -30,6 +33,9 @@ public class ChatController {
 
     @Autowired
     private ChatRoomService chatRoomService;
+
+    @Autowired
+    private EncryptionService encryptionService;
 
     @MessageMapping("/chat")
     public void processMessage(@Payload ChatMessageDTO chatMessage) {
@@ -56,6 +62,20 @@ public class ChatController {
                                                                  @PathVariable String recipientId) {
         return ResponseEntity
                 .ok(chatMessageService.findChatMessages(senderId, recipientId));
+    }
+
+    @PostMapping("/saveSymmetricKey")
+    public ResponseEntity<String> getSymmetricKey(@RequestBody SymmetricDTO symmetricDTO) {
+        System.out.println("Saving");
+        encryptionService.saveSymmetricEncryption(symmetricDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/symmetricKey/{chatId}/{userId}")
+    public ResponseEntity<String> getSymmetricKey(@PathVariable String chatId, @PathVariable String userId) {
+        System.out.println("Getting symmetric key");
+        String symmetricKey = encryptionService.getSymmetricKey(chatId, userId);
+        return ResponseEntity.ok().body(symmetricKey);
     }
 
     @GetMapping("/chat-rooms/{userId}")
