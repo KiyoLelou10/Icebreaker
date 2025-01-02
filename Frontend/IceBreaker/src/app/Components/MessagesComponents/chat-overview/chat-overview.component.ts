@@ -88,14 +88,14 @@ export class ChatOverviewComponent implements OnInit {
         this.cdr.detectChanges();
       }
 
-      await this.updateLastMessage(message);
+      this.updateLastMessage(message);
     });
 
     // Fetch available chat rooms
     this.chatService.getChatRooms().subscribe({
       next: async (chatRooms) => {
         for (const chatRoom of chatRooms) {
-          await this.decryptLastMessage(chatRoom);
+          this.decryptLastMessage(chatRoom);
         }
         this.chatRooms = chatRooms;
       },
@@ -111,7 +111,7 @@ export class ChatOverviewComponent implements OnInit {
       // @ts-ignore
       this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.chatId);
     } else {
-      await this.fetchSymmetricKey(this.selectedChat.chatId, this.currentUserId);
+      this.fetchSymmetricKey(this.selectedChat.chatId, this.currentUserId);
     }
     if (this.recipientPublicKeys.has(chat.recipientId)) {
       console.log(`Public key already available for recipientId: ${chat.recipientId}`);
@@ -180,6 +180,7 @@ export class ChatOverviewComponent implements OnInit {
       }
       let encryptedMessage: string = '';
       if(this.currentSymmetricKey){
+        console.log(this.currentSymmetricKey);
         encryptedMessage = EncryptionService.encryptMessage(this.messageContent, this.currentSymmetricKey);
       }
       else{
@@ -225,6 +226,7 @@ export class ChatOverviewComponent implements OnInit {
             })
             .catch((decryptionError) => {
               console.error('Failed to decrypt symmetric key:', decryptionError);
+              this.currentSymmetricKey = '';
               reject(decryptionError); // Rejects the promise if decryption fails
             });// Resolves the promise with the fetched key
         },
