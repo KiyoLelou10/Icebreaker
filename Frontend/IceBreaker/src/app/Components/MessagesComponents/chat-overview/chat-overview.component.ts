@@ -79,6 +79,15 @@ export class ChatOverviewComponent implements OnInit {
     this.websocketService.connect(this.currentUserId);
     this.getMyOwnPublicKey(this.currentUserId);
     this.myPrivateKey = this.privateKeyService.getPrivateKey();
+    if(this.myPrivateKey === null){
+      console.log('Getting private key')
+      this.navbarService.getMyPrivKey(this.currentUserId).subscribe({
+        next: async (key: string) => {
+            this.myPrivateKey = key;
+        }
+
+      });
+    }
 
     this.websocketService.messageReceived$.subscribe(async (message: ChatMessageDTO) => {
       console.log('New message received in component:', message);
