@@ -1,0 +1,39 @@
+<div class="dialog-container">
+  <h1 mat-dialog-title>
+    {{ data.isNew ? 'Set Passphrase & Magic Number' : 'Verify Passphrase' }}
+  </h1>
+  <div mat-dialog-content>
+    <div *ngIf="data.isNew">
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Passphrase</mat-label>
+        <input matInput [(ngModel)]="passphrase" type="password" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Confirm Passphrase</mat-label>
+        <input matInput [(ngModel)]="confirmPassphrase" type="password" />
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Magic Number</mat-label>
+        <input matInput [(ngModel)]="magicNumber" type="number" />
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Confirm Magic Number</mat-label>
+        <input matInput [(ngModel)]="confirmMagicNumber" type="number" />
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="!data.isNew">
+
+      <mat-form-field appearance="fill" class="input-field">
+        <mat-label>Enter your Passphrase</mat-label>
+        <input matInput [(ngModel)]="passphrase" type="password" />
+      </mat-form-field>
+    </div>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCancel()">logout </button>
+    <button mat-button color="primary" (click)="onSave()">Save</button>
+  </div>
+</div>
