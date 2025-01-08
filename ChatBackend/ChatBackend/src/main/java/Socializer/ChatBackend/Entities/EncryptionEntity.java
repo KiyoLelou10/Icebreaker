@@ -23,6 +23,9 @@ public class EncryptionEntity {
     @Column(name = "user_id", nullable = false, unique = true)
     private UUID userId;
 
+    @Column(name = "keycloak_user_id", nullable = false, unique = true)
+    private String keycloakUserId;
+
     @Column(name = "public_key", nullable = false, columnDefinition = "TEXT")
     private String publicKey;
 

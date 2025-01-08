@@ -29,4 +29,8 @@ public class passphraseService {
         Optional<PassPhraseEntity> optional = cryptographyRepository.findById(userId);
         return optional.map(entity -> entity.getPassphrase().equals(passphrase)).orElse(false);
     }
+
+    public Integer getMagicNumber(String userId) {
+        return cryptographyRepository.findMagicNumberByUserId(userId);
+    }
 }

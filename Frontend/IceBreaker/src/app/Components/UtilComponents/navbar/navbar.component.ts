@@ -11,6 +11,8 @@ import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {ChatService} from '../../../Services/ChatService/chat.service';
 import {generateKeyPair} from '../../E2EECompenents/KeyGenerate';
 import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.service';
+import {PasskeySec} from '../../E2EECompenents/PasskeySec';
+import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.service';
 
 @Component({
   selector: 'app-navbar',
@@ -24,6 +26,7 @@ import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.servic
     MatMenuModule,
     MatBadge,
   ],
+  providers: [PasskeySec],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -31,7 +34,7 @@ export class NavbarComponent implements OnInit{
   profileCompleted: boolean = false;
   username:string= '';
 
-  constructor(private keycloakService: KeycloakService, private  router: Router, private profileNavbarService: NavbarServiceService, private chatService:ChatService, private privateKeyService : PrivateKeyService) {
+  constructor(private passkeyService: PasskeyService, private passkeySec : PasskeySec, private keycloakService: KeycloakService, private  router: Router, private profileNavbarService: NavbarServiceService, private chatService:ChatService, private privateKeyService : PrivateKeyService) {
   }
 
   ngOnInit(): void {
@@ -52,37 +55,7 @@ export class NavbarComponent implements OnInit{
           this.username = profile.username;
           this.profileCompleted = profile.isProfileComplete;
           id = profile.id;
-          this.fetchPrivateKey(id);
         }
-      },
-    });
-  }
-
-
-
-  fetchPrivateKey(id: string): void {
-    this.profileNavbarService.getMyPrivKey(id).subscribe({
-      next: async (key: string) => {
-        if (key) {
-          console.log('Private Key fetched successfully:', key);
-          this.privateKeyService.setPrivateKey(key);
-        } else {
-          console.log('Private key is null, generating a new key pair...');
-          const keyPair = await generateKeyPair();
-          console.log('New key pair generated:', keyPair);
-          this.profileNavbarService.uploadKeyPair(id, keyPair.publicKey, keyPair.privateKey).subscribe({
-            next: () => {
-              console.log('Key pair uploaded successfully.');
-            },
-            error: (err) => {
-              console.error('Failed to upload key pair:', err);
-            },
-          });
-          this.privateKeyService.setPrivateKey(key);
-        }
-      },
-      error: (err) => {
-        console.error('Failed to fetch private key:', err);
       },
     });
   }

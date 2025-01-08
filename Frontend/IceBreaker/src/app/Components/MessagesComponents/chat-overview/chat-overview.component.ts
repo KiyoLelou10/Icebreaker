@@ -15,12 +15,10 @@ import {MatDivider} from '@angular/material/divider';
 import {MatCard} from '@angular/material/card';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
-import {encryptData} from '../../E2EECompenents/Encryption';
 import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.service';
-import {decryptData} from '../../E2EECompenents/Decryption';
-import {generateKeyPair} from '../../E2EECompenents/KeyGenerate';
 import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
-import {ExpressionBinding} from '@angular/compiler';
+import {PasskeySec} from '../../E2EECompenents/PasskeySec';
+import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.service';
 
 @Component({
   selector: 'app-chat-overview',
@@ -47,6 +45,7 @@ import {ExpressionBinding} from '@angular/compiler';
     MatListModule,
     MatCard
   ],
+  providers: [PasskeySec],
   templateUrl: './chat-overview.component.html',
   styleUrl: './chat-overview.component.css'
 })
@@ -63,7 +62,7 @@ export class ChatOverviewComponent implements OnInit {
   myPublicKey = '';
   myPrivateKey = '';
 
-  constructor(private privateKeyService : PrivateKeyService,private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
+  constructor(private passKeySec : PasskeySec, private passKeyService: PasskeyService, private privateKeyService : PrivateKeyService,private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -77,18 +76,8 @@ export class ChatOverviewComponent implements OnInit {
     });
     this.currentUserId = this.chatService.getLoggenInUserId();
     this.websocketService.connect(this.currentUserId);
-    this.getMyOwnPublicKey(this.currentUserId);
+    //this.getMyOwnPublicKey(this.currentUserId);
     this.myPrivateKey = this.privateKeyService.getPrivateKey();
-    if(this.myPrivateKey === null){
-      console.log('Getting private key')
-      this.navbarService.getMyPrivKey(this.currentUserId).subscribe({
-        next: async (key: string) => {
-            this.myPrivateKey = key;
-        }
-
-      });
-    }
-
     this.websocketService.messageReceived$.subscribe(async (message: ChatMessageDTO) => {
       console.log('New message received in component:', message);
 
@@ -116,18 +105,18 @@ export class ChatOverviewComponent implements OnInit {
 
   async selectChat(chat: ChatRoomOverviewDTO) {
     this.selectedChat = chat;
-    if (this.symmetricKeys.has(this.selectedChat.chatId)) {
+    if (this.symmetricKeys.has(this.selectedChat.recipientId)) {
       // @ts-ignore
-      this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.chatId);
+      this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.recipientId);
     } else {
-      this.fetchSymmetricKey(this.selectedChat.chatId, this.currentUserId);
+      this.fetchSymmetricKey(this.currentUserId, this.selectedChat.recipientId,);
     }
-    if (this.recipientPublicKeys.has(chat.recipientId)) {
+    /*if (this.recipientPublicKeys.has(chat.recipientId)) {
       console.log(`Public key already available for recipientId: ${chat.recipientId}`);
       this.currentUserPublicKey = this.recipientPublicKeys.get(chat.recipientId)!;
     } else {
       this.getRecipientPublicKey(chat.recipientId);
-    }
+    }*/
     console.log('Public key selected:', this.currentUserPublicKey);
     this.chatService.getMessages(chat.chatId).subscribe(async (messages) => {
       this.messages = await Promise.all(
@@ -143,7 +132,7 @@ export class ChatOverviewComponent implements OnInit {
   }
 
   async decryptLastMessage(chatRoom: ChatRoomOverviewDTO) {
-    await this.fetchSymmetricKey(chatRoom.chatId, this.currentUserId);
+    await this.fetchSymmetricKey(this.currentUserId, chatRoom.recipientId, );
     console.log('Symmetric key:', this.currentSymmetricKey);
     console.log('ChatRoomID: ', chatRoom.chatId);
     chatRoom.lastMessageContent = EncryptionService.decryptMessage(chatRoom.lastMessageContent, this.currentSymmetricKey)
@@ -180,36 +169,16 @@ export class ChatOverviewComponent implements OnInit {
   async sendMessage() {
     if (this.messageContent.trim()) {
       // @ts-ignore
-      if (this.symmetricKeys.has(this.selectedChat.chatId)) {
+      if (this.symmetricKeys.has(this.selectedChat.recipientId)) {
         // @ts-ignore
-        this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.chatId);
+        this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.recipientId);
       } else {
         // @ts-ignore
-        this.fetchSymmetricKey(this.selectedChat.chatId, this.currentUserId);
+        this.fetchSymmetricKey(this.currentUserId, this.selectedChat.recipientId);
       }
       let encryptedMessage: string = '';
-      if(this.currentSymmetricKey){
-        console.log(this.currentSymmetricKey);
-        encryptedMessage = EncryptionService.encryptMessage(this.messageContent, this.currentSymmetricKey);
-      }
-      else{
-        const symmetricKey = EncryptionService.generateSymmetricKey();
-        console.log('New symmetric key generated:', symmetricKey);
-        const encryptedSymmetricKeyRecipient = await EncryptionService.encryptSymmetricKey(symmetricKey, this.currentUserPublicKey);
-        const encryptedSymmetricKeySender = await EncryptionService.encryptSymmetricKey(symmetricKey, this.myPublicKey);
-        console.log('EncryptedSymmetricKey2', encryptedSymmetricKeySender);
-        // @ts-ignore
-        this.uploadSymmetricKey(this.selectedChat.chatId,this.currentUserId, encryptedSymmetricKeySender);
-        // @ts-ignore
-        this.uploadSymmetricKey(this.selectedChat.chatId, this.selectedChat.recipientId, encryptedSymmetricKeyRecipient);
-
-        // @ts-ignore
-        console.log('Current id', this.selectedChat.chatId);
-        // @ts-ignore
-        this.symmetricKeys.set(this.selectedChat.chatId, symmetricKey);
-        this.currentSymmetricKey = symmetricKey
-        encryptedMessage = EncryptionService.encryptMessage(this.messageContent, this.currentSymmetricKey);
-      }
+      console.log(this.currentSymmetricKey);
+      encryptedMessage = EncryptionService.encryptMessage(this.messageContent, this.currentSymmetricKey);
       const message: ChatMessageDTO = {
         senderId: this.currentUserId,
         recipientId: this.selectedChat?.recipientId,
@@ -223,13 +192,13 @@ export class ChatOverviewComponent implements OnInit {
     }
   }
 
-  fetchSymmetricKey(chatId: string, userId: string): Promise<string> {
+  fetchSymmetricKey(senderId: string, recipientId: string): Promise<string> {
     return new Promise((resolve, reject) => {
-      this.chatService.getSymmetricKey(chatId, userId).subscribe({
+      this.chatService.getSymmetricKey(senderId, recipientId).subscribe({
         next: (key: string) => {
           EncryptionService.decryptSymmetricKey(key, this.myPrivateKey)
             .then((decryptedKey) => {
-              this.symmetricKeys.set(chatId, decryptedKey);
+              this.symmetricKeys.set(recipientId, decryptedKey);
               this.currentSymmetricKey = decryptedKey;
               resolve(decryptedKey); // Resolves the promise with the fetched key
             })
@@ -261,7 +230,7 @@ export class ChatOverviewComponent implements OnInit {
     const chat = this.chatRooms.find(chat => chat.recipientId === message.recipientId || chat.recipientId === message.senderId);
     if (chat) {
       // @ts-ignore
-      this.fetchSymmetricKey(this.selectedChat.chatId, this.currentUserId);
+      this.fetchSymmetricKey(this.currentUserId, this.selectedChat.recipientId, );
       message.content = EncryptionService.decryptMessage(message.content, this.currentSymmetricKey);
       chat.lastMessageContent = message.content;
       chat.lastMessageTimestamp = message.timestamp;

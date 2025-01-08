@@ -21,40 +21,43 @@ public class EncryptionService {
     @Autowired
     private SymmetricEncryptionRepository symmetricEncryptionRepository;
 
-    /*
+
     @Autowired
     private PublicUserProfileRepository publicUserProfileRepository;
-    */
+
 
     public void saveSymmetricEncryption(SymmetricDTO symmetricDTO) {
-        if(symmetricDTO.getChatId() == null)System.out.println("Cannot be Null");
         SymmetricEncryptionEntity entity = SymmetricEncryptionEntity.builder()
-                .chatId(symmetricDTO.getChatId())
-                .userId(symmetricDTO.getUserId())
+                .senderId(symmetricDTO.getSenderId())
+                .recipientId(symmetricDTO.getRecipientId())
                 .symmetricKey(symmetricDTO.getSymmetricKey())
                 .build();
         symmetricEncryptionRepository.save(entity);
     }
 
-    public String getSymmetricKey(String chatId, String userId) {
-        System.out.println("ChatId: " + chatId);
-        return symmetricEncryptionRepository.findSymmetricKeyForChat(chatId, userId);
+    public String getSymmetricKey(String senderId, String recipientId) {
+        return symmetricEncryptionRepository.findSymmetricKeyForChat(senderId, recipientId);
     }
 
 
-    public String getPrivatKey(String id) {
-        UUID uuid = UUID.fromString(id);
-        return encryptionRepository.findPrivateKeyByUserId(uuid);
+    public String getPrivatKey(String keycloakUserId) {
+        return encryptionRepository.findPrivateKeyByKeycloakId(keycloakUserId);
     }
 
-    public void saveEncryptionDTO(EncryptionDTO encryptionDTO, String id) {
-        UUID uuid = UUID.fromString(id);
+
+    public void saveEncryptionDTO(EncryptionDTO encryptionDTO, String keycloakId) {
+        UUID userID = getUserID(keycloakId);
         EncryptionEntity newEntity = EncryptionEntity.builder()
-                .userId(uuid)
+                .userId(userID)
+                .keycloakUserId(keycloakId)
                 .publicKey(encryptionDTO.getPublicKey())
                 .privateKey(encryptionDTO.getPrivateKey())
                 .build();
         encryptionRepository.save(newEntity);
+    }
+
+    private UUID getUserID(String keycloakUserId) {
+        return publicUserProfileRepository.findIdByKeycloakUserId(keycloakUserId);
     }
 
     /*public UUID getUserIdByKeycloakId(String id) {

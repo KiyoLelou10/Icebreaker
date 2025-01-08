@@ -64,6 +64,12 @@ public class ChatController {
                 .ok(chatMessageService.findChatMessages(senderId, recipientId));
     }
 
+    @GetMapping("chatId/{senderId}/{recipientId}")
+    public ResponseEntity<String> findChatId(@PathVariable String senderId,@PathVariable String recipientId) {
+        String chatId = chatRoomService.getExistingChatId(senderId, recipientId);
+        return ResponseEntity.ok(chatId);
+    }
+
     @PostMapping("/saveSymmetricKey")
     public ResponseEntity<String> getSymmetricKey(@RequestBody SymmetricDTO symmetricDTO) {
         System.out.println("Saving");
@@ -71,10 +77,10 @@ public class ChatController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/symmetricKey/{chatId}/{userId}")
-    public ResponseEntity<String> getSymmetricKey(@PathVariable String chatId, @PathVariable String userId) {
+    @GetMapping("/symmetricKey/{senderId}/{recipientId}")
+    public ResponseEntity<String> getSymmetricKey(@PathVariable String senderId, @PathVariable String recipientId) {
         System.out.println("Getting symmetric key");
-        String symmetricKey = encryptionService.getSymmetricKey(chatId, userId);
+        String symmetricKey = encryptionService.getSymmetricKey(senderId, recipientId);
         return ResponseEntity.ok().body(symmetricKey);
     }
 

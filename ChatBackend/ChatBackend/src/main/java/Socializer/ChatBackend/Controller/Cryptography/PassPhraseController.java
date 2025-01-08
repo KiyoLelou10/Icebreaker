@@ -55,5 +55,16 @@ public class PassPhraseController {
         return isValid ? ResponseEntity.ok().build() : ResponseEntity.status(401).build();
     }
 
+    @GetMapping("/magicNumber")
+    public ResponseEntity<Integer> getMagicNumber(JwtAuthenticationToken token) {
+        if (token == null || token.getToken() == null) {
+            System.out.println("Nooooo");
+            return ResponseEntity.badRequest().body(null);
+        }
+        String keycloakUserId = token.getToken().getSubject();
+        Integer magicNumber = cryptographyService.getMagicNumber(keycloakUserId);
+        return ResponseEntity.ok(magicNumber);
+    }
+
 
 }

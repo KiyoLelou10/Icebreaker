@@ -11,8 +11,8 @@ import java.util.UUID;
 
 public interface EncryptionRepository extends JpaRepository<EncryptionEntity, UUID> {
 
-    @Query("SELECT u.privateKey FROM EncryptionEntity u WHERE u.userId = :userId")
-    String findPrivateKeyByUserId(@Param("userId") UUID userId);
+    @Query("SELECT u.privateKey FROM EncryptionEntity u WHERE u.keycloakUserId = :keycloakUserId")
+    String findPrivateKeyByKeycloakId(@Param("keycloakUserId") String keycloakUserId);
 
     @Query("SELECT u.publicKey FROM EncryptionEntity u WHERE u.userId = :userId")
     String findPublicKeyByUserId(@Param("userId") UUID userId);

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SymmetricDTO {
-    String chatId;
-    String userId;
+    String senderId;
+    String recipientId;
     String symmetricKey;
 }

@@ -10,7 +10,6 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EncryptionDTO {
-    private UUID uuid;
     private String publicKey;
     private String privateKey;
 }

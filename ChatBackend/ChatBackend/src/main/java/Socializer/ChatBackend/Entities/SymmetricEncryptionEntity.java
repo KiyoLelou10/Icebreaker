@@ -19,11 +19,11 @@ public class SymmetricEncryptionEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "chat_id", nullable = false)
-    private String chatId;
+    @Column(name = "sender_id", nullable = false)
+    private String senderId;
 
-    @Column(name = "user_id", nullable = false)
-    private String userId;
+    @Column(name = "recipient_id", nullable = false)
+    private String recipientId;
 
     @Column(name = "symmetric_key",nullable = false, columnDefinition = "TEXT")
     private String symmetricKey;

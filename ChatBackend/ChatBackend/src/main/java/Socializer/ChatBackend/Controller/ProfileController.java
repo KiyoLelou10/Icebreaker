@@ -45,16 +45,25 @@ public class ProfileController {
         return ResponseEntity.ok(profile);
     }
 
-    @GetMapping("/fetchMyPrivKey/{userId}")
-    public ResponseEntity<String> getPrivateKey(@PathVariable String userId) {
-        String privateKey = encryptionService.getPrivatKey(userId);
+    @GetMapping("/fetchMyPrivKey")
+    public ResponseEntity<String> getPrivateKey(JwtAuthenticationToken token) {
+        if (token == null || token.getToken() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        String keycloakUserId = token.getToken().getSubject();
+        String privateKey = encryptionService.getPrivatKey(keycloakUserId);
 
         return ResponseEntity.ok(privateKey);
     }
 
-    @PostMapping("/uploadKeyPair/{userId}")
-    public ResponseEntity<Object> uploadKeyPair(@PathVariable String userId, @RequestBody EncryptionDTO keyPairDTO) {
-        encryptionService.saveEncryptionDTO(keyPairDTO, userId);
+    @PostMapping("/uploadKeyPair")
+    public ResponseEntity<Object> uploadKeyPair(JwtAuthenticationToken token, @RequestBody EncryptionDTO keyPairDTO) {
+
+        if (token == null || token.getToken() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        String keycloakUserId = token.getToken().getSubject();
+        encryptionService.saveEncryptionDTO(keyPairDTO, keycloakUserId);
         return ResponseEntity.ok().build();
     }
 
