@@ -71,6 +71,22 @@ public class ProfileController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/getByUsername/{username}")
+    public ResponseEntity<PublicUserProfileDTO> getUserByUsername(
+            @PathVariable String username, JwtAuthenticationToken token) {
+        if (token == null || token.getToken() == null) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        PublicUserProfileDTO user = publicUserProfileService.getUserByUsername(username);
+
+        if (user == null) {
+            return ResponseEntity.badRequest().body(null); // Return null if the user is not found
+        }
+
+        return ResponseEntity.ok(user);
+    }
+
 
     @GetMapping("/getMyStatusInformation")
     public ResponseEntity<ProfileWithStatusDTO> getMyStatus(JwtAuthenticationToken token){

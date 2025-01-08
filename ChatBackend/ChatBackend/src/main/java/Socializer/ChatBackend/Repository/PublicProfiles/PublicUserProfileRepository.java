@@ -13,4 +13,6 @@ public interface PublicUserProfileRepository extends JpaRepository<PublicUserPro
     Optional<PublicUserProfileEntity> findById(UUID id);
 
     List<PublicUserProfileEntity> findAllByKeycloakUserIdNot(String id);
+
+    Optional<PublicUserProfileEntity> findByUsername(String username);
 }

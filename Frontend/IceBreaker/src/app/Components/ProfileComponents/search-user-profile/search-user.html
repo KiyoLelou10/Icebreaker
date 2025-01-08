@@ -1,0 +1,27 @@
+<div class="search-container">
+  <input
+    type="text"
+    placeholder="Search for users..."
+    [(ngModel)]="searchQuery"
+    (input)="onSearch()"
+    class="search-input"
+  />
+
+  <div *ngIf="searchResults?.length === 0 && searchQuery" class="no-results">
+    No users found.
+  </div>
+
+  <div *ngIf="searchResults?.length > 0" class="results-container">
+    <div *ngFor="let user of searchResults" class="user-card">
+      <img
+        [src]="user.profilePhoto || 'assets/default-profile.png'"
+        alt="{{ user.userName }}"
+        class="user-avatar"
+      />
+      <div>
+        <h3>{{ user.userName }}</h3>
+        <p>{{ user.bio || 'No bio available' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

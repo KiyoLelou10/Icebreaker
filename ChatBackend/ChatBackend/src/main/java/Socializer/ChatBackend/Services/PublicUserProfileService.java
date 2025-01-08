@@ -29,6 +29,7 @@ public class PublicUserProfileService {
                 .orElse(false);
     }
 
+
     public ProfileNavbarDTO getOrCreateProfileDTO(String keycloakUserId, String username) {
         PublicUserProfileEntity profile = publicUserProfileRepository.findByKeycloakUserId(keycloakUserId)
                 .orElseGet(() -> publicUserProfileRepository.save(
@@ -86,6 +87,23 @@ public class PublicUserProfileService {
                 Optional.ofNullable(profileFromDb.getProfilePhoto())
         );
     }
+
+    public PublicUserProfileDTO getUserByUsername(String username) {
+        // Direktes call the user by Username of Repository
+        PublicUserProfileEntity profileEntity = publicUserProfileRepository.findByUsername(username)
+                .orElseThrow(() -> new UserProfileNotFoundException("User profile not found for username: " + username));
+
+        // Map the Entity in DTO
+        return new PublicUserProfileDTO(
+                Optional.ofNullable(profileEntity.getId()),
+                Optional.ofNullable(profileEntity.getUsername()),
+                profileEntity.getBio(),
+                profileEntity.getAge(),
+                profileEntity.getGender(),
+                Optional.ofNullable(profileEntity.getProfilePhoto())
+        );
+    }
+
 
 
     public PublicUserProfileDTO updateProfile(String keycloakUserId, PublicUserProfileDTO updatedProfile) {

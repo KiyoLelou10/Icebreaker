@@ -17,7 +17,7 @@ def load_custom_dataset(file_path):
     return preprocess(train_data), preprocess(val_data)
 
 #change this to ur path
-train_data, val_data = load_custom_dataset("C:\\Users\\asums\\Downloads\\icebreaker_dataset_full.json")
+train_data, val_data = load_custom_dataset("E:\User_Gustavo\Desktop\Desktop\Icebreaker")
 
 # Convert the data into Hugging Face Dataset format
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2")

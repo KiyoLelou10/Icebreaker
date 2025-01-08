@@ -44,6 +44,16 @@ export class UserProfileService {
 
   }
 
+  getUserByUsername(username: string): Observable<PublicUserProfileDTO> {
+    return this.http.get<PublicUserProfileDTO>(`http://localhost:8080/api/profile/getByUsername/${username}`).pipe(
+      catchError((error) => {
+        console.error('Error fetching user by username:', error);
+        return throwError(error); // Pass the error weiter
+      })
+    );
+  }
+
+
   getMyStatusInformation(): Observable<ProfileWithStatusDTO> {
     return this.http.get<ProfileWithStatusDTO>("http://localhost:8080/api/profile/getMyStatusInformation");
   }
