@@ -1,0 +1,50 @@
+<div class="full-screen-container">
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input
+      type="text"
+      class="search-input"
+      [(ngModel)]="searchQuery"
+      (keyup.enter)="onSearch()"
+      placeholder="Search users by name..."
+    />
+    <button class="search-button" (click)="onSearch()">Search</button>
+  </div>
+
+  <div class="content">
+    <div *ngIf="!availableUsers.length && !isLoading" class="placeholder">
+      Please search to look for users.
+    </div>
+
+    <div *ngIf="isLoading" class="loading-indicator">
+      Loading users...
+    </div>
+    <div class="users-list">
+      <mat-card
+        class="user-item"
+        *ngFor="let user of availableUsers"
+        (click)="openChat(user.id)"
+        matRipple
+      >
+        <div class="user-content">
+          <div class="avatar-container">
+            <img
+              class="user-avatar"
+              [src]="user.profilePhoto || 'assets/default-profile.png'"
+              alt="{{ user.userName }}"
+            />
+            <div class="status-indicator" [ngClass]="user.status.toLowerCase()"></div>
+          </div>
+
+          <!-- User Details Section -->
+          <div class="user-details">
+            <div class="user-header">
+              <h3 class="user-name">{{ user.userName | titlecase}}</h3>
+            </div>
+            <p class="user-bio">{{ user.bio || 'No bio available' }}</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

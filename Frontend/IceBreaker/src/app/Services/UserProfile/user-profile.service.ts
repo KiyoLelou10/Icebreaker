@@ -59,4 +59,9 @@ export class UserProfileService {
   clearSelectedUser(): void {
     this.selectedUserSubject.next(null);
   }
+
+  searchUsers(searchQuery: string) {
+    console.log('Searching for users with query:', searchQuery);
+
+  }
 }

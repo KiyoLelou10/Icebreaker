@@ -74,4 +74,8 @@ export class NavbarComponent implements OnInit{
     this.chatService.getLoggedInUser();
     this.router.navigate(['/chatOverview']);
   }
+
+  onSearch() {
+    this.router.navigate(['/searchUser']);
+  }
 }
