@@ -60,8 +60,14 @@ export class UserProfileService {
     this.selectedUserSubject.next(null);
   }
 
-  searchUsers(searchQuery: string) {
-    console.log('Searching for users with query:', searchQuery);
-
+  searchUsers(searchQuery: string): Observable<AvailableUserDTO[]> {
+    const encodedQuery = encodeURIComponent(searchQuery.trim());
+    return this.http.get<AvailableUserDTO[]>(`http://localhost:8080/api/profile/search?query=${encodedQuery}`).pipe(
+      tap((users) => console.log('Fetched users:', users)),
+      catchError((error) => {
+        console.error('Error searching for users:', error);
+        return throwError(error);
+      })
+    );
   }
 }

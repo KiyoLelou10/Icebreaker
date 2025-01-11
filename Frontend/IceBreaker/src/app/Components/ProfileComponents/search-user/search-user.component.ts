@@ -45,17 +45,17 @@ export class SearchUserComponent implements OnInit{
 
     this.isLoading = true;
 
-//For now the dummy dto on the list to check the functionality change it later to the real one
-    this.userService.getAvailableUsers().subscribe({
+    this.userService.searchUsers(this.searchQuery).subscribe({
       next: (users) => {
         this.availableUsers = users;
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Error fetching users:', err);
+        console.error('Error searching users:', err);
         this.isLoading = false;
       },
     });
+  }
 
 
     //Tip For Bilal: Change the searchUser method in the service to return the list of users based on the search query
@@ -63,7 +63,7 @@ export class SearchUserComponent implements OnInit{
 
 
     /*
-    this.userService.searchUsers(this.searchQuery).subscribe({
+    this.userService.searchUsers(this.n).subscribe({
       next: (users) => {
         this.availableUsers = users;
         this.isLoading = false;
@@ -75,7 +75,7 @@ export class SearchUserComponent implements OnInit{
     });
 
       */
-  }
+
 
   openChat(id: string) {
     this.userService.getProfileById(id).subscribe(() => {

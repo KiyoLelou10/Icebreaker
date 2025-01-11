@@ -2,6 +2,8 @@ package Socializer.ChatBackend.Repository.PublicProfiles;
 
 import Socializer.ChatBackend.Entities.PublicUserProfileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +15,7 @@ public interface PublicUserProfileRepository extends JpaRepository<PublicUserPro
     Optional<PublicUserProfileEntity> findById(UUID id);
 
     List<PublicUserProfileEntity> findAllByKeycloakUserIdNot(String id);
+
+    @Query("SELECT p FROM PublicUserProfileEntity p WHERE p.username LIKE %:username%")
+    List<PublicUserProfileEntity> findByUsername(@Param("username") String username);
 }

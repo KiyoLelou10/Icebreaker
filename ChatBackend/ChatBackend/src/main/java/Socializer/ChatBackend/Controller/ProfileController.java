@@ -119,4 +119,16 @@ public class ProfileController {
         return ResponseEntity.ok(profile);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<AvailableUserDTO>> searchUsers(@RequestParam("query") String username) {
+        if (username == null || username.isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+
+        List<AvailableUserDTO> users = publicUserProfileService.searchUsersByUsername(username);
+        System.out.println("Search query: " + username);
+        System.out.println("Results: " + users);
+        return ResponseEntity.ok(users);
+    }
+
 }

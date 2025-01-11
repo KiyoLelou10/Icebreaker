@@ -154,4 +154,17 @@ public class PublicUserProfileService {
             return false;
         }
     }
+    public List<AvailableUserDTO> searchUsersByUsername(String username) {
+        List<PublicUserProfileEntity> users = publicUserProfileRepository.findByUsername(username);
+
+        return users.stream()
+                .map(user -> new AvailableUserDTO(
+                        user.getId(),
+                        user.getUsername(),
+                        Optional.ofNullable(user.getProfilePhoto()),
+                        Optional.ofNullable(user.getBio()),
+                        user.getStatus()
+                ))
+                .collect(Collectors.toList());
+    }
 }
