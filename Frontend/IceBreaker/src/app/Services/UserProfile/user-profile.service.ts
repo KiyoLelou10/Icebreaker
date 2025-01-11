@@ -60,6 +60,7 @@ export class UserProfileService {
     this.selectedUserSubject.next(null);
   }
 
+
   getPublicKey(recipientId: string): Observable<string> {
     const url = `http://localhost:8080/api/profile/publicKey/${recipientId}`;
     return this.http.get(url, { responseType: 'text' }).pipe(
@@ -84,5 +85,10 @@ export class UserProfileService {
         return throwError(() => new Error('Failed to upload key pair'));
       })
     );
+  }
+  searchUsers(searchQuery: string) {
+    console.log('Searching for users with query:', searchQuery);
+
+
   }
 }
