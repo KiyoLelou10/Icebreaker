@@ -10,11 +10,15 @@ import {MatFormField} from '@angular/material/form-field';
 import {FormsModule} from '@angular/forms';
 import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
-import {getMatIconFailedToSanitizeLiteralError, MatIcon} from '@angular/material/icon';
+import {MatIcon} from '@angular/material/icon';
 import {MatDivider} from '@angular/material/divider';
 import {MatCard} from '@angular/material/card';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
+import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.service';
+import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
+import {PasskeySec} from '../../E2EECompenents/PasskeySec';
+import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.service';
 
 @Component({
   selector: 'app-chat-overview',
@@ -41,6 +45,7 @@ import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.serv
     MatListModule,
     MatCard
   ],
+  providers: [PasskeySec],
   templateUrl: './chat-overview.component.html',
   styleUrl: './chat-overview.component.css'
 })
@@ -50,8 +55,14 @@ export class ChatOverviewComponent implements OnInit {
   messages: ChatMessageDTO[] = [];
   messageContent: string = '';
   currentUserId = ''
+  currentUserPublicKey = '';
+  recipientPublicKeys: Map<string, string> = new Map();
+  symmetricKeys : Map<string, string> = new Map();
+  currentSymmetricKey = '';
+  myPublicKey = '';
+  myPrivateKey = '';
 
-  constructor(private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
+  constructor(private passKeySec : PasskeySec, private passKeyService: PasskeyService, private privateKeyService : PrivateKeyService,private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -62,13 +73,12 @@ export class ChatOverviewComponent implements OnInit {
       error: (err) => {
         console.error('Failed to fetch profile', err);
       },
-
     });
     this.currentUserId = this.chatService.getLoggenInUserId();
     this.websocketService.connect(this.currentUserId);
-
-
-    this.websocketService.messageReceived$.subscribe((message: ChatMessageDTO) => {
+    //this.getMyOwnPublicKey(this.currentUserId);
+    this.myPrivateKey = this.privateKeyService.getPrivateKey();
+    this.websocketService.messageReceived$.subscribe(async (message: ChatMessageDTO) => {
       console.log('New message received in component:', message);
 
       if (this.selectedChat && this.selectedChat.recipientId === message.senderId) {
@@ -81,7 +91,10 @@ export class ChatOverviewComponent implements OnInit {
 
     // Fetch available chat rooms
     this.chatService.getChatRooms().subscribe({
-      next: (chatRooms) => {
+      next: async (chatRooms) => {
+        for (const chatRoom of chatRooms) {
+          this.decryptLastMessage(chatRoom);
+        }
         this.chatRooms = chatRooms;
       },
       error: (err) => {
@@ -90,34 +103,135 @@ export class ChatOverviewComponent implements OnInit {
     });
   }
 
-  selectChat(chat: ChatRoomOverviewDTO) {
+  async selectChat(chat: ChatRoomOverviewDTO) {
     this.selectedChat = chat;
+    if (this.symmetricKeys.has(this.selectedChat.recipientId)) {
+      // @ts-ignore
+      this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.recipientId);
+    } else {
+      this.fetchSymmetricKey(this.currentUserId, this.selectedChat.recipientId,);
+    }
+    /*if (this.recipientPublicKeys.has(chat.recipientId)) {
+      console.log(`Public key already available for recipientId: ${chat.recipientId}`);
+      this.currentUserPublicKey = this.recipientPublicKeys.get(chat.recipientId)!;
+    } else {
+      this.getRecipientPublicKey(chat.recipientId);
+    }*/
+    console.log('Public key selected:', this.currentUserPublicKey);
+    this.chatService.getMessages(chat.chatId).subscribe(async (messages) => {
+      this.messages = await Promise.all(
+        messages.map(async (message) => {
+          console.log('Symmetric key', this.currentSymmetricKey);
+          message.content = EncryptionService.decryptMessage(message.content, this.currentSymmetricKey)
+          return message;
+        })
+      );
+    });
 
-    this.chatService.getMessages(chat.chatId).subscribe((messages) => {
-        this.messages = messages;
-      }
-    );
 
   }
 
-  sendMessage() {
+  async decryptLastMessage(chatRoom: ChatRoomOverviewDTO) {
+    await this.fetchSymmetricKey(this.currentUserId, chatRoom.recipientId, );
+    console.log('Symmetric key:', this.currentSymmetricKey);
+    console.log('ChatRoomID: ', chatRoom.chatId);
+    chatRoom.lastMessageContent = EncryptionService.decryptMessage(chatRoom.lastMessageContent, this.currentSymmetricKey)
+
+  }
+
+  getRecipientPublicKey(recipientId: string) {
+    console.log(`Fetching public key for recipientId: ${recipientId}`);
+    this.chatService.getPublicKey(recipientId).subscribe({
+      next: (publicKey) => {
+        console.log(`Received public key for recipientId ${recipientId}: ${publicKey}`);
+
+        this.recipientPublicKeys.set(recipientId, publicKey);
+        this.currentUserPublicKey = publicKey;
+      },
+      error: (err) => {
+        console.error(`Error fetching public key for recipientId ${recipientId}:`, err);
+      }
+    });
+  }
+
+  getMyOwnPublicKey(userId: string) {
+    this.chatService.getPublicKey(userId).subscribe({
+      next: (publicKey) => {
+        this.myPublicKey = publicKey;
+      },
+      error: (err) => {
+        console.error(`Error fetching public key for userId ${userId}:`, err);
+      }
+    });
+  }
+
+
+  async sendMessage() {
     if (this.messageContent.trim()) {
+      // @ts-ignore
+      if (this.symmetricKeys.has(this.selectedChat.recipientId)) {
+        // @ts-ignore
+        this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.recipientId);
+      } else {
+        // @ts-ignore
+        this.fetchSymmetricKey(this.currentUserId, this.selectedChat.recipientId);
+      }
+      let encryptedMessage: string = '';
+      console.log(this.currentSymmetricKey);
+      encryptedMessage = EncryptionService.encryptMessage(this.messageContent, this.currentSymmetricKey);
       const message: ChatMessageDTO = {
         senderId: this.currentUserId,
         recipientId: this.selectedChat?.recipientId,
-        content: this.messageContent,
+        content: encryptedMessage,
         timestamp: new Date()
       };
       this.websocketService.sendMessage(message);
       this.messages.push(message);
-      this.updateLastMessage(message);
+      await this.updateLastMessage(message);
       this.messageContent = '';
     }
   }
 
-  private updateLastMessage(message: ChatMessageDTO) {
-    const chat = this.chatRooms.find(chat => chat.recipientId=== message.recipientId || chat.recipientId === message.senderId );
+  fetchSymmetricKey(senderId: string, recipientId: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      this.chatService.getSymmetricKey(senderId, recipientId).subscribe({
+        next: (key: string) => {
+          EncryptionService.decryptSymmetricKey(key, this.myPrivateKey)
+            .then((decryptedKey) => {
+              this.symmetricKeys.set(recipientId, decryptedKey);
+              this.currentSymmetricKey = decryptedKey;
+              resolve(decryptedKey); // Resolves the promise with the fetched key
+            })
+            .catch((decryptionError) => {
+              console.error('Failed to decrypt symmetric key:', decryptionError);
+              this.currentSymmetricKey = '';
+              reject(decryptionError); // Rejects the promise if decryption fails
+            });// Resolves the promise with the fetched key
+        },
+        error: (err) => {
+          console.error('Failed to fetch symmetric key:', err);
+          reject(err); // Rejects the promise if an error occurs
+        },
+      });
+    });
+  }
+
+
+
+  uploadSymmetricKey(chatId: string,userId: string, symmetricKey: string): void {
+    this.chatService.uploadSymmetricKey(chatId, userId, symmetricKey).subscribe({
+      error: (err) => {
+        console.error('Failed to upload key pair:', err);
+      },
+    });
+  }
+
+  private async updateLastMessage(message: ChatMessageDTO) {
+    const chat = this.chatRooms.find(chat => chat.recipientId === message.recipientId || chat.recipientId === message.senderId);
     if (chat) {
+      // @ts-ignore
+      this.fetchSymmetricKey(this.currentUserId, this.selectedChat.recipientId, );
+      message.content = EncryptionService.decryptMessage(message.content, this.currentSymmetricKey);
       chat.lastMessageContent = message.content;
       chat.lastMessageTimestamp = message.timestamp;
 

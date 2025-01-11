@@ -13,6 +13,8 @@ import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
 import {ChatMessageDTO} from '../../../DTOS/ChatDTOs/ChatMessageDTO';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
+import {catchError, firstValueFrom, Observable, throwError} from 'rxjs';
+import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
 
 @Component({
   selector: 'app-see-user-profile',
@@ -30,6 +32,7 @@ export class SeeUserProfileComponent implements OnInit{
   data: PublicUserProfileDTO | null = null;
   senderProfile: ProfileNavbarDTO | null = null;
   message: string = '';
+  myPublicKey: string = '';
   icebreakers: string[] = [
     'What’s your favorite hobby?',
     'Do you have any pets?',
@@ -38,8 +41,6 @@ export class SeeUserProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
-
 
     this.userProfileService.selectedUser$.subscribe((user: PublicUserProfileDTO| null) => {
       this.data = user;
@@ -53,16 +54,23 @@ export class SeeUserProfileComponent implements OnInit{
         console.error('Failed to receive profile data', err);
       },
     });
-
+    // @ts-ignore
+    this.getPublicKey(this.senderProfile.id).subscribe((fetchedPublicKey) => {
+      this.myPublicKey = fetchedPublicKey;
+    });
     if (this.senderProfile?.id) {
       this.webSocketService.connect(this.senderProfile.id);
     }
   }
-  sendMessage(): void {
+  async sendMessage(): Promise<void> {
     if (!this.message.trim()) {
       alert('Please enter a message.');
       return;
     }
+
+    // @ts-ignore
+    const publicKey: string = await firstValueFrom(this.getPublicKey(this.data.id));
+
 
     if (!this.senderProfile?.id || !this.data?.id) {
       alert('Sender or recipient is not properly set.');
@@ -74,14 +82,26 @@ export class SeeUserProfileComponent implements OnInit{
       return;
     }
 
+    const symmetricKey = EncryptionService.generateSymmetricKey();
+    console.log('New symmetric key generated:', symmetricKey);
+    const encryptedSymmetricKeyRecipient = await EncryptionService.encryptSymmetricKey(symmetricKey, publicKey);
+    const encryptedSymmetricKeySender = await EncryptionService.encryptSymmetricKey(symmetricKey, this.myPublicKey);
+    console.log('EncryptedSymmetricKey2', encryptedSymmetricKeySender);
+
+
+    const encryptedMessage = EncryptionService.encryptMessage(this.message, symmetricKey);
+
     const chatMessage: ChatMessageDTO = {
       senderId: this.senderProfile.id,
       recipientId: this.data.id,
-      content: this.message,
+      content: encryptedMessage,
       timestamp: new Date(),
     };
-
     this.webSocketService.sendMessage(chatMessage);
+    // @ts-ignore
+    this.uploadSymmetricKey(this.senderProfile.id, this.data.id, encryptedSymmetricKeySender);
+    // @ts-ignore
+    this.uploadSymmetricKey(this.data.id,this.senderProfile.id, encryptedSymmetricKeyRecipient);
     this.message = ''; // Clear the message input
   }
 
@@ -93,6 +113,24 @@ export class SeeUserProfileComponent implements OnInit{
   selectIcebreaker(icebreaker: string): void {
     this.message = icebreaker;
   }
+
+  getPublicKey(userId: string): Observable<string> {
+    return this.userProfileService.getPublicKey(userId).pipe(
+      catchError((err) => {
+        console.error(`Error fetching public key for userId ${userId}:`, err);
+        return throwError(() => new Error('Failed to fetch public key'));
+      })
+    );
+  }
+
+  uploadSymmetricKey(chatId: string,userId: string, symmetricKey: string): void {
+    this.userProfileService.uploadSymmetricKey(chatId, userId, symmetricKey).subscribe({
+      error: (err) => {
+        console.error('Failed to upload key pair:', err);
+      },
+    });
+  }
+
 
 
 }

@@ -60,8 +60,35 @@ export class UserProfileService {
     this.selectedUserSubject.next(null);
   }
 
+
+  getPublicKey(recipientId: string): Observable<string> {
+    const url = `http://localhost:8080/api/profile/publicKey/${recipientId}`;
+    return this.http.get(url, { responseType: 'text' }).pipe(
+      catchError((error) => {
+        console.error(`Error fetching public key for recipientId ${recipientId}:`, error);
+        return throwError(() => new Error('Failed to fetch public key'));
+      })
+    );
+  }
+
+  getChatId(senderId: string, recipientId: string): Observable<string> {
+    const url = `http://localhost:8080/chatId/${senderId}/${recipientId}`;
+    return this.http.get<string>(url);
+  }
+
+  uploadSymmetricKey(senderId: string, recipientId: string, symmetricKey: string): Observable<void> {
+    const payload = { senderId, recipientId, symmetricKey };
+    console.log(payload);
+    return this.http.post<void>('http://localhost:8080/saveSymmetricKey', payload).pipe(
+      catchError((error) => {
+        console.error('Error uploading key pair:', error);
+        return throwError(() => new Error('Failed to upload key pair'));
+      })
+    );
+  }
   searchUsers(searchQuery: string) {
     console.log('Searching for users with query:', searchQuery);
+
 
   }
 }

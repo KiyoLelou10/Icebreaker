@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable, tap} from 'rxjs';
+import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
 import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 
 @Injectable({
@@ -21,4 +21,5 @@ export class NavbarServiceService {
       })
     );
   }
+
 }

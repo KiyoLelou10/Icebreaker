@@ -28,6 +28,12 @@ public class ChatRoomService {
     private PublicUserProfileService publicUserProfileService;
 
 
+    public String getExistingChatId(String senderId, String receiverId) {
+        UUID senderUUID = UUID.fromString(senderId);
+        UUID receiverUUID = UUID.fromString(receiverId);
+        return chatRoomRepository.findChatIdBySenderAndRecipient(senderUUID, receiverUUID);
+    }
+
     public Optional<String> getChatRoomId(String senderId, String recipientId) {
         String chatId = createChatId(senderId, recipientId);
 

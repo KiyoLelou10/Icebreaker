@@ -8,6 +8,7 @@ import {MatRipple} from '@angular/material/core';
 import {MatDialog} from '@angular/material/dialog';
 import {SeeUserProfileComponent} from '../../MessagesComponents/see-user-profile/see-user-profile.component';
 import {UserStatusComponent} from '../../UtilComponents/user-status/user-status.component';
+import {generateKeyPair} from '../../E2EECompenents/KeyGenerate';
 
 @Component({
   selector: 'app-see-all-users',
@@ -29,6 +30,7 @@ import {UserStatusComponent} from '../../UtilComponents/user-status/user-status.
 })
 export class SeeAllUsersComponent implements OnInit{
   availableUsers: AvailableUserDTO[] = [];
+  privateKey : string | undefined;
   constructor(private userService: UserProfileService, private dialog: MatDialog) {
   }
 
@@ -42,6 +44,7 @@ export class SeeAllUsersComponent implements OnInit{
       },
     });
   }
+
 
   openChat(id: string) {
     this.userService.getProfileById(id).subscribe(() => {

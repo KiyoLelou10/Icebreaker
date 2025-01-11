@@ -3,7 +3,7 @@ import {Client} from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import {KeycloakService} from 'keycloak-angular';
 import {ChatMessageDTO} from '../../DTOS/ChatDTOs/ChatMessageDTO';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 
 
 
