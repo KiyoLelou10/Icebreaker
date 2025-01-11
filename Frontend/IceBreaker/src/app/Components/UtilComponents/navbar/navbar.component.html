@@ -25,6 +25,19 @@
   <mat-icon>account_circle</mat-icon>
     {{ profileCompleted ? 'Change Profile' : 'Complete Profile' }}
 </button>
+
+  <button
+    mat-button
+    class="navbar-search-button"
+    routerLink="/searchUser"
+    (click)="onSearch()"
+    routerLinkActive="active-link"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >
+    <mat-icon>search</mat-icon>
+    <span class="button-text">Users</span>
+  </button>
+
   <mat-menu #userMenu="matMenu">
 
     <button mat-menu-item (click)="logout()">
