@@ -163,3 +163,7 @@
 .nav-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+.nav-button:active {
+  background-color: #003f7f; /* Noch dunkleres Blau beim Klicken */
+  transform: scale(0.95); /* Kleinerer Button-Effekt beim Drücken */
+}

@@ -7,7 +7,7 @@
   <div class="users-list">
     <mat-card
       class="user-item"
-      *ngFor="let user of availableUsers"
+      *ngFor="let user of currentUsers"
       (click)="openChat(user.id)"
       matRipple
     >
@@ -30,6 +30,6 @@
   </div>
 </div>
 <div class="navigation-buttons">
-  <button class="nav-button left-button"><</button>
-  <button class="nav-button right-button">></button>
+  <button class="nav-button left-button" (click)="previousPage()" [disabled]="currentPageIndex === 0"><</button>
+  <button class="nav-button right-button" (click)="nextPage()" [disabled]="currentPageIndex === paginatedUsers.length - 1">></button>
 </div>

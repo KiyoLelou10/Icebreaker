@@ -29,18 +29,34 @@ import {UserStatusComponent} from '../../UtilComponents/user-status/user-status.
 })
 export class SeeAllUsersComponent implements OnInit{
   availableUsers: AvailableUserDTO[] = [];
-  constructor(private userService: UserProfileService, private dialog: MatDialog) {
-  }
+  paginatedUsers: AvailableUserDTO[][] = []; // Array of user sublists
+  currentPageIndex: number = 0; // Current page index
+
+  constructor(private userService: UserProfileService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    this.loadAvailableUsers();
+  }
+
+  loadAvailableUsers(): void {
     this.userService.getAvailableUsers().subscribe({
       next: (users) => {
         this.availableUsers = users;
+        this.paginateUsers(); // Call the pagination method
       },
       error: (err) => {
         console.error('Error fetching users:', err);
       },
     });
+  }
+
+  paginateUsers(): void {
+    const pageSize = 10; // Number of users per page
+    this.paginatedUsers = [];
+
+    for (let i = 0; i < this.availableUsers.length; i += pageSize) {
+      this.paginatedUsers.push(this.availableUsers.slice(i, i + pageSize));
+    }
   }
 
   openChat(id: string) {
@@ -50,8 +66,26 @@ export class SeeAllUsersComponent implements OnInit{
       });
 
       dialogRef.afterClosed().subscribe(() => {
-        this.userService.clearSelectedUser();
+        this.userService.clearSelectedUser ();
       });
     });
   }
+
+  // Navigation methods
+  nextPage(): void {
+    if (this.currentPageIndex < this.paginatedUsers.length - 1) {
+      this.currentPageIndex++;
+    }
+  }
+
+  previousPage(): void {
+    if (this.currentPageIndex > 0) {
+      this.currentPageIndex--;
+    }
+  }
+
+  // Method to get the current page of users
+  get currentUsers(): AvailableUserDTO[] {
+  return this.paginatedUsers[this.currentPageIndex] || [];
+}
 }
