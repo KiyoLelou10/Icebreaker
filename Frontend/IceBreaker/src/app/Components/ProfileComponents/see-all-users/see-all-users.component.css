@@ -142,3 +142,24 @@
 .status-indicator-rect.offline {
   background-color: #f44336;
 }
+.navigation-buttons {
+  display: flex;
+  gap: 5px; /* Space between the buttons */
+  justify-content: center; /* Center the buttons horizontally */
+  align-items: center; /* Center the buttons vertically */
+}
+
+.nav-button {
+  background-color: #007bff; /* Button background color */
+  color: white; /* Button text color */
+  border: none; /* Remove default border */
+  padding: 10px 15px; /* Add padding for button size */
+  font-size: 16px; /* Adjust text size */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
