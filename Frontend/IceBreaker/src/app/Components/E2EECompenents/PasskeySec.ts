@@ -3,7 +3,7 @@ import * as CryptoJS from 'crypto-js';
 export class PasskeySec {
   private keySize: number = 256 / 32; // AES-256 key size (32 bytes)
   private ivSize: number = 128 / 32; // AES block size (16 bytes)
-  private modValue: number = 1e9 + 7; // Modulus value for key derivation
+  private modValue: number = 1e12 +33; // Modulus value for key derivation
 
   hashPasskey(passkey: string, number: number): string {
     const combined = `${passkey}:${number}`;

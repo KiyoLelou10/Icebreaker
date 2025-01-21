@@ -48,13 +48,13 @@ export class UserProfileService {
     return this.http.get<ProfileWithStatusDTO>("http://localhost:8080/api/profile/getMyStatusInformation");
   }
 
-  getIceBreakers(bio: string): Observable<{ icebreaker1: string; icebreaker2: string; icebreaker3: string }> {
+  getIceBreakers(bio: string): Observable<{ "Icebreaker 1": string; "Icebreaker 2": string; "Icebreaker 3": string }> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
     const payload = { input: bio };
-    return this.http.post<{ icebreaker1: string; icebreaker2: string; icebreaker3: string }>(
+    return this.http.post<{ "Icebreaker 1": string; "Icebreaker 2": string; "Icebreaker 3": string }>(
       "http://localhost:8080/api/getIceBreakers",
       payload,
       { headers }

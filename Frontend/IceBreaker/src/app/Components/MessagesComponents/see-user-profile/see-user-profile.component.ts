@@ -13,7 +13,7 @@ import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
 import {ChatMessageDTO} from '../../../DTOS/ChatDTOs/ChatMessageDTO';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
-import {catchError, firstValueFrom, Observable, throwError} from 'rxjs';
+import {catchError, firstValueFrom, Observable, of, throwError} from 'rxjs';
 import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
 
 @Component({
@@ -62,6 +62,16 @@ export class SeeUserProfileComponent implements OnInit{
       this.webSocketService.connect(this.senderProfile.id);
     }
   }
+
+  getIceBreakers(bio: string): Observable<{ "Icebreaker 1": string; "Icebreaker 2": string; "Icebreaker 3": string }> {
+    return this.userProfileService.getIceBreakers(bio).pipe(
+      catchError((err) => {
+        console.error('Failed to upload key pair:', err);
+        return of({ "Icebreaker 1": "", "Icebreaker 2": "", "Icebreaker 3": "" });
+      })
+    );
+  }
+
   async sendMessage(): Promise<void> {
     if (!this.message.trim()) {
       alert('Please enter a message.');
@@ -113,6 +123,7 @@ export class SeeUserProfileComponent implements OnInit{
   selectIcebreaker(icebreaker: string): void {
     this.message = icebreaker;
   }
+
 
   getPublicKey(userId: string): Observable<string> {
     return this.userProfileService.getPublicKey(userId).pipe(
