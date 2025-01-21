@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, catchError, Observable, tap, throwError} from 'rxjs';
 import {ProfileNavbarDTO} from '../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {PublicUserProfileDTO} from '../../DTOS/Profile/PublicUserProfileDTO';
-import {HttpClient, HttpStatusCode} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpStatusCode} from '@angular/common/http';
 import {AvailableUserDTO} from '../../DTOS/Profile/AvailableUserDTO';
 import {ProfileWithStatusDTO} from '../../DTOS/Profile/ProfileWithStatusDTO';
 
@@ -46,6 +46,19 @@ export class UserProfileService {
 
   getMyStatusInformation(): Observable<ProfileWithStatusDTO> {
     return this.http.get<ProfileWithStatusDTO>("http://localhost:8080/api/profile/getMyStatusInformation");
+  }
+
+  getIceBreakers(bio: string): Observable<{ icebreaker1: string; icebreaker2: string; icebreaker3: string }> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    const payload = { input: bio };
+    return this.http.post<{ icebreaker1: string; icebreaker2: string; icebreaker3: string }>(
+      "http://localhost:8080/api/getIceBreakers",
+      payload,
+      { headers }
+    );
   }
 
   updateStatus(userId: string, status: string): Observable<{ message: string }> {
