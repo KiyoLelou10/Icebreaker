@@ -108,9 +108,7 @@ public class ProfileController {
             return ResponseEntity.badRequest().build();
         }
     }
-
-
-
+    
 
     @GetMapping("/{id}")
     public ResponseEntity<PublicUserProfileDTO> getProfile(@PathVariable String id) {
@@ -120,12 +118,15 @@ public class ProfileController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<AvailableUserDTO>> searchUsers(@RequestParam("query") String username) {
+    public ResponseEntity<List<AvailableUserDTO>> searchUsers(@RequestParam("query") String username, JwtAuthenticationToken token) {
         if (username == null || username.isEmpty()) {
             return ResponseEntity.badRequest().body(null);
         }
 
-        List<AvailableUserDTO> users = publicUserProfileService.searchUsersByUsername(username);
+        // Get the current user's ID
+        String currentUserId = token.getToken().getSubject();
+
+        List<AvailableUserDTO> users = publicUserProfileService.searchUsersByUsername(username, currentUserId);
         System.out.println("Search query: " + username);
         System.out.println("Results: " + users);
         return ResponseEntity.ok(users);

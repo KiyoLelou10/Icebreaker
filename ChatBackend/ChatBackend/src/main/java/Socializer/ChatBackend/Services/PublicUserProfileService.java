@@ -154,8 +154,8 @@ public class PublicUserProfileService {
             return false;
         }
     }
-    public List<AvailableUserDTO> searchUsersByUsername(String username) {
-        List<PublicUserProfileEntity> users = publicUserProfileRepository.findByUsername(username);
+    public List<AvailableUserDTO> searchUsersByUsername(String username, String currentUserId) {
+        List<PublicUserProfileEntity> users = publicUserProfileRepository.findByUsername(username, currentUserId);
 
         return users.stream()
                 .map(user -> new AvailableUserDTO(

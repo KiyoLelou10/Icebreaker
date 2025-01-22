@@ -28,22 +28,31 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class SearchUserComponent implements OnInit{
 
-
   searchQuery: string = '';
   availableUsers: AvailableUserDTO[] = [];
   isLoading: boolean = false;
+  searchPerformed = false;
+  lastSearchQuery: string = '';
 
   constructor(private userService: UserProfileService, private dialog: MatDialog) {}
 
   ngOnInit(): void {}
 
+  onInputChange(): void {
+    this.availableUsers = [];
+    this.searchPerformed = false;
+  }
+
   onSearch(): void {
     if (!this.searchQuery.trim()) {
       this.availableUsers = [];
+      this.searchPerformed = false
       return;
     }
 
     this.isLoading = true;
+    this.searchPerformed = true;
+    this.lastSearchQuery = this.searchQuery;
 
     this.userService.searchUsers(this.searchQuery).subscribe({
       next: (users) => {
@@ -56,26 +65,6 @@ export class SearchUserComponent implements OnInit{
       },
     });
   }
-
-
-    //Tip For Bilal: Change the searchUser method in the service to return the list of users based on the search query
-    //this method below would work as it is then just remove the above function which is just there for testing
-
-
-    /*
-    this.userService.searchUsers(this.n).subscribe({
-      next: (users) => {
-        this.availableUsers = users;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Error searching users:', err);
-        this.isLoading = false;
-      },
-    });
-
-      */
-
 
   openChat(id: string) {
     this.userService.getProfileById(id).subscribe(() => {

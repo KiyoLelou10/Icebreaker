@@ -16,6 +16,6 @@ public interface PublicUserProfileRepository extends JpaRepository<PublicUserPro
 
     List<PublicUserProfileEntity> findAllByKeycloakUserIdNot(String id);
 
-    @Query("SELECT p FROM PublicUserProfileEntity p WHERE p.username LIKE %:username%")
-    List<PublicUserProfileEntity> findByUsername(@Param("username") String username);
+    @Query("SELECT p FROM PublicUserProfileEntity p WHERE p.username LIKE %:username% AND p.keycloakUserId <> :currentUserId")
+    List<PublicUserProfileEntity> findByUsername(@Param("username") String username, @Param("currentUserId") String currentUserId);
 }
