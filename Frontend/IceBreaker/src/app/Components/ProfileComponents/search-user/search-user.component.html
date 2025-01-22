@@ -6,19 +6,21 @@
       class="search-input"
       [(ngModel)]="searchQuery"
       (keyup.enter)="onSearch()"
+      (input)="onInputChange()"
       placeholder="Search users by name..."
     />
     <button class="search-button" (click)="onSearch()">Search</button>
   </div>
 
   <div class="content">
-    <div *ngIf="!availableUsers.length && !isLoading" class="placeholder">
-      Please search to look for users.
-    </div>
-
     <div *ngIf="isLoading" class="loading-indicator">
       Loading users...
     </div>
+
+    <div *ngIf="!isLoading && searchPerformed && availableUsers.length === 0" class="placeholder">
+      No users found with the name "{{ searchQuery }}". Please try a different name.
+    </div>
+
     <div class="users-list">
       <mat-card
         class="user-item"
@@ -39,7 +41,7 @@
           <!-- User Details Section -->
           <div class="user-details">
             <div class="user-header">
-              <h3 class="user-name">{{ user.userName | titlecase}}</h3>
+              <h3 class="user-name">{{ user.userName | titlecase }}</h3>
             </div>
             <p class="user-bio">{{ user.bio || 'No bio available' }}</p>
           </div>

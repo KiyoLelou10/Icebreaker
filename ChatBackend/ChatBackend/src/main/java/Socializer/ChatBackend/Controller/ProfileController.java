@@ -149,12 +149,25 @@ public class ProfileController {
 
 
 
-
     @GetMapping("/{id}")
     public ResponseEntity<PublicUserProfileDTO> getProfile(@PathVariable String id) {
         UUID newId = UUID.fromString(id);
         PublicUserProfileDTO profile = publicUserProfileService.getUserDetailsById(newId);
         return ResponseEntity.ok(profile);
+    }
+
+    @GetMapping("/search/{username}")
+    public ResponseEntity<List<AvailableUserDTO>> searchUsers(@PathVariable String username, JwtAuthenticationToken token) {
+        if (username == null || username.isEmpty()) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        // Get the current user's Id
+        String currentUserId = token.getToken().getSubject();
+
+        List<AvailableUserDTO> users = publicUserProfileService.searchUsersByUsername(username, currentUserId);
+        System.out.println("Search query: " + username);
+        System.out.println("Results: " + users);
+        return ResponseEntity.ok(users);
     }
 
 }
