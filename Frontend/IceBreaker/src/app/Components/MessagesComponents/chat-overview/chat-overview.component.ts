@@ -19,6 +19,7 @@ import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.servic
 import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
 import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.service';
 import {PasskeySec} from '../../E2EECompenents/PasskeySec';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-chat-overview',
@@ -60,7 +61,7 @@ export class ChatOverviewComponent implements OnInit {
   currentSymmetricKey = '';
   myPublicKey = '';
   myPrivateKey = '';
-
+  private websocketSubscription: Subscription = new Subscription();
   constructor(private passKeySec : PasskeySec, private passKeyService: PasskeyService, private privateKeyService : PrivateKeyService,private navbarService: NavbarServiceService,private websocketService: WebsocketService, private chatService: ChatService, private cdr: ChangeDetectorRef) {
   }
 
@@ -77,8 +78,9 @@ export class ChatOverviewComponent implements OnInit {
     this.websocketService.connect(this.currentUserId);
     //this.getMyOwnPublicKey(this.currentUserId);
     this.myPrivateKey = this.privateKeyService.getPrivateKey();
-    this.websocketService.messageReceived$.subscribe(async (message: ChatMessageDTO) => {
+    this.websocketSubscription= this.websocketService.messageReceived$.subscribe(async (message: ChatMessageDTO) => {
       console.log('New message received in component:', message);
+
 
       if (this.selectedChat && this.selectedChat.recipientId === message.senderId) {
         this.messages.push(message);
@@ -118,12 +120,17 @@ export class ChatOverviewComponent implements OnInit {
     }*/
     console.log('Public key selected:', this.currentUserPublicKey);
     this.chatService.getMessages(chat.chatId).subscribe(async (messages) => {
-      this.messages = await Promise.all(
-        messages.map(async (message) => {
-          console.log('Symmetric key', this.currentSymmetricKey);
-          message.content = EncryptionService.decryptMessage(message.content, this.currentSymmetricKey)
-          return message;
-        })
+      const newMessages = messages.filter(
+        (msg) => !this.messages.some((m) => m.senderId === msg.senderId && m.timestamp === msg.timestamp)
+      );
+
+      this.messages = this.messages.concat(
+        await Promise.all(
+          newMessages.map(async (message) => {
+            message.content = EncryptionService.decryptMessage(message.content, this.currentSymmetricKey);
+            return message;
+          })
+        )
       );
     });
 
@@ -235,6 +242,12 @@ export class ChatOverviewComponent implements OnInit {
       chat.lastMessageTimestamp = message.timestamp;
 
       this.cdr.detectChanges();
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.websocketSubscription) {
+      this.websocketSubscription.unsubscribe();
     }
   }
 
