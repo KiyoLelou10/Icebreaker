@@ -16,7 +16,6 @@ import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.ser
 
 @Component({
   selector: 'app-navbar',
-  standalone: true,
   imports: [
     MatToolbarModule,
     MatButtonModule,
@@ -28,6 +27,7 @@ import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.ser
   ],
   providers: [PasskeySec],
   templateUrl: './navbar.component.html',
+  standalone: true,
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{

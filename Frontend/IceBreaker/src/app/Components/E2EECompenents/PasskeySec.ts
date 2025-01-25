@@ -1,5 +1,9 @@
 import * as CryptoJS from 'crypto-js';
+import {Injectable} from '@angular/core';
 
+@Injectable({
+  providedIn: 'root' // This ensures the service is available application-wide
+})
 export class PasskeySec {
   private keySize: number = 256 / 32; // AES-256 key size (32 bytes)
   private ivSize: number = 128 / 32; // AES block size (16 bytes)

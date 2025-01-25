@@ -14,15 +14,21 @@ import java.util.Map;
 @RequestMapping("/api")
 public class GPTController {
 
+
+
     private final String PYTHON_API_URL = "http://127.0.0.1:5000/generate";
 
     @PostMapping("/generate")
     public ResponseEntity<?> generate(@RequestBody Map<String, String> requestBody) {
+        System.out.println("Received request: " + requestBody);
         // Extract the input text from the request body
         String inputText = requestBody.get("input");
         if (inputText == null || inputText.isEmpty()) {
             return ResponseEntity.badRequest().body("Input text is required.");
         }
+
+
+
 
         // Prepare the payload for the Python API
         Map<String, String> payload = new HashMap<>();
@@ -58,6 +64,7 @@ public class GPTController {
             icebreakerResponse.put("Icebreaker " + (i + 1), icebreakers.get(i));
         }
 
+        System.out.println("Icebreaker response: " + icebreakerResponse);
         return ResponseEntity.ok(icebreakerResponse);
     }
 

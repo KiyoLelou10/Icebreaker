@@ -8,6 +8,7 @@ import Socializer.ChatBackend.DTOS.PublicUserProfileDTO;
 import Socializer.ChatBackend.Entities.PublicUserProfileEntity;
 import Socializer.ChatBackend.Enums.Status;
 import Socializer.ChatBackend.Exceptions.UserProfileNotFoundException;
+import Socializer.ChatBackend.Repository.MessagingRepositories.ChatRoomRepository;
 import Socializer.ChatBackend.Repository.PublicProfiles.PublicUserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +17,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class PublicUserProfileService {
     @Autowired
     private PublicUserProfileRepository publicUserProfileRepository;
+
+
+    @Autowired
+    private ChatRoomRepository chatRoomRepository;
 
 
     public boolean isProfileComplete(String keycloakUserId) {
@@ -114,9 +120,27 @@ public class PublicUserProfileService {
 
 
     public List<AvailableUserDTO> getUsersExcept(String currentUserId) {
-        List<PublicUserProfileEntity> users = publicUserProfileRepository.findAllByKeycloakUserIdNot(currentUserId);
+        // Fetch the public user profile entity using the Keycloak user ID
+        PublicUserProfileEntity currentUserProfile = publicUserProfileRepository.findByKeycloakUserId(currentUserId)
+                .orElseThrow(() -> new RuntimeException("User profile not found"));
 
+        UUID currentUserProfileId = currentUserProfile.getId();
+
+        // Fetch all online users excluding the current user
+        List<PublicUserProfileEntity> users = publicUserProfileRepository.findAllByStatusAndKeycloakUserIdNot(
+                Status.ONLINE, currentUserId
+        );
+
+        // Fetch chat rooms where the current user is either the sender or recipient
+        List<UUID> excludedUserIds = chatRoomRepository.findAllBySenderIdOrRecipientId(currentUserProfileId, currentUserProfileId)
+                .stream()
+                .flatMap(chatRoom -> Stream.of(chatRoom.getSenderId(), chatRoom.getRecipientId()))
+                .filter(id -> !id.equals(currentUserProfileId)) // Exclude the current user's profile ID
+                .collect(Collectors.toList());
+
+        // Filter out users who are part of the excluded list
         return users.stream()
+                .filter(user -> !excludedUserIds.contains(user.getId()))
                 .map(user -> new AvailableUserDTO(
                         user.getId(),
                         user.getUsername(),

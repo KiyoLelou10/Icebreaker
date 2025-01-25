@@ -8,24 +8,25 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {ProfileNavbarDTO} from '../../../DTOS/ProfileNavbar/ProfileNavbarDTO';
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
 import {ChatMessageDTO} from '../../../DTOS/ChatDTOs/ChatMessageDTO';
 import {WebsocketService} from '../../../Services/WebSocketServices/websocket.service';
 import {catchError, firstValueFrom, Observable, of, throwError} from 'rxjs';
 import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-see-user-profile',
-  standalone: true,
   imports: [MatDialogModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
-    MatInputModule, FormsModule, NgForOf],
+    MatInputModule, FormsModule, NgForOf, NgIf],
   templateUrl: './see-user-profile.component.html',
+  standalone: true,
   styleUrl: './see-user-profile.component.css'
 })
 export class SeeUserProfileComponent implements OnInit{
@@ -33,14 +34,33 @@ export class SeeUserProfileComponent implements OnInit{
   senderProfile: ProfileNavbarDTO | null = null;
   message: string = '';
   myPublicKey: string = '';
-  icebreakers: string[] = [
-    'What’s your favorite hobby?',
-    'Do you have any pets?',
-    'What’s the last book you read?'];
+  icebreakers: string[] = [];
+
+
+  currentLoadingMessage: string = '';
+  loadingMessages: string[] = [
+    'Hold on, finding the perfect icebreaker… this is rocket science! 🚀',
+    'Still searching... the universe is vast, you know. 🌌',
+    'Patience is a virtue, and we’re testing yours. ⏳',
+    'Icebreakers are on their way, riding a snail. 🐌',
+    'Crafting brilliance takes time...... 😏'
+  ];
+  messageInterval: any;
+
+
   constructor(private userProfileService: UserProfileService, public dialogRef: MatDialogRef<SeeUserProfileComponent>, private NavbarServiceService: NavbarServiceService, private webSocketService: WebsocketService){
   }
 
   ngOnInit(): void {
+    let index = 0;
+    this.currentLoadingMessage = this.loadingMessages[index];
+    this.messageInterval = setInterval(() => {
+      index = (index + 1) % this.loadingMessages.length;
+      this.currentLoadingMessage = this.loadingMessages[index];
+    }, 2500);
+
+
+
 
     this.userProfileService.selectedUser$.subscribe((user: PublicUserProfileDTO| null) => {
       this.data = user;
@@ -61,15 +81,34 @@ export class SeeUserProfileComponent implements OnInit{
     if (this.senderProfile?.id) {
       this.webSocketService.connect(this.senderProfile.id);
     }
+
+    if (this.data?.bio) {
+      this.getIceBreakers(this.data.bio).subscribe((icebreakers) => {
+        this.icebreakers = [
+          icebreakers["Icebreaker 1"],
+          icebreakers["Icebreaker 2"],
+          icebreakers["Icebreaker 3"]
+        ];
+
+      });
+    }
+
+
   }
 
-  getIceBreakers(bio: string): Observable<{ "Icebreaker 1": string; "Icebreaker 2": string; "Icebreaker 3": string }> {
+   getIceBreakers(bio: string): Observable<{
+    "Icebreaker 1": string;
+    "Icebreaker 2": string;
+    "Icebreaker 3": string
+  }> {
+    console.log('Bio:', bio);
     return this.userProfileService.getIceBreakers(bio).pipe(
       catchError((err) => {
         console.error('Failed to upload key pair:', err);
         return of({ "Icebreaker 1": "", "Icebreaker 2": "", "Icebreaker 3": "" });
       })
     );
+
   }
 
   async sendMessage(): Promise<void> {
@@ -143,5 +182,9 @@ export class SeeUserProfileComponent implements OnInit{
   }
 
 
+
+  ngOnDestroy() {
+    clearInterval(this.messageInterval);
+  }
 
 }

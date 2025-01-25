@@ -31,7 +31,7 @@ public class PublicUserProfileEntity {
     @Column(nullable = false, length = 1024)
     private String bio;
 
-    @Column(nullable = false, length = 1024)
+    @Column(nullable = false, length = 10000)
     private String profilePhoto;
 
     @Column

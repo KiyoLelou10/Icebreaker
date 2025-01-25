@@ -14,21 +14,20 @@ import {generateKeyPair} from '../../E2EECompenents/KeyGenerate';
 
 
 @Component({
-  selector: 'app-passphrase-dialog',
-  standalone: true,
-  imports: [
-    MatFormField,
-    MatDialogContent,
-    NgIf,
-    FormsModule,
-    MatInput,
-    MatDialogActions,
-    MatButton,
-    MatLabel
-  ],
-  providers: [PasskeySec],
-  templateUrl: './passphrase-dialog.component.html',
-  styleUrl: './passphrase-dialog.component.css'
+    selector: 'app-passphrase-dialog',
+    imports: [
+        MatFormField,
+        MatDialogContent,
+        NgIf,
+        FormsModule,
+        MatInput,
+        MatDialogActions,
+        MatButton,
+        MatLabel
+    ],
+    providers: [PasskeySec],
+    templateUrl: './passphrase-dialog.component.html',
+    styleUrl: './passphrase-dialog.component.css'
 })
 export class PassphraseDialogComponent implements OnInit {
   passphrase: string = '';

@@ -9,7 +9,6 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-user-status',
-  standalone: true,
   imports: [
     NgIf,
     NgClass,
@@ -18,6 +17,7 @@ import {MatProgressSpinner} from '@angular/material/progress-spinner';
     MatProgressSpinner
   ],
   templateUrl: './user-status.component.html',
+  standalone: true,
   styleUrl: './user-status.component.css'
 })
 export class UserStatusComponent implements OnInit{

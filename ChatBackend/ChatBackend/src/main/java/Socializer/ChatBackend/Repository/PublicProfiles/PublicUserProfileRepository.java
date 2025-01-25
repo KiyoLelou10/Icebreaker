@@ -1,6 +1,7 @@
 package Socializer.ChatBackend.Repository.PublicProfiles;
 
 import Socializer.ChatBackend.Entities.PublicUserProfileEntity;
+import Socializer.ChatBackend.Enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +22,6 @@ public interface PublicUserProfileRepository extends JpaRepository<PublicUserPro
     List<PublicUserProfileEntity> findByUsername(@Param("username") String username, @Param("currentUserId") String currentUserId);
 
     List<PublicUserProfileEntity> findAllByKeycloakUserIdNot(String id);
+
+    List<PublicUserProfileEntity> findAllByStatusAndKeycloakUserIdNot(Status status, String keycloakUserId);
 }

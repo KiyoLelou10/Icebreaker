@@ -142,3 +142,26 @@
 .status-indicator-rect.offline {
   background-color: #f44336;
 }
+
+.no-users-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 200px;
+  text-align: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.no-users-message {
+  font-size: 18px;
+  font-weight: 500;
+  color: #757575;
+}
+
+.sad-emoji {
+  font-size: 22px;
+  margin-left: 5px;
+}

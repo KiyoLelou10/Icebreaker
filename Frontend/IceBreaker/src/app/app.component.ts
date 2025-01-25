@@ -14,9 +14,9 @@ import {
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, NavbarComponent, MatBadgeModule, UserStatusComponent],
+  imports: [RouterOutlet, NavbarComponent, MatBadgeModule],
   templateUrl: './app.component.html',
+  standalone: true,
   styleUrl: './app.component.css'
 })
 
