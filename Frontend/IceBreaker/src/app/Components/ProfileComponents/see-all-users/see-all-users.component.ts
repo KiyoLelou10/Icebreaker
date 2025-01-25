@@ -11,22 +11,21 @@ import {UserStatusComponent} from '../../UtilComponents/user-status/user-status.
 import {generateKeyPair} from '../../E2EECompenents/KeyGenerate';
 
 @Component({
-  selector: 'app-see-all-users',
-  standalone: true,
-  imports: [
-    NgForOf,
-    MatButton,
-    MatCard,
-    MatRipple,
-    MatCardHeader,
-    MatCardActions,
-    MatCardSubtitle,
-    MatCardTitle,
-    UserStatusComponent,
-    NgClass
-  ],
-  templateUrl: './see-all-users.component.html',
-  styleUrl: './see-all-users.component.css'
+    selector: 'app-see-all-users',
+    imports: [
+        NgForOf,
+        MatButton,
+        MatCard,
+        MatRipple,
+        MatCardHeader,
+        MatCardActions,
+        MatCardSubtitle,
+        MatCardTitle,
+        UserStatusComponent,
+        NgClass
+    ],
+    templateUrl: './see-all-users.component.html',
+    styleUrl: './see-all-users.component.css'
 })
 export class SeeAllUsersComponent implements OnInit{
   availableUsers: AvailableUserDTO[] = [];

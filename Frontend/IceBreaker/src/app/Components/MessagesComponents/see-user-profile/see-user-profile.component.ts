@@ -18,7 +18,6 @@ import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
 
 @Component({
   selector: 'app-see-user-profile',
-  standalone: true,
   imports: [MatDialogModule,
     MatCardModule,
     MatButtonModule,
@@ -26,6 +25,7 @@ import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
     MatFormFieldModule,
     MatInputModule, FormsModule, NgForOf],
   templateUrl: './see-user-profile.component.html',
+  standalone: true,
   styleUrl: './see-user-profile.component.css'
 })
 export class SeeUserProfileComponent implements OnInit{
@@ -61,15 +61,34 @@ export class SeeUserProfileComponent implements OnInit{
     if (this.senderProfile?.id) {
       this.webSocketService.connect(this.senderProfile.id);
     }
+
+    if (this.data?.bio) {
+      this.getIceBreakers(this.data.bio).subscribe((icebreakers) => {
+        this.icebreakers = [
+          icebreakers["Icebreaker 1"],
+          icebreakers["Icebreaker 2"],
+          icebreakers["Icebreaker 3"]
+        ];
+
+      });
+    }
+
+
   }
 
-  getIceBreakers(bio: string): Observable<{ "Icebreaker 1": string; "Icebreaker 2": string; "Icebreaker 3": string }> {
+   getIceBreakers(bio: string): Observable<{
+    "Icebreaker 1": string;
+    "Icebreaker 2": string;
+    "Icebreaker 3": string
+  }> {
+    console.log('Bio:', bio);
     return this.userProfileService.getIceBreakers(bio).pipe(
       catchError((err) => {
         console.error('Failed to upload key pair:', err);
         return of({ "Icebreaker 1": "", "Icebreaker 2": "", "Icebreaker 3": "" });
       })
     );
+
   }
 
   async sendMessage(): Promise<void> {

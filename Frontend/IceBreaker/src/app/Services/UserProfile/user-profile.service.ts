@@ -55,7 +55,7 @@ export class UserProfileService {
 
     const payload = { input: bio };
     return this.http.post<{ "Icebreaker 1": string; "Icebreaker 2": string; "Icebreaker 3": string }>(
-      "http://localhost:8080/api/getIceBreakers",
+      "http://localhost:8080/api/generate",
       payload,
       { headers }
     );

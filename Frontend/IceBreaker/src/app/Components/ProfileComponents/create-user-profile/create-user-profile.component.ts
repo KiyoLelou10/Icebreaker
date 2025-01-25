@@ -12,22 +12,21 @@ import {MatOption, MatSelect} from '@angular/material/select';
 
 
 @Component({
-  selector: 'app-create-user-profile',
-  standalone: true,
-  imports: [
-    MatIcon,
-    MatIconButton,
-    ReactiveFormsModule,
-    MatFormField,
-    NgIf,
-    MatInput,
-    MatButton,
-    MatLabel,
-    MatSelect,
-    MatOption
-  ],
-  templateUrl: './create-user-profile.component.html',
-  styleUrl: './create-user-profile.component.css'
+    selector: 'app-create-user-profile',
+    imports: [
+        MatIcon,
+        MatIconButton,
+        ReactiveFormsModule,
+        MatFormField,
+        NgIf,
+        MatInput,
+        MatButton,
+        MatLabel,
+        MatSelect,
+        MatOption
+    ],
+    templateUrl: './create-user-profile.component.html',
+    styleUrl: './create-user-profile.component.css'
 })
 export class CreateUserProfileComponent implements OnInit{
 

@@ -11,20 +11,19 @@ import {SeeUserProfileComponent} from '../../MessagesComponents/see-user-profile
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-search-user',
-  standalone: true,
-  imports: [
-    FormsModule,
-    MatCard,
-    MatRipple,
-    NgClass,
-    NgForOf,
-    NgIf,
-    MatButton,
-    TitleCasePipe
-  ],
-  templateUrl: './search-user.component.html',
-  styleUrl: './search-user.component.css'
+    selector: 'app-search-user',
+    imports: [
+        FormsModule,
+        MatCard,
+        MatRipple,
+        NgClass,
+        NgForOf,
+        NgIf,
+        MatButton,
+        TitleCasePipe
+    ],
+    templateUrl: './search-user.component.html',
+    styleUrl: './search-user.component.css'
 })
 export class SearchUserComponent implements OnInit{
 

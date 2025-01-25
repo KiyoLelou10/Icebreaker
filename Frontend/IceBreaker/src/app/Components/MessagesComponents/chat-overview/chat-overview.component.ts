@@ -17,12 +17,11 @@ import {WebsocketService} from '../../../Services/WebSocketServices/websocket.se
 import {NavbarServiceService} from '../../../Services/Navbar/navbar-service.service';
 import {PrivateKeyService} from '../../../Services/UserProfile/PrivateKey.service';
 import {EncryptionService} from '../../E2EECompenents/SymmetricEncryption';
-import {PasskeySec} from '../../E2EECompenents/PasskeySec';
 import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.service';
+import {PasskeySec} from '../../E2EECompenents/PasskeySec';
 
 @Component({
   selector: 'app-chat-overview',
-  standalone: true,
   imports: [
     MatSidenavContainer,
     MatList,
@@ -32,7 +31,6 @@ import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.ser
     DatePipe,
     NgIf,
     MatSidenav,
-    MatSidenavContainer,
     MatSidenavModule,
     MatFormField,
     FormsModule,
@@ -47,7 +45,8 @@ import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.ser
   ],
   providers: [PasskeySec],
   templateUrl: './chat-overview.component.html',
-  styleUrl: './chat-overview.component.css'
+  standalone: true,
+  styleUrls: ['./chat-overview.component.css']
 })
 export class ChatOverviewComponent implements OnInit {
   chatRooms: ChatRoomOverviewDTO[] = [];
