@@ -8,16 +8,17 @@ import {FormsModule} from '@angular/forms';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 
 @Component({
-    selector: 'app-user-status',
-    imports: [
-        NgIf,
-        NgClass,
-        MatSlideToggle,
-        FormsModule,
-        MatProgressSpinner
-    ],
-    templateUrl: './user-status.component.html',
-    styleUrl: './user-status.component.css'
+  selector: 'app-user-status',
+  imports: [
+    NgIf,
+    NgClass,
+    MatSlideToggle,
+    FormsModule,
+    MatProgressSpinner
+  ],
+  templateUrl: './user-status.component.html',
+  standalone: true,
+  styleUrl: './user-status.component.css'
 })
 export class UserStatusComponent implements OnInit{
 

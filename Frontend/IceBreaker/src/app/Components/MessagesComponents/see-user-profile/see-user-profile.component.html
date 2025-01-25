@@ -13,6 +13,11 @@
   </mat-card>
 
   <div class="icebreaker-suggestions">
+    <div *ngIf="icebreakers?.length === 0" class="loading-icebreakers">
+      <p>{{ currentLoadingMessage }}</p>
+    </div>
+
+
     <span
       *ngFor="let icebreaker of icebreakers"
       class="icebreaker-chip"

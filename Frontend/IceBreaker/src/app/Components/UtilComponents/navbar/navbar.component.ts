@@ -15,19 +15,20 @@ import {PasskeySec} from '../../E2EECompenents/PasskeySec';
 import {PasskeyService} from '../../../Services/CryptographyServices/Passkey.service';
 
 @Component({
-    selector: 'app-navbar',
-    imports: [
-        MatToolbarModule,
-        MatButtonModule,
-        RouterLinkActive,
-        RouterLink,
-        MatIconModule,
-        MatMenuModule,
-        MatBadge,
-    ],
-    providers: [PasskeySec],
-    templateUrl: './navbar.component.html',
-    styleUrl: './navbar.component.css'
+  selector: 'app-navbar',
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    RouterLinkActive,
+    RouterLink,
+    MatIconModule,
+    MatMenuModule,
+    MatBadge,
+  ],
+  providers: [PasskeySec],
+  templateUrl: './navbar.component.html',
+  standalone: true,
+  styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{
   profileCompleted: boolean = false;

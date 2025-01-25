@@ -44,3 +44,11 @@
   background-color: #f48fb1;
 }
 
+
+.loading-icebreakers {
+  text-align: center;
+  font-style: italic;
+  font-size: 14px;
+  color: gray;
+  margin: 15px 0;
+}

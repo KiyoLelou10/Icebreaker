@@ -17,4 +17,6 @@ public interface ChatRoomRepository extends CrudRepository<ChatRoom, UUID> {
 
     @Query("SELECT c.chatId FROM ChatRoom c WHERE c.senderId = :senderId AND c.recipientId = :recipientId")
     String findChatIdBySenderAndRecipient(@Param("senderId") UUID senderId, @Param("recipientId") UUID recipientId);
+
+    List<ChatRoom> findAllBySenderIdOrRecipientId(UUID senderId, UUID recipientId);
 }

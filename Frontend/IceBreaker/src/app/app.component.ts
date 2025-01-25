@@ -13,10 +13,11 @@ import {
 } from './Components/CryptographyComponents/passphrase-dialog/passphrase-dialog.component';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet, NavbarComponent, MatBadgeModule, UserStatusComponent],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.css'
+  selector: 'app-root',
+  imports: [RouterOutlet, NavbarComponent, MatBadgeModule],
+  templateUrl: './app.component.html',
+  standalone: true,
+  styleUrl: './app.component.css'
 })
 
 

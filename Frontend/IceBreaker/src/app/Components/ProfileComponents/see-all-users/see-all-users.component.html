@@ -28,4 +28,9 @@
       </div>
     </mat-card>
   </div>
+
+  <div *ngIf="availableUsers.length === 0" class="no-users-container">
+    <p class="no-users-message">No New users online now. Come again later! <span class="sad-emoji">😔</span></p>
+  </div>
+
 </div>
