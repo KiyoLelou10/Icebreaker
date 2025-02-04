@@ -1,4 +1,3 @@
-<app-user-status></app-user-status>
 <div class="users-container">
   <mat-card class="header-card">
     <h2 class="header-title">Available Users</h2>
@@ -7,7 +6,7 @@
   <div class="users-list">
     <mat-card
       class="user-item"
-      *ngFor="let user of availableUsers"
+      *ngFor="let user of currentUsers"
       (click)="openChat(user.id)"
       matRipple
     >
@@ -30,7 +29,18 @@
   </div>
 
   <div *ngIf="availableUsers.length === 0" class="no-users-container">
-    <p class="no-users-message">No New users online now. Come again later! <span class="sad-emoji">😔</span></p>
+    <p class="no-users-message">
+      No New users online now. Come again later! <span class="sad-emoji">😔</span>
+    </p>
   </div>
+</div>
 
+<!-- Navigation Buttons Moved Outside the Component -->
+<div class="navigation-buttons">
+  <button class="nav-button left-button" (click)="previousPage()" [disabled]="currentPageIndex === 0">
+    &lt;
+  </button>
+  <button class="nav-button right-button" (click)="nextPage()" [disabled]="currentPageIndex === paginatedUsers.length - 1">
+    &gt;
+  </button>
 </div>

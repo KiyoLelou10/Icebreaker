@@ -104,7 +104,7 @@ export class SeeUserProfileComponent implements OnInit{
     console.log('Bio:', bio);
     return this.userProfileService.getIceBreakers(bio).pipe(
       catchError((err) => {
-        console.error('Failed to upload key pair:', err);
+        console.error('Failed fetch Icebreakers:', err);
         return of({ "Icebreaker 1": "", "Icebreaker 2": "", "Icebreaker 3": "" });
       })
     );

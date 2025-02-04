@@ -106,6 +106,7 @@ export class ChatOverviewComponent implements OnInit {
 
   async selectChat(chat: ChatRoomOverviewDTO) {
     this.selectedChat = chat;
+    this.messages = [];
     if (this.symmetricKeys.has(this.selectedChat.recipientId)) {
       // @ts-ignore
       this.currentSymmetricKey = this.symmetricKeys.get(this.selectedChat.recipientId);
