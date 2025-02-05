@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogRef} from '@angular/material/dialog';
 import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {NgIf} from '@angular/common';
+import {NgClass, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {MatInput} from '@angular/material/input';
 import {MatButton} from '@angular/material/button';
@@ -23,7 +23,8 @@ import {generateKeyPair} from '../../E2EECompenents/KeyGenerate';
     MatInput,
     MatDialogActions,
     MatButton,
-    MatLabel
+    MatLabel,
+    NgClass
   ],
   providers: [PasskeySec],
   templateUrl: './passphrase-dialog.component.html',
@@ -36,6 +37,22 @@ export class PassphraseDialogComponent implements OnInit {
   magicNumber: number | null = null;
   confirmMagicNumber: number | null = null;
   errorMessage: string = '';
+
+  passphraseValidations = {
+    length: false,
+    uppercase: false,
+    specialChar: false
+  };
+
+  validatePassphrase() {
+    const pass = this.passphrase || '';
+
+    this.passphraseValidations.length = pass.length >= 12;
+    this.passphraseValidations.uppercase = /[A-Z]/.test(pass);
+    this.passphraseValidations.specialChar = /[!@#$%^&*(),.?":{}|<>]/.test(pass);
+  }
+
+
 
   constructor(
     public dialogRef: MatDialogRef<PassphraseDialogComponent>,
@@ -65,6 +82,15 @@ export class PassphraseDialogComponent implements OnInit {
 
   async onSave(): Promise<void> {
     if (this.data.isNew) {
+      this.validatePassphrase(); // Ensure latest validation before saving
+
+      if (!this.passphraseValidations.length || !this.passphraseValidations.uppercase || !this.passphraseValidations.specialChar) {
+        this.errorMessage = 'Passphrase must meet all requirements!';
+        return;
+      }
+
+      // Validation for setting passphrase
+
       if (!this.passphrase || !this.confirmPassphrase) {
         this.errorMessage = 'Passphrase cannot be empty!';
         return;

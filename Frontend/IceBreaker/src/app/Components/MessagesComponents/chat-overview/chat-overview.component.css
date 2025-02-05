@@ -203,3 +203,29 @@ button[mat-raised-button]:hover {
   line-height: 1.5;
   margin: 0;
 }
+.encryption-banner {
+  background: linear-gradient(45deg, #006a82, #5cd2f6); /* Indigo to Soft Purple */
+  color: #F8F9FA; /* Light text for contrast */
+  padding: 12px 15px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  letter-spacing: 0.5px;
+}
+
+.lock-icon {
+  margin-right: 8px;
+  font-size: 20px;
+  vertical-align: middle;
+  animation: lockBlink 1.5s infinite alternate;
+}
+
+@keyframes lockBlink {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}

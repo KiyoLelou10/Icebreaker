@@ -15,3 +15,23 @@
   font-size: 0.9em;
   margin-top: 10px;
 }
+
+.validation-list {
+  list-style: none;
+  padding: 0;
+  font-size: 0.9em;
+}
+
+.validation-list li {
+  color: red;
+  transition: color 0.3s ease-in-out;
+}
+
+.validation-list li.valid {
+  color: green;
+  font-weight: bold;
+}
+
+.validation-list li.invalid {
+  color: red;
+}

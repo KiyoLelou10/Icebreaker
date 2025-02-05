@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, HostListener, OnInit} from '@angular/core';
 import {ChatRoomOverviewDTO} from '../../../DTOS/ChatDTOs/ChatRoomOverviewDTO';
 import {ChatMessageDTO} from '../../../DTOS/ChatDTOs/ChatMessageDTO';
 import {ChatService} from '../../../Services/ChatService/chat.service';
@@ -50,6 +50,9 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./chat-overview.component.css']
 })
 export class ChatOverviewComponent implements OnInit {
+
+
+
   chatRooms: ChatRoomOverviewDTO[] = [];
   selectedChat: ChatRoomOverviewDTO | null = null
   messages: ChatMessageDTO[] = [];

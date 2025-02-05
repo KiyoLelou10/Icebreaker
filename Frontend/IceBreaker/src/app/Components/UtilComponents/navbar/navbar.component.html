@@ -7,6 +7,7 @@
     routerLinkActive="active-link"
     [routerLinkActiveOptions]="{ exact: true }"
   >
+    <mat-icon>people</mat-icon>
     Users
   </button>
   <button
@@ -15,6 +16,7 @@
     routerLinkActive="active-link"
     [routerLinkActiveOptions]="{ exact: true }"
   >
+    <mat-icon>chat</mat-icon>
     Chats
   </button>
   <button mat-button (click)="completeProfile()"
@@ -50,3 +52,4 @@
     {{ username }}
   </button>
 </mat-toolbar>
+
