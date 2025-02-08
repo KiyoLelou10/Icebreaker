@@ -26,7 +26,7 @@ Steps to Set Up and Run the Project
 	6. Run the Angular Frontend Application
 		a. Navigate to the Frontend/Icebreaker folder in the project directory.There should be a package.json file here. 
 		b. Install the required dependencies by executing the following command:
-			i. npm install
+			i. npm install --legacy-peer-deps
 
 		c. Then, start the Angular application using the command:
 			a. npm start 
