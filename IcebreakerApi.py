@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 # Load the model and tokenizer
-model = GPT2LMHeadModel.from_pretrained("C:\\Users\\asums\\Downloads\\fine_tuned_combined_gpt2\\content\\fine_tuned_combined_gpt2")
-tokenizer = GPT2Tokenizer.from_pretrained("C:\\Users\\asums\\Downloads\\fine_tuned_combined_gpt2\\content\\fine_tuned_combined_gpt2")
+model = GPT2LMHeadModel.from_pretrained("C:\\Users\\asums\\Downloads\\fine_tuned_combined_gpt2_medium1")
+tokenizer = GPT2Tokenizer.from_pretrained("C:\\Users\\asums\\Downloads\\fine_tuned_combined_gpt2_medium1")
 
 app = Flask(__name__)
 
@@ -19,7 +19,7 @@ def generate():
     input_ids = tokenizer.encode(input_text, return_tensors="pt")
     output_ids = model.generate(
         input_ids,
-        max_length=100,
+        max_length=80,
         num_return_sequences=1,
         no_repeat_ngram_size=2,
         top_p=0.92,
