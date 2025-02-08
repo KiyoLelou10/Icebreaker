@@ -102,4 +102,14 @@ for item in input_data:
 import shutil
 shutil.make_archive('fine_tuned_combined_gpt2_medium', 'zip', '/content/fine_tuned_combined_gpt2_medium')
 
-This is the code that was used in Google Collab to train the model, unfortunately we cannot guarantee that this code is 100% correct, as we changed the "box" in Google Collab that we used to obtain the weights used in our program. ("Box" refers in Google Collab to one box of code being executed.) This "box" was changed, because we tried to improve our AI by switching models from gpt2 to deepseek. The code that was provided here is really similar and possibly even the same as the original, but because we ran out of recourses(This refers to the 100 units that we bought from google, because our local VRAM was not sufficient) to run the code we cannot validate the correctness of it. 
+
+# This is the code that was used in Google Collab to train the model, 
+# unfortunately we cannot guarantee that this code is 100% correct, 
+# as we changed the "box" in Google Collab that we used to obtain 
+# the weights used in our program. ("Box" refers in Google Collab to 
+# one box of code being executed.) This "box" was changed, because we 
+# tried to improve our AI by switching models from gpt2 to deepseek. 
+# The code that was provided here is really similar and possibly even 
+# the same as the original, but because we ran out of recourses(This 
+# refers to the 100 units that we bought from google, because our local 
+# VRAM was not sufficient) to run the code we cannot validate the correctness of it. 
