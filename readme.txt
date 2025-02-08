@@ -37,3 +37,6 @@ Steps to Set Up and Run the Project
 	8. Login Options:
 		1. Create a New Account:
 			Select the Register option to create a new user account.
+		2. Create a new Passphrase in accordance to the requirements
+		3. After that complete your profile
+		4. Congratulations you can use our website to chat with other users, be sure to break the ice
