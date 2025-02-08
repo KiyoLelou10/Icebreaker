@@ -19,7 +19,8 @@ Steps to Set Up and Run the Project
 		a. Navigate to the ChatBackend/ChatBackend folder in the project directory.
 		b. Ensure the folder contains a pom.xml file.
 		c. Open a terminal in this folder and run the following command to start the backend server:
-			i. mvn spring-boot:run
+			i. mvn clean install -U
+			ii. mvn spring-boot:run
 
 
 	6. Run the Angular Frontend Application
