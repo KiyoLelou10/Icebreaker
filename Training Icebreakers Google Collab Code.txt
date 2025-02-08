@@ -1,0 +1,105 @@
+!pip install transformers datasets evaluate torch
+
+from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArguments, DataCollatorForLanguageModeling
+from datasets import Dataset
+import torch
+import os
+
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
+torch.cuda.empty_cache()
+
+# Load smaller model
+model = GPT2LMHeadModel.from_pretrained("gpt2-medium")
+model.gradient_checkpointing_enable()
+
+tokenizer = GPT2Tokenizer.from_pretrained("gpt2-medium")
+tokenizer.pad_token = tokenizer.eos_token
+
+# Tokenization
+def tokenize_function(batch):
+    return tokenizer(
+        batch["text"],
+        padding="max_length",
+        truncation=True,
+        max_length=256,  # Reduced sequence length
+    )
+
+# Tokenized datasets
+tokenized_train = train_dataset.map(tokenize_function, batched=True)
+tokenized_val = val_dataset.map(tokenize_function, batched=True)
+
+data_collator = DataCollatorForLanguageModeling(
+    tokenizer=tokenizer,
+    mlm=False,
+    pad_to_multiple_of=8,
+)
+
+# Training arguments with optimizations
+training_args = TrainingArguments(
+    output_dir="./results",
+    eval_strategy="epoch",
+    learning_rate=5e-5,
+    per_device_train_batch_size=1,
+    per_device_eval_batch_size=1,
+    num_train_epochs=8,
+    save_strategy="epoch",
+    logging_dir="./logs",
+    save_total_limit=2,
+    weight_decay=0.01,
+    push_to_hub=False,
+    load_best_model_at_end=True,
+    gradient_accumulation_steps=4,
+    fp16=True,
+)
+
+# Trainer initialization
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_train,
+    eval_dataset=tokenized_val,
+    data_collator=data_collator,
+)
+
+# Training
+trainer.train()
+trainer.evaluate()
+
+# Save model and tokenizer
+model.save_pretrained("/content/fine_tuned_combined_gpt2_medium")
+tokenizer.save_pretrained("/content/fine_tuned_combined_gpt2_medium")
+
+model = GPT2LMHeadModel.from_pretrained("/content/fine_tuned_combined_gpt2_large")
+tokenizer = GPT2Tokenizer.from_pretrained("/content/fine_tuned_combined_gpt2_large")
+
+input_data = [
+    {"input": "Hi, I’m Ethan. I love rock climbing, playing guitar, and studying data science."},
+    {"input": "Hi, I’m Sophie. I’m a photographer who loves exploring abandoned places, gardening, and reading poetry."},
+    {"input": "Hey, I’m Lucas. I love playing guitar, coding games, and studying astrophysics."},
+    {"input": "Hey, I’m Jack. I love swimming, playing piano and traveling. Currently Im studying law.  "}
+]
+
+for item in input_data:
+    input_ids = tokenizer.encode(item["input"], return_tensors="pt")
+
+    output_ids = model.generate(
+    input_ids,
+    max_length=100,
+    num_return_sequences=1,
+    no_repeat_ngram_size=2,
+    top_p=0.92,
+    temperature=0.7
+)
+
+
+    output_text = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+
+
+    print(f"Input: {item['input']}")
+    print(f"Generated Output: {output_text}")
+    print("=" * 50)
+
+import shutil
+shutil.make_archive('fine_tuned_combined_gpt2_medium', 'zip', '/content/fine_tuned_combined_gpt2_medium')
+
+This is the code that was used in Google Collab to train the model, unfortunately we cannot guarantee that this code is 100% correct, as we changed the "box" in Google Collab that we used to obtain the weights used in our program. ("Box" refers in Google Collab to one box of code being executed.) This "box" was changed, because we tried to improve our AI by switching models from gpt2 to deepseek. The code that was provided here is really similar and possibly even the same as the original, but because we ran out of recourses(This refers to the 100 units that we bought from google, because our local VRAM was not sufficient) to run the code we cannot validate the correctness of it. 
