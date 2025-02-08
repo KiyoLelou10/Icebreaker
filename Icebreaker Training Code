@@ -15,27 +15,41 @@ from transformers import GPT2Tokenizer, GPT2LMHeadModel, Trainer, TrainingArgume
 from datasets import Dataset
 import torch
 import os
+import json 
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "max_split_size_mb:128"
 torch.cuda.empty_cache()
 
-# Load smaller model
+# Load dataset
+def load_custom_dataset(file_path):
+    with open(file_path, "r", encoding="utf-8") as file:
+        data = json.load(file)
+    train_data = [{"text": item["input"] + item["output"]} for item in data["train"]]
+    val_data = [{"text": item["input"] + item["output"]} for item in data["validation"]]
+    return train_data, val_data
+
+train_data, val_data = load_custom_dataset("/content/icebreaker_dataset_combined.json")
+
+# Convert lists to Dataset objects
+train_dataset = Dataset.from_list(train_data)
+val_dataset = Dataset.from_list(val_data)
+
+# Load model and tokenizer
 model = GPT2LMHeadModel.from_pretrained("gpt2-medium")
 model.gradient_checkpointing_enable()
-
 tokenizer = GPT2Tokenizer.from_pretrained("gpt2-medium")
 tokenizer.pad_token = tokenizer.eos_token
 
-# Tokenization
+# Tokenization function
 def tokenize_function(batch):
     return tokenizer(
         batch["text"],
         padding="max_length",
         truncation=True,
-        max_length=256,  # Reduced sequence length
+        max_length=256,
     )
 
-# Tokenized datasets
+# Tokenize datasets
 tokenized_train = train_dataset.map(tokenize_function, batched=True)
 tokenized_val = val_dataset.map(tokenize_function, batched=True)
 
@@ -45,7 +59,7 @@ data_collator = DataCollatorForLanguageModeling(
     pad_to_multiple_of=8,
 )
 
-# Training arguments with optimizations
+# Training arguments
 training_args = TrainingArguments(
     output_dir="./results",
     eval_strategy="epoch",
@@ -63,7 +77,7 @@ training_args = TrainingArguments(
     fp16=True,
 )
 
-# Trainer initialization
+# Initialize Trainer
 trainer = Trainer(
     model=model,
     args=training_args,
@@ -72,11 +86,9 @@ trainer = Trainer(
     data_collator=data_collator,
 )
 
-# Training
+# Train and save
 trainer.train()
 trainer.evaluate()
-
-# Save model and tokenizer
 model.save_pretrained("/content/fine_tuned_combined_gpt2_medium")
 tokenizer.save_pretrained("/content/fine_tuned_combined_gpt2_medium")
 
