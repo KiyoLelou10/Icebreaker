@@ -33,10 +33,11 @@ Steps to Set Up and Run the Project
 
 	7. Using the AI
 		a. To use the AI please contact one of the devs, so that he can send you the weights for the model. 
-		b. In the Python Code change the Path to the weights according to the path under which you downloaded our weights.
-		c. Open the Terminal in the root folder of the project, make sure the folder contains an IcebreakerApi.py file
-		d. Run the following command: pip install flask transformers torch (make sure you have python installed)
-		e. To exectute the Api run: python3 IcebreakerApi.py 
+		b. Navigate to the root folder, find the file called IcebreakerApi.py and open it in an editor of your choice.
+		c. In the Python code change the path to the weights according to the path under which you downloaded our weights.
+		d. Go back to the root folder and open a terminal in it.
+		e. Run the following command: pip install flask transformers torch (make sure you have python installed)
+		f. To exectute the Api run: python3 IcebreakerApi.py 
 
 	8. Access the Application
 		Open a web browser and navigate to http://localhost:4200.
