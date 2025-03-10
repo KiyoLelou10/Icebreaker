@@ -5,9 +5,11 @@ import Socializer.ChatBackend.DTOS.AvailableUserDTO;
 import Socializer.ChatBackend.DTOS.ProfileNavbarDTO;
 import Socializer.ChatBackend.DTOS.ProfileWithStatusDTO;
 import Socializer.ChatBackend.DTOS.PublicUserProfileDTO;
+import Socializer.ChatBackend.Entities.LocationEntity;
 import Socializer.ChatBackend.Entities.PublicUserProfileEntity;
 import Socializer.ChatBackend.Enums.Status;
 import Socializer.ChatBackend.Exceptions.UserProfileNotFoundException;
+import Socializer.ChatBackend.Repository.LocationRepository;
 import Socializer.ChatBackend.Repository.MessagingRepositories.ChatRoomRepository;
 import Socializer.ChatBackend.Repository.PublicProfiles.PublicUserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PublicUserProfileService {
 
     @Autowired
     private ChatRoomRepository chatRoomRepository;
+
+    @Autowired
+    private LocationRepository locationRepository;
 
 
     public boolean isProfileComplete(String keycloakUserId) {
@@ -126,11 +131,21 @@ public class PublicUserProfileService {
 
         UUID currentUserProfileId = currentUserProfile.getId();
 
-        // Fetch all online users excluding the current user
-        List<PublicUserProfileEntity> users = publicUserProfileRepository.findAllByStatusAndKeycloakUserIdNot(
-                Status.ONLINE, currentUserId
+        LocationEntity currentUserLocation = locationRepository.findByUserId(currentUserProfileId)
+                .orElseThrow(() -> new RuntimeException("User location not found"));
+
+        double latitude = currentUserLocation.getLatitude();
+        double longitude = currentUserLocation.getLongitude();
+
+        // Fetch nearby online users within 3km
+        List<PublicUserProfileEntity> users = publicUserProfileRepository.findNearbyOnlineUsers(
+                currentUserProfileId, latitude, longitude
         );
 
+        System.out.println(users);
+        if(users.isEmpty()) {
+            System.out.println("No users found");
+        }
         // Fetch chat rooms where the current user is either the sender or recipient
         List<UUID> excludedUserIds = chatRoomRepository.findAllBySenderIdOrRecipientId(currentUserProfileId, currentUserProfileId)
                 .stream()

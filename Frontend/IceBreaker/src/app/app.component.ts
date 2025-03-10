@@ -11,6 +11,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {
   PassphraseDialogComponent
 } from './Components/CryptographyComponents/passphrase-dialog/passphrase-dialog.component';
+import {LocationService} from './Services/LocationService/location.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit{
   title = 'Icebreaker';
   helloText: string | undefined;
 
-  constructor(private cryptoService: CryptographyService, private dialog: MatDialog,private router: Router, private http: HttpClient, private ks: KeycloakService) {}
+  constructor(private locationService: LocationService, private cryptoService: CryptographyService, private dialog: MatDialog,private router: Router, private http: HttpClient, private ks: KeycloakService) {}
 
   ngOnInit(): void {
     this.cryptoService.checkPassphraseStatus().subscribe((status) => {
@@ -35,6 +36,9 @@ export class AppComponent implements OnInit{
         this.openDialog(false);
       }
     });
+
+    this.locationService.startPeriodicUpdates();
+
   }
 
   openDialog(isNew: boolean): void {

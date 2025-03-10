@@ -23,5 +23,23 @@ public interface PublicUserProfileRepository extends JpaRepository<PublicUserPro
 
     List<PublicUserProfileEntity> findAllByKeycloakUserIdNot(String id);
 
-    List<PublicUserProfileEntity> findAllByStatusAndKeycloakUserIdNot(Status status, String keycloakUserId);
+    @Query(value = """
+        SELECT p.*
+        FROM public_user_profiles p
+        JOIN location_entity l ON p.id = l.user_id
+        WHERE p.status = 'ONLINE'
+        AND p.id <> :currentUserProfileId  -- Ensures the user itself is not returned
+        AND (
+            6371 * acos(
+                cos(radians(:latitude)) * cos(radians(l.latitude)) *
+                cos(radians(l.longitude) - radians(:longitude)) +
+                sin(radians(:latitude)) * sin(radians(l.latitude))
+            )
+        ) <= 3
+    """, nativeQuery = true)
+    List<PublicUserProfileEntity> findNearbyOnlineUsers(
+            @Param("currentUserProfileId") UUID currentUserProfileId,
+            @Param("latitude") double latitude,
+            @Param("longitude") double longitude
+    );
 }
